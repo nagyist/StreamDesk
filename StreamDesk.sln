@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamDesk.Core", "StreamDesk.Core\StreamDesk.Core.csproj", "{8A0D5FB2-4326-4521-91A2-6F47109B1688}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamDesk", "StreamDesk\StreamDesk.csproj", "{CD48E228-8B2B-4FA8-A514-469DB1A177FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sdXMLToSqliteConverter", "sdXMLToSqliteConverter\sdXMLToSqliteConverter.csproj", "{04C47C8A-4D47-4BEB-B319-0DC96B6CF0A6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamDesk.Core", "StreamDesk.Core\StreamDesk.Core.csproj", "{8A0D5FB2-4326-4521-91A2-6F47109B1688}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamDesk.SCM", "StreamDesk.SCM\StreamDesk.SCM.csproj", "{F4D88A30-5D25-49F3-95EB-D1842F3083AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,22 +15,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Debug|x86.ActiveCfg = Debug|x86
-		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Debug|x86.Build.0 = Debug|x86
-		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Release|x86.ActiveCfg = Release|x86
-		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Release|x86.Build.0 = Release|x86
-		{04C47C8A-4D47-4BEB-B319-0DC96B6CF0A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04C47C8A-4D47-4BEB-B319-0DC96B6CF0A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04C47C8A-4D47-4BEB-B319-0DC96B6CF0A6}.Debug|x86.ActiveCfg = Debug|x86
-		{04C47C8A-4D47-4BEB-B319-0DC96B6CF0A6}.Debug|x86.Build.0 = Debug|x86
-		{04C47C8A-4D47-4BEB-B319-0DC96B6CF0A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04C47C8A-4D47-4BEB-B319-0DC96B6CF0A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{04C47C8A-4D47-4BEB-B319-0DC96B6CF0A6}.Release|x86.ActiveCfg = Release|x86
-		{04C47C8A-4D47-4BEB-B319-0DC96B6CF0A6}.Release|x86.Build.0 = Release|x86
 		{8A0D5FB2-4326-4521-91A2-6F47109B1688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8A0D5FB2-4326-4521-91A2-6F47109B1688}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A0D5FB2-4326-4521-91A2-6F47109B1688}.Debug|x86.ActiveCfg = Debug|x86
@@ -39,6 +23,22 @@ Global
 		{8A0D5FB2-4326-4521-91A2-6F47109B1688}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8A0D5FB2-4326-4521-91A2-6F47109B1688}.Release|x86.ActiveCfg = Release|x86
 		{8A0D5FB2-4326-4521-91A2-6F47109B1688}.Release|x86.Build.0 = Release|x86
+		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Debug|x86.ActiveCfg = Debug|x86
+		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Debug|x86.Build.0 = Debug|x86
+		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Release|x86.ActiveCfg = Release|x86
+		{CD48E228-8B2B-4FA8-A514-469DB1A177FF}.Release|x86.Build.0 = Release|x86
+		{F4D88A30-5D25-49F3-95EB-D1842F3083AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4D88A30-5D25-49F3-95EB-D1842F3083AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4D88A30-5D25-49F3-95EB-D1842F3083AB}.Debug|x86.ActiveCfg = Debug|x86
+		{F4D88A30-5D25-49F3-95EB-D1842F3083AB}.Debug|x86.Build.0 = Debug|x86
+		{F4D88A30-5D25-49F3-95EB-D1842F3083AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4D88A30-5D25-49F3-95EB-D1842F3083AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4D88A30-5D25-49F3-95EB-D1842F3083AB}.Release|x86.ActiveCfg = Release|x86
+		{F4D88A30-5D25-49F3-95EB-D1842F3083AB}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

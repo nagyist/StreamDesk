@@ -6,8 +6,19 @@
 #endregion
 
 #region Using Directives
-using System.Reflection;
+using System;
+using System.Windows.Forms;
 
 #endregion
 
-[assembly: AssemblyTitle ("StreamDesk GUI")]
+namespace StreamDesk {
+    public partial class frmCredits : Form {
+        public frmCredits () {
+            InitializeComponent ();
+        }
+
+        private void button1_Click (object sender, EventArgs e) {
+            Close ();
+        }
+    }
+}

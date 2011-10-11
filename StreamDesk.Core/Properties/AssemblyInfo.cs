@@ -5,3 +5,9 @@
 // Licensed under the NasuTek Restrictive Development License Version 1.00
 #endregion
 
+#region Using Directives
+using System.Reflection;
+
+#endregion
+
+[assembly: AssemblyTitle ("StreamDesk HTTP Core Service")]
