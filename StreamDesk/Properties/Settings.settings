@@ -1,0 +1,39 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="StreamDesk.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GetStreamsAtStartup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="LastHeight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">492</Value>
+    </Setting>
+    <Setting Name="LastLeft" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">32</Value>
+    </Setting>
+    <Setting Name="LastSidebar" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">170</Value>
+    </Setting>
+    <Setting Name="LastTop" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">32</Value>
+    </Setting>
+    <Setting Name="LastWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">703</Value>
+    </Setting>
+    <Setting Name="MinSize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UseSystemIRC" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="VideoResize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="VideoTopMost" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="StreamUpdateURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://streamdesk.ca/streams.xml</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
