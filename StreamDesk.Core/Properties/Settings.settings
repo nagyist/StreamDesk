@@ -35,5 +35,11 @@
     <Setting Name="StreamUpdateURL" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://streamdesk.ca/streams.xml</Value>
     </Setting>
+    <Setting Name="ShowTreeView" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ShowInfoBar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

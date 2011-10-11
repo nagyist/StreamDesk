@@ -6,7 +6,7 @@
     <ProjectGuid>{CD48E228-8B2B-4FA8-A514-469DB1A177FF}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>sd.ico</ApplicationIcon>
+    <ApplicationIcon>ico32512.ico</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>StreamDesk</AssemblyName>
@@ -30,7 +30,7 @@
     <ManifestCertificateThumbprint>768F6C69601F87B6E25A47B44CACA7AFE0C3AB1A</ManifestCertificateThumbprint>
     <ManifestKeyFile>StreamDesk_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <PublishUrl>E:\Projects\StreamDesk\Version 1.1.1\deploy\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -45,15 +45,16 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <DocumentationFile>
     </DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
@@ -70,7 +71,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -94,7 +95,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <BaseAddress>285212672</BaseAddress>
     <FileAlignment>4096</FileAlignment>
@@ -103,7 +104,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>bin\x86\Release\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <BaseAddress>285212672</BaseAddress>
     <Optimize>true</Optimize>
@@ -125,6 +126,7 @@
       <Name>System.Drawing</Name>
       <HintPath>System.Drawing.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms">
       <Name>System.Windows.Forms</Name>
       <HintPath>System.Windows.Forms.dll</HintPath>
@@ -135,92 +137,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppTools\frmSettings.Designer.cs">
-      <DependentUpon>frmSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AppTools\frmUpdateStreamList.Designer.cs">
-      <DependentUpon>frmUpdateStreamList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmAbout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAbout.Designer.cs">
-      <DependentUpon>frmAbout.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmChat.Designer.cs">
-      <DependentUpon>frmChat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AppCore\DownloadCompleteHandler.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AppCore\DownloadInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AppCore\DownloadProgressHandler.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AppCore\DownloadThread.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AppCore\WebDownload.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AppTools\frmSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AppTools\frmUpdateStreamList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmChat.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="AppTools\frmSettings.resx">
-      <DependentUpon>frmSettings.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppTools\frmUpdateStreamList.resx">
-      <DependentUpon>frmUpdateStreamList.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAbout.resx">
-      <DependentUpon>frmAbout.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmChat.resx">
-      <DependentUpon>frmChat.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <Compile Include="TODO.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
@@ -240,30 +161,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\camera-video.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\camera-video1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\comment.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\internet-group-chat.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\64.png" />
-    <None Include="StreamDesk_TemporaryKey.pfx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="sd.ico" />
+    <Content Include="ico32512.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -19,7 +19,7 @@ namespace StreamDesk
 
         private void frmAbout_Load(object sender, EventArgs e)
         {
-            linkLabel1.Text = String.Format(linkLabel1.Text, Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            label1.Text = String.Format(label1.Text, Assembly.GetExecutingAssembly().GetName().Version.ToString());
             this.Text = String.Format(this.Text, Assembly.GetExecutingAssembly().GetName().Version.ToString());
         }
 
@@ -41,6 +41,11 @@ namespace StreamDesk
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new frmCredits().ShowDialog();
         }
     }
 }

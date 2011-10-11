@@ -9,7 +9,6 @@
     {
         private string chatHTML = "<strong>Please wait...</strong>";
         private IContainer components;
-        private WebBrowser wbWebIRC;
 
         protected override void Dispose(bool disposing)
         {
@@ -23,17 +22,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmChat));
-            this.wbWebIRC = new System.Windows.Forms.WebBrowser();
+            this.wbWebIRC = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // wbWebIRC
             // 
             this.wbWebIRC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wbWebIRC.Location = new System.Drawing.Point(0, 0);
-            this.wbWebIRC.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbWebIRC.Name = "wbWebIRC";
             this.wbWebIRC.Size = new System.Drawing.Size(601, 326);
-            this.wbWebIRC.TabIndex = 1;
+            this.wbWebIRC.TabIndex = 0;
             // 
             // frmChat
             // 
@@ -47,6 +45,8 @@
             this.ResumeLayout(false);
 
         }
+
+        private Panel wbWebIRC;
     }
 }
 
