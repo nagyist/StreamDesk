@@ -16,6 +16,7 @@ using System.Threading;
 using StreamDesk.AppCore;
 using StreamDesk.Properties;
 using System.Web;
+using System.Windows.Forms;
 
 #endregion
 
@@ -39,7 +40,7 @@ namespace StreamDesk.HTTPDataServer {
         protected Hashtable connectedHT = new Hashtable ();
         protected ArrayList connectedSocks;
         private int convID = 0;
-        private Timer lostTimer;
+        private System.Threading.Timer lostTimer;
         protected int maxSockets;
         private int portNumber;
 
@@ -74,7 +75,14 @@ namespace StreamDesk.HTTPDataServer {
             // Create the delegate that invokes methods for the timer.
             var timerDelegate = new TimerCallback (CheckSockets);
             // Create a timer that waits one minute, then invokes every 5 minutes.
-            lostTimer = new Timer (timerDelegate, null, timerTimeout, timerTimeout);
+            lostTimer = new System.Threading.Timer (timerDelegate, null, timerTimeout, timerTimeout);
+        }
+
+        void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
+            EventLog eventLog = new EventLog ();
+            if (EventLog.SourceExists ("SDS")) EventLog.CreateEventSource ("SDS", "Application");
+            eventLog.Source = "SDS";
+            eventLog.WriteEntry (((Exception) e.ExceptionObject).ToString (), EventLogEntryType.Error);
         }
 
         /// 
@@ -186,15 +194,6 @@ namespace StreamDesk.HTTPDataServer {
             try {
                 int bytesRead = handler.EndReceive (ar);
                 if (bytesRead > 0) {
-#if ENABLE_DEBUGGABLE_LOGGING
-                    if (!EventLog.SourceExists ("StreamDesk HTTP Service"))
-                        EventLog.CreateEventSource (
-                            "StreamDesk HTTP Service", "Application");
-                    var EventLog1 = new EventLog ();
-                    EventLog1.Source = "StreamDesk HTTP Service";
-                    EventLog1.WriteEntry (Encoding.ASCII.GetString (state.buffer));
-#endif
-
                     string full = Encoding.ASCII.GetString (state.buffer);
                     string getstring =
                         Encoding.ASCII.GetString (state.buffer).Replace ("GET /", "").Split (new string[] {
@@ -202,16 +201,7 @@ namespace StreamDesk.HTTPDataServer {
                                                                                                           },
                                                                                              StringSplitOptions.
                                                                                                  RemoveEmptyEntries)[0];
-
-#if ENABLE_DEBUGGABLE_LOGGING
-                    EventLog1.WriteEntry (getstring);
-#endif
-
                     string[] getdata = getstring.Split ('/');
-
-#if ENABLE_DEBUGGABLE_LOGGING
-                    EventLog1.WriteEntry (getdata[0]);
-#endif
 
                     if (getdata[0] == "+gettree") {
                         string xml = StreamDeskDBControl._GetStreamList ();
@@ -239,22 +229,36 @@ namespace StreamDesk.HTTPDataServer {
                             html = "Update Failed";
                         }
                         Send (handler, String.Format ("{0}{1}", String.Format (Resources.HTTPHeader, html.Length), html));
+                    } else if (getdata[0] == "+exception") {
+                        throw new Exception("Testing");
                     }
                     RemoveSocket (state);
                 } else {
                     RemoveSocket (state);
                 }
             } catch (SocketException es) {
+#if ENABLE_DEBUGGABLE_LOGGING
                 RemoveSocket (state);
                 if (es.ErrorCode != 64) {
                     Console.WriteLine (string.Format ("ReadCallback Socket Exception: {0}, {1}.", es.ErrorCode,
                                                       es.ToString ()));
                 }
+                EventLog eventLog = new EventLog();
+                if (EventLog.SourceExists("SDS")) EventLog.CreateEventSource("SDS", "Application");
+                eventLog.Source = "SDS";
+                eventLog.WriteEntry(es.ToString(), EventLogEntryType.Error);
+#endif
             } catch (Exception e) {
+#if ENABLE_DEBUGGABLE_LOGGING
                 RemoveSocket (state);
                 if (e.GetType ().FullName != "System.ObjectDisposedException") {
                     Console.WriteLine (string.Format ("ReadCallback Exception: {0}.", e.ToString ()));
                 }
+                EventLog eventLog = new EventLog();
+                if (EventLog.SourceExists("SDS")) EventLog.CreateEventSource("SDS", "Application");
+                eventLog.Source = "SDS";
+                eventLog.WriteEntry(e.ToString(), EventLogEntryType.Error);
+#endif
             }
         }
 
