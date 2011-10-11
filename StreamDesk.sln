@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamDesk.Core", "StreamDesk.Core\StreamDesk.Core.csproj", "{8A0D5FB2-4326-4521-91A2-6F47109B1688}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamDesk", "StreamDesk\StreamDesk.csproj", "{CD48E228-8B2B-4FA8-A514-469DB1A177FF}"

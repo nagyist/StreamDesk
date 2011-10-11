@@ -42,8 +42,9 @@ namespace StreamDesk {
             new frmCredits ().ShowDialog ();
         }
 
-        private void linkLabel2_LinkClicked_1 (object sender, LinkLabelLinkClickedEventArgs e) {
-            new License ().ShowDialog ();
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

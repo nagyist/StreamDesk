@@ -42,7 +42,7 @@
             // 
             this.cbUpdateOnStartup.AutoSize = true;
             this.cbUpdateOnStartup.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbUpdateOnStartup.Location = new System.Drawing.Point(12, 12);
+            this.cbUpdateOnStartup.Location = new System.Drawing.Point(12, 10);
             this.cbUpdateOnStartup.Name = "cbUpdateOnStartup";
             this.cbUpdateOnStartup.Size = new System.Drawing.Size(173, 19);
             this.cbUpdateOnStartup.TabIndex = 14;
@@ -51,16 +51,15 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 30);
+            this.label1.Location = new System.Drawing.Point(28, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(312, 30);
+            this.label1.Size = new System.Drawing.Size(380, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "If you enable this setting, the application will download\r\na new list of streams " +
-                "every time it starts.";
+            this.label1.Text = "Automatically update the stream database on launch of application.";
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(272, 158);
+            this.btnOK.Location = new System.Drawing.Point(345, 143);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 4;
@@ -72,7 +71,7 @@
             // 
             this.cbAlwaysOnTop.AutoSize = true;
             this.cbAlwaysOnTop.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbAlwaysOnTop.Location = new System.Drawing.Point(13, 62);
+            this.cbAlwaysOnTop.Location = new System.Drawing.Point(13, 50);
             this.cbAlwaysOnTop.Name = "cbAlwaysOnTop";
             this.cbAlwaysOnTop.Size = new System.Drawing.Size(173, 19);
             this.cbAlwaysOnTop.TabIndex = 8;
@@ -83,17 +82,17 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 79);
+            this.label4.Location = new System.Drawing.Point(28, 67);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(269, 15);
+            this.label4.Size = new System.Drawing.Size(276, 15);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Keeps the video player on top of other windows.";
+            this.label4.Text = "Keep the application on top of all other windows.";
             // 
             // cbResize
             // 
             this.cbResize.AutoSize = true;
             this.cbResize.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbResize.Location = new System.Drawing.Point(14, 106);
+            this.cbResize.Location = new System.Drawing.Point(14, 91);
             this.cbResize.Name = "cbResize";
             this.cbResize.Size = new System.Drawing.Size(157, 19);
             this.cbResize.TabIndex = 10;
@@ -104,15 +103,15 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 124);
+            this.label5.Location = new System.Drawing.Point(28, 109);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(324, 15);
+            this.label5.Size = new System.Drawing.Size(341, 15);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Automatically grow the video window to fit high-res video.";
+            this.label5.Text = "Automatically resize windows to fit provider\'s player control.";
             // 
             // frmSettings
             // 
-            this.ClientSize = new System.Drawing.Size(361, 197);
+            this.ClientSize = new System.Drawing.Size(429, 176);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cbResize);
             this.Controls.Add(this.label4);

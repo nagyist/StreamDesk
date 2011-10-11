@@ -80,7 +80,7 @@ namespace StreamDesk {
             toolStripDropDownButton1.Visible = false;
             ReadStreams ();
             var un = new UpdateNotifier ();
-            un.ImageIcon = Resources._64v2;
+            un.ImageIcon = Resources._64;
             un.UpdateXMLURL = "http://streamdesk.ca/update.xml";
             un.CheckForUpdates ("StreamDesk", "Windows");
         }

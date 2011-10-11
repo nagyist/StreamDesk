@@ -43,6 +43,6 @@ namespace StreamDesk.AppTools {
 
         private void btnResetDict_Click (object sender, EventArgs e) {}
 
-        private void btnAdvanced_Click (object sender, EventArgs e) {}
+        private void btnAdvanced_Click(object sender, EventArgs e) { }
     }
 }
