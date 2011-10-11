@@ -36,6 +36,7 @@
     <SignManifests>true</SignManifests>
     <ManifestCertificateThumbprint>C63C8B1383A4E577639BE2D9A306DFC5E5E55C27</ManifestCertificateThumbprint>
     <ManifestKeyFile>KtecK_Labs.pfx</ManifestKeyFile>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -88,12 +89,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HTTPDataServer\StreamDeskServer.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectInstaller.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ProjectInstaller.Designer.cs">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -104,18 +99,8 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="HTTPDataServer\StreamDeskService.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HTTPDataServer\StreamDeskService.Designer.cs">
-      <DependentUpon>StreamDeskService.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ProjectInstaller.resx">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -129,12 +114,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="KtecK_Labs.pfx" />
     <None Include="StreamDesk.snk" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ico32512.ico" />
-    <Content Include="sd2.ico" />
     <Content Include="VPN.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

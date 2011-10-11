@@ -8,7 +8,7 @@
 #region Using Directives
 using System;
 using System.Windows.Forms;
-using NasuTek.XUL.Runtime;
+using Skybound.Gecko;
 
 #endregion
 

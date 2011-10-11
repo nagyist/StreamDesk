@@ -1,1 +1,0 @@
-gacutil.exe -u "NasuTek.XUL.Runtime, Version=1.8.0.0"

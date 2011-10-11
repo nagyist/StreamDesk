@@ -13,33 +13,39 @@ using System.ServiceProcess;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using StreamDesk.HTTPDataServer;
+using System.Diagnostics;
+using System.Threading;
+using System.Net.Sockets;
+using System.Net;
 
 #endregion
 
-namespace StreamDesk {
-    public static class Program {
-        private static void Main (string[] args) {
-            if (args.Length == 0) {
-                ServiceBase[] ServicesToRun;
-                ServicesToRun = new ServiceBase[] {
-                                                      new StreamDeskService ()
-                                                  };
-                ServiceBase.Run (ServicesToRun);
-            } else {
-                if (args[0] == "/i") {
-                    Interaction.Shell (
-                        Path.Combine (RuntimeEnvironment.GetRuntimeDirectory (), "InstallUtil.exe ") +
-                        String.Format ("-i \"{0}\"", Application.ExecutablePath), AppWinStyle.Hide, true, -1);
-                    new ServiceController ("StreamDeskService").Start ();
-                } else if (args[0] == "/u") {
-                    try {
-                        var sc = new ServiceController ("StreamDeskService");
-                        sc.Stop ();
-                        sc.WaitForStatus (ServiceControllerStatus.Stopped);
-                    } catch (Exception) {}
-                    Interaction.Shell (
-                        Path.Combine (RuntimeEnvironment.GetRuntimeDirectory (), "InstallUtil.exe ") +
-                        String.Format ("-u \"{0}\"", Application.ExecutablePath), AppWinStyle.Hide, true, -1);
+namespace StreamDesk
+{
+    public static class Program
+    {
+        private static void Main(string[] args)
+        {
+            if (args.Length == 0)
+            {
+                Process[] processes = Process.GetProcessesByName("StreamDesk.Core");
+                if (processes.Length == 1)
+                {
+                    Server server = new Server();
+                    server.Start();
+                }
+                else { }
+            }
+            else
+            {
+                if (args[0] == "/kill")
+                {
+                    Process[] processes = Process.GetProcessesByName("StreamDesk.Core");
+                    foreach (Process p in processes)
+                    {
+                        p.Kill();
+                        Thread.Sleep(1000);
+                    }
                 }
             }
         }

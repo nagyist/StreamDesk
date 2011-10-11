@@ -11,36 +11,22 @@ using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
 using System.Windows.Forms;
-using NasuTek.XUL.Runtime;
+using Skybound.Gecko;
 
 #endregion
 
-namespace StreamDesk {
-    internal static class Program {
-        [STAThread] private static void Main (string[] args) {
-            var sc = new ServiceController ("StreamDeskService");
-            try {
-                if (sc.Status == ServiceControllerStatus.Running) {
-                    Application.EnableVisualStyles ();
-                    Application.SetCompatibleTextRenderingDefault (false);
-                    XULRuntime.Initialize ();
-                    Application.Run (new frmMain ());
-                } else {
-                    if (
-                        MessageBox.Show (
-                            "The StreamDesk HTTP Core Service is not started. Launch StreamDesk SCM to start it?",
-                            "StreamDesk", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
-                        Process.Start (Path.Combine (Application.StartupPath, "StreamDesk.SCM.exe"));
-                    }
-                }
-            } catch (InvalidOperationException) {
-                if (
-                    MessageBox.Show (
-                        "The StreamDesk HTTP Core Service is not installed. Launch StreamDesk SCM to install it?",
-                        "StreamDesk", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
-                    Process.Start (Path.Combine (Application.StartupPath, "StreamDesk.SCM.exe"));
-                }
-            }
+namespace StreamDesk
+{
+    internal static class Program
+    {
+        [STAThread]
+        private static void Main(string[] args)
+        {
+            Process.Start("StreamDesk.Core.exe");
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Xpcom.Initialize("xulrunner");
+            Application.Run(new frmMain());
         }
     }
 }

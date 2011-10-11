@@ -12,10 +12,10 @@ using System.Diagnostics;
 using System.Net;
 using System.Windows.Forms;
 using FireIRC.Resources.Forms;
-using NasuTek.XUL.Runtime;
 using StreamDesk.AppCore;
 using StreamDesk.AppTools;
 using StreamDesk.Properties;
+using Skybound.Gecko;
 
 #endregion
 
@@ -309,12 +309,12 @@ namespace StreamDesk {
         }
 
         private void webChatToolStripMenuItem_Click (object sender, EventArgs e) {
-            new frmChat ("chat_geeksirc", "streamdesk").Show ();
+            new frmChat ("chat_nasutek", "streamdesk").Show ();
         }
 
         private void iRCChatToolStripMenuItem_Click (object sender, EventArgs e) {
             try {
-                SystemBrowser ("irc://irc.geeksirc.com/streamdesk");
+                SystemBrowser ("irc://irc.nasutek.com/streamdesk");
             } catch (Exception exception) {
                 MessageBox.Show (
                     String.Format ("Your system does not appear to have a program associated with the irc:// protocol."));

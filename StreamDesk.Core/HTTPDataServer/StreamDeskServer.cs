@@ -67,15 +67,18 @@ namespace StreamDesk.HTTPDataServer {
             for (int lcv = 0 ; lcv < numThreads ; lcv++)
                 threadEnd[lcv] = new AutoResetEvent (false);
 
-            var threadStart1 = new ThreadStart (StartListening);
+            var threadStart1 = new ThreadStart(delegate
+                {
+                    // Create the delegate that invokes methods for the timer.
+                    var timerDelegate = new TimerCallback(CheckSockets);
+                    // Create a timer that waits one minute, then invokes every 5 minutes.
+                    lostTimer = new System.Threading.Timer(timerDelegate, null, timerTimeout, timerTimeout);
+                });
             serverThread[0] = new Thread (threadStart1);
             serverThread[0].IsBackground = true;
             serverThread[0].Start ();
 
-            // Create the delegate that invokes methods for the timer.
-            var timerDelegate = new TimerCallback (CheckSockets);
-            // Create a timer that waits one minute, then invokes every 5 minutes.
-            lostTimer = new System.Threading.Timer (timerDelegate, null, timerTimeout, timerTimeout);
+            StartListening();
         }
 
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {

@@ -1,1 +1,0 @@
-tar cfvvj source.tar.bz2 . --exclude bin --exclude obj --exclude .git --exclude .gitignore --exclude _ReSharper.StreamDesk --exclude source.tar.bz2 --exclude bin.tar.bz2
