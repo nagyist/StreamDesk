@@ -1,4 +1,4 @@
-﻿#region Licensing Information
+#region Licensing Information
 //----------------------------------------------------------------------------------
 // <copyright file="StreamDeskDatabaseCode.cs" company="Developers of the StreamDesk Project">
 //      Copyright (C) 2011 Developers of the StreamDesk Project.
@@ -253,10 +253,10 @@ namespace StreamDesk.Core {
     }
 
     [Serializable] public class StreamEmbed {
-        public string Name { get; set; }
-        public string FriendlyName { get; set; }
+        [XmlAttribute("name")] public string Name { get; set; }
+        [XmlAttribute("friendlyname")] public string FriendlyName { get; set; }
 
-        [Editor(typeof (MultilineStringEditor), typeof (UITypeEditor))] public string EmbedFormat { get; set; }
+        [Editor(typeof (MultilineStringEditor), typeof (UITypeEditor)), XmlAttribute("embed")] public string EmbedFormat { get; set; }
 
         public string Format(List<EmbedData> embedDatas) {
             return embedDatas.Aggregate(EmbedFormat, (current, embedData) => current.Replace("$" + embedData.Name + "$", embedData.Value));
@@ -264,7 +264,7 @@ namespace StreamDesk.Core {
     }
 
     [Serializable] public class ChatEmbed : StreamEmbed {
-        public string IrcServer { get; set; }
+        [XmlAttribute("ircsrv")] public string IrcServer { get; set; }
     }
 
     public enum MediaType {
@@ -283,38 +283,38 @@ namespace StreamDesk.Core {
         }
 
         [DisplayName("Media Type"), Description("The media type of this perticular media item."),
-         Category("Media Properties")] public MediaType MediaType { get; set; }
+         Category("Media Properties"), XmlAttribute("mediatype")] public MediaType MediaType { get; set; }
 
-        [Browsable(false)] public string Name { get; set; }
+        [Browsable(false), XmlAttribute("name")] public string Name { get; set; }
 
         [DisplayName("Web URL"), Description("Descriptive URL for the Media Type"),
-         Category("Media Properties")] public string Web { get; set; }
+         Category("Media Properties"), XmlAttribute("url")] public string Web { get; set; }
 
         [Description("The media type of this perticular media item."),
-         Category("Media Properties")] public Size Size { get; set; }
+         Category("Media Properties"), XmlAttribute("size")] public Size Size { get; set; }
 
         [DisplayName("Stream Embed"), Description("The stream embed type of this perticular media item."),
-         Category("Stream Properties")] public string StreamEmbed { get; set; }
+         Category("Stream Properties"), XmlAttribute("streamembed")] public string StreamEmbed { get; set; }
 
         [DisplayName("Stream Embed Properties"), Description("The stream embed properties of this perticular media item."),
          Category("Stream Properties")] public List<EmbedData> StreamEmbedData { get; set; }
 
         [DisplayName("Chat Embed"), Description("The chat embed type of this perticular media item."),
-         Category("Chat Properties")] public string ChatEmbed { get; set; }
+         Category("Chat Properties"), XmlAttribute("chatembed")] public string ChatEmbed { get; set; }
 
         [DisplayName("Chat Embed Properties"), Description("The chat embed properties of this perticular media item."),
          Category("Chat Properties")] public List<EmbedData> ChatEmbedData { get; set; }
 
         [Description("The friendly description of this media."),
-         Category("Media Properties"), Editor(typeof (MultilineStringEditor), typeof (UITypeEditor))] public string Description { get; set; }
+         Category("Media Properties"), Editor(typeof (MultilineStringEditor), typeof (UITypeEditor)), XmlAttribute("desc")] public string Description { get; set; }
 
         [Description("Tags of the stream seperated by ;"),
-         Category("Media Properties")] public string Tags { get; set; }
+         Category("Media Properties"), XmlAttribute("tags")] public string Tags { get; set; }
 
         [Description("The Streams GUID. This field is not editable."),
-         Category("Media Properties"), ReadOnly(true)] public Guid StreamGuid { get; set; }
+         Category("Media Properties"), ReadOnly(true), XmlAttribute("uuid")] public Guid StreamGuid { get; set; }
 
-        [Description("Pins the provider to the top."), Category("Pinning")] public bool Pinned { get; set; }
+        [Description("Pins the provider to the top."), Category("Pinning"), XmlAttribute("pin")] public bool Pinned { get; set; }
 
         public string GetStreamEmbedData(string p) {
             return StreamEmbedData.Where(v => v.Name == p).FirstOrDefault().Value;
@@ -333,15 +333,15 @@ namespace StreamDesk.Core {
 
         [Browsable(false)] public List<Provider> SubProviders { get; set; }
         [Browsable(false)] public List<Media> Medias { get; set; }
-        [Browsable(false)] public string Name { get; set; }
+        [Browsable(false), XmlAttribute("name")] public string Name { get; set; }
 
         [Description("The friendly description of this provider."),
-         Category("Provider Properties")] public string Description { get; set; }
+         Category("Provider Properties"), XmlAttribute("desc")] public string Description { get; set; }
 
         [DisplayName("Web URL"), Description("Descriptive URL for the Provider"),
-         Category("Provider Properties")] public string Web { get; set; }
+         Category("Provider Properties"), XmlAttribute("url")] public string Web { get; set; }
 
-        [Description("Pins the provider to the top."), Category("Pinning")] public bool Pinned { get; set; }
+        [Description("Pins the provider to the top."), Category("Pinning"), XmlAttribute("pin")] public bool Pinned { get; set; }
 
         public Provider GetProvider(string name) {
             return SubProviders.Where(v => v.Name == name).FirstOrDefault();
@@ -353,8 +353,8 @@ namespace StreamDesk.Core {
     }
 
     [Serializable] public class EmbedData {
-        public string Name { get; set; }
-        public string Value { get; set; }
+        [XmlAttribute("name")] public string Name { get; set; }
+        [XmlAttribute("value")] public string Value { get; set; }
     }
 
     public interface IObjectDatabaseTag {
