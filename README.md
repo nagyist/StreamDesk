@@ -1,7 +1,8 @@
 Thank you for checking out the StreamDesk Source Code! Each Directory Tree contains diffrent code that involves
 StreamDesk.
 
-= Directory Tree =
+Directory Tree
+==============
 * Managed: Contains the .NET Released StreamDesk Library for reading and using the StreamDesk database in .NET enabled languages.
 * libstreamdesk: Contains the C++ StreamDesk Library for reading and using the StreamDesk database in native code like C++/Obj-C++.
 * StreamDesk-Winforms: The WinForms version of StreamDesk.
@@ -10,11 +11,13 @@ StreamDesk.
 * Installers: Where installer source code is provided.
 * protos: Contains Source Code and Libraries involving Google Protocol Buffers and .proto files for StreamDesk Protocol Buffer databases.
 
-= Licensing =
+Licensing
+=========
 All files are licensed under Apache License 2.0. For more information on licensed information read LICENSE and NOTICE
 for more information.
 
-= Building StreamDesk =
+Building StreamDesk
+===================
 
 Managed StreamDesk (C#)
 -----------------------
