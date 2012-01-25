@@ -34,12 +34,12 @@ using StreamDesk.Core;
 
 namespace StreamDesk {
     public partial class StreamInformation : Form {
-        public StreamInformation(Media media) {
+        public StreamInformation(Stream stream) {
             InitializeComponent();
-            textBox1.Text = media.Name;
-            textBox2.Text = media.Tags;
-            linkLabel1.Text = media.Web;
-            textBox3.Text = media.Description;
+            textBox1.Text = stream.Name;
+            textBox2.Text = stream.Tags;
+            linkLabel1.Text = stream.Web;
+            textBox3.Text = stream.Description;
         }
 
         private void StreamInformation_Load(object sender, EventArgs e) {}

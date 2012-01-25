@@ -75,9 +75,9 @@ namespace StreamDesk {
         public bool IsPinned { get; set; }
 
         /// <summary>
-        /// Gets or sets the Media Object associated to this Menu Item
+        /// Gets or sets the Stream Object associated to this Menu Item
         /// </summary>
-        public Media MediaObject { get; set; }
+        public Stream StreamObject { get; set; }
 
         /// <summary>
         /// Gets or sets the Provider Object assiciated to this Menu Item
@@ -90,7 +90,7 @@ namespace StreamDesk {
         public Provider ParentProviderObject { get; set; }
 
         /// <summary>
-        /// Gets or sets the Media Type of this Media
+        /// Gets or sets the Stream Type of this Stream
         /// </summary>
         public MediaType MediaType {
             get { return _mediaType; }
@@ -125,7 +125,7 @@ namespace StreamDesk {
             switch (_mediaType) {
                 case MediaType.VideoStream:
                     if (Program.MainForm.ActiveMdiChild is MainStreamForm)
-                        ((MainStreamForm)Program.MainForm.ActiveMdiChild).NavigateToStream(MediaObject);
+                        ((MainStreamForm)Program.MainForm.ActiveMdiChild).NavigateToStream(StreamObject);
 
                     break;
                 case MediaType.AudioStream:

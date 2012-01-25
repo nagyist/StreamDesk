@@ -44,10 +44,10 @@ namespace StreamDesk {
             toolStrip1.Visible = webBrowserWindow;
         }
 
-        public Media ActiveMediaObject { get; private set; }
+        public Stream ActiveStreamObject { get; private set; }
 
-        internal void NavigateToStream(Media mediaObject) {
-            if (mediaObject.StreamEmbed == "url_browser") {
+        internal void NavigateToStream(Stream streamObject) {
+            if (streamObject.StreamEmbed == "url_browser") {
                 webBrowser1.ScrollBarsEnabled = true;
                 toolStrip1.Visible = true;
             } else {
@@ -56,29 +56,29 @@ namespace StreamDesk {
             }
 
             viewToolStripMenuItem.Visible = true;
-            ActiveMediaObject = mediaObject;
+            ActiveStreamObject = streamObject;
 
-            if (mediaObject.ChatEmbed != "none" || mediaObject.ChatEmbed != null)
+            if (streamObject.ChatEmbed != "none" || streamObject.ChatEmbed != null)
                 chatToolStripMenuItem.Visible = true;
             else
                 chatToolStripMenuItem.Visible = false;
 
-            Text = mediaObject.Name + " > " + mediaObject.ProviderObject.Name;
+            Text = streamObject.Name + " > " + streamObject.ProviderObject.Name;
 
-            if (mediaObject.StreamEmbed == "url_browser" || mediaObject.StreamEmbed == "url_custom")
-                webBrowser1.Navigate(mediaObject.GetStreamEmbedData("URL"));
+            if (streamObject.StreamEmbed == "url_browser" || streamObject.StreamEmbed == "url_custom")
+                webBrowser1.Navigate(streamObject.GetStreamEmbedData("URL"));
             else {
-                ClientSize = mediaObject.Size;
-                webBrowser1.DocumentText = Program.Database.GetStream(mediaObject);
+                ClientSize = streamObject.Size;
+                webBrowser1.DocumentText = Program.Database.GetStream(streamObject);
             }
         }
 
         private void streamInformationToolStripMenuItem_Click(object sender, EventArgs e) {
-            new StreamInformation(ActiveMediaObject).ShowDialog();
+            new StreamInformation(ActiveStreamObject).ShowDialog();
         }
 
         private void webChatToolStripMenuItem_Click(object sender, EventArgs e) {
-            new ChatWindow(Program.Database.GetChat(ActiveMediaObject), Text) {
+            new ChatWindow(Program.Database.GetChat(ActiveStreamObject), Text) {
                 MdiParent = Program.MainForm
             }.Show();
         }

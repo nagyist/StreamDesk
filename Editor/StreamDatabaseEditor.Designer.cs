@@ -51,6 +51,8 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regenerateStreamGUIDsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoTagBlankStreamTagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportAsDiffrentFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseCompatabilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,7 +64,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -73,7 +75,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.propertyGrid1);
-            this.splitContainer1.Size = new System.Drawing.Size(694, 411);
+            this.splitContainer1.Size = new System.Drawing.Size(694, 387);
             this.splitContainer1.SplitterDistance = 230;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -87,7 +89,7 @@
             this.treeView1.Location = new System.Drawing.Point(0, 25);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(230, 386);
+            this.treeView1.Size = new System.Drawing.Size(230, 362);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView1_BeforeLabelEdit);
             this.treeView1.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView1_AfterLabelEdit);
@@ -206,7 +208,7 @@
             this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(460, 411);
+            this.propertyGrid1.Size = new System.Drawing.Size(460, 387);
             this.propertyGrid1.TabIndex = 0;
             // 
             // menuStrip1
@@ -225,7 +227,8 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveDatabaseToolStripMenuItem,
-            this.saveAsToolStripMenuItem});
+            this.saveAsToolStripMenuItem,
+            this.exportAsDiffrentFormatToolStripMenuItem});
             this.fileToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
             this.fileToolStripMenuItem.MergeIndex = 1;
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -238,7 +241,7 @@
             this.saveDatabaseToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
             this.saveDatabaseToolStripMenuItem.MergeIndex = 3;
             this.saveDatabaseToolStripMenuItem.Name = "saveDatabaseToolStripMenuItem";
-            this.saveDatabaseToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.saveDatabaseToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.saveDatabaseToolStripMenuItem.Text = "Save Database";
             this.saveDatabaseToolStripMenuItem.Click += new System.EventHandler(this.saveDatabaseToolStripMenuItem_Click);
             // 
@@ -247,7 +250,7 @@
             this.saveAsToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
             this.saveAsToolStripMenuItem.MergeIndex = 4;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -255,7 +258,8 @@
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.regenerateStreamGUIDsToolStripMenuItem,
-            this.autoTagBlankStreamTagsToolStripMenuItem});
+            this.autoTagBlankStreamTagsToolStripMenuItem,
+            this.databaseCompatabilityToolStripMenuItem});
             this.toolsToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
             this.toolsToolStripMenuItem.MergeIndex = 2;
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
@@ -275,6 +279,22 @@
             this.autoTagBlankStreamTagsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.autoTagBlankStreamTagsToolStripMenuItem.Text = "AutoTag Blank Stream Tags";
             this.autoTagBlankStreamTagsToolStripMenuItem.Click += new System.EventHandler(this.autoTagBlankStreamTagsToolStripMenuItem_Click);
+            // 
+            // exportAsDiffrentFormatToolStripMenuItem
+            // 
+            this.exportAsDiffrentFormatToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
+            this.exportAsDiffrentFormatToolStripMenuItem.MergeIndex = 5;
+            this.exportAsDiffrentFormatToolStripMenuItem.Name = "exportAsDiffrentFormatToolStripMenuItem";
+            this.exportAsDiffrentFormatToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.exportAsDiffrentFormatToolStripMenuItem.Text = "Export As Diffrent Format...";
+            this.exportAsDiffrentFormatToolStripMenuItem.Click += new System.EventHandler(this.exportAsDiffrentFormatToolStripMenuItem_Click);
+            // 
+            // databaseCompatabilityToolStripMenuItem
+            // 
+            this.databaseCompatabilityToolStripMenuItem.Name = "databaseCompatabilityToolStripMenuItem";
+            this.databaseCompatabilityToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.databaseCompatabilityToolStripMenuItem.Text = "Database Compatability";
+            this.databaseCompatabilityToolStripMenuItem.Click += new System.EventHandler(this.databaseCompatabilityToolStripMenuItem_Click);
             // 
             // StreamDatabaseEditor
             // 
@@ -324,5 +344,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem regenerateStreamGUIDsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoTagBlankStreamTagsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportAsDiffrentFormatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem databaseCompatabilityToolStripMenuItem;
     }
 }

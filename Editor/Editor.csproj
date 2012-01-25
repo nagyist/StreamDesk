@@ -95,7 +95,7 @@
     <Compile Include="MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Importers\StreamDesk21DBImporter.cs" />
+    <Compile Include="MessageHelper.cs" />
     <Compile Include="NewObject.cs">
       <SubType>Form</SubType>
     </Compile>

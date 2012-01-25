@@ -40,6 +40,7 @@ namespace StreamDesk {
     internal static class Program {
         internal static StreamDeskDatabase Database { get; set; }
         internal static MainMDIForm MainForm { get; private set; }
+        internal static FormatterEngine FormatterEngine { get; private set; }
 
         /// <summary>
         /// The main entry point for the application.
@@ -63,6 +64,8 @@ namespace StreamDesk {
                                           }
                                       }
                                       #endregion
+
+                                      FormatterEngine = new FormatterEngine();
 
                                       if (!Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StreamDesk")))
                                           Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StreamDesk"));

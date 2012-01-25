@@ -35,7 +35,7 @@ namespace StreamDesk {
     public partial class AddFavorite : Form {
         private readonly Guid _streamId;
 
-        public AddFavorite(Media stream) {
+        public AddFavorite(Stream stream) {
             InitializeComponent();
             _streamId = stream.StreamGuid;
             textBox1.Text = stream.Name + " - " + stream.ProviderObject.Name;

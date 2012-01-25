@@ -128,8 +128,8 @@ namespace StreamDesk {
             if (ActiveMdiChild is MainStreamForm) {
                 var frm = (MainStreamForm)ActiveMdiChild;
 
-                if (frm.ActiveMediaObject != null) {
-                    new AddFavorite(frm.ActiveMediaObject).ShowDialog();
+                if (frm.ActiveStreamObject != null) {
+                    new AddFavorite(frm.ActiveStreamObject).ShowDialog();
                     RefreshMenu();
                 }
             }
@@ -165,7 +165,7 @@ namespace StreamDesk {
                 mainForm.Show();
             }
             Guid guid = ((Favorite)((ToolStripMenuItem)sender).Tag).Id;
-            Media stream = Program.Database.GetMediaObject(guid);
+            Stream stream = Program.Database.GetStreamObject(guid);
             if (stream != null)
                 mainForm.NavigateToStream(stream);
             else

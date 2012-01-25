@@ -40,7 +40,7 @@ namespace StreamDesk {
         private void textBox1_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Enter) {
                 listView1.Items.Clear();
-                foreach (Media media in Program.Database.Search(textBox1.Text)) {
+                foreach (Stream media in Program.Database.Search(textBox1.Text)) {
                     listView1.Items.Add(new ListViewItem(new[] {
                         media.Name, media.Description, media.Tags
                     }) {
@@ -56,7 +56,7 @@ namespace StreamDesk {
 
         private void listView1_DoubleClick(object sender, EventArgs e) {
             if (Program.MainForm.ActiveMdiChild is MainStreamForm && listView1.SelectedItems.Count != 0)
-                ((MainStreamForm)Program.MainForm.ActiveMdiChild).NavigateToStream((Media)listView1.SelectedItems[0].Tag);
+                ((MainStreamForm)Program.MainForm.ActiveMdiChild).NavigateToStream((Stream)listView1.SelectedItems[0].Tag);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e) {}

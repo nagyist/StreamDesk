@@ -31,10 +31,12 @@ using System.Linq;
 using System.Windows.Forms;
 using ExceptionHandler;
 using StreamDesk.Core;
+using StreamDesk.Core.DatabaseFormats;
 
 namespace Editor {
-    internal static class Program {
-        public static List<IDatabaseImporter> Importers { get; private set; }
+    internal static class Program
+    {
+        public static FormatterEngine FormatterEngine { get; private set; }
 
         /// <summary>
         /// The main entry point for the application.
@@ -43,10 +45,8 @@ namespace Editor {
             Handler.AttachHandler(a => {
                                       Application.EnableVisualStyles();
                                       Application.SetCompatibleTextRenderingDefault(false);
+                                      FormatterEngine = new FormatterEngine();
                                       ToolStripManager.RenderMode = ToolStripManagerRenderMode.System;
-                                      Importers = new List<IDatabaseImporter> {
-                                          new StreamDesk21DBImporter.Importer()
-                                      };
                                       Application.Run(new MainForm());
                                   }, args);
         }

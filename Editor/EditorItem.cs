@@ -51,7 +51,7 @@ namespace Editor {
 
         public bool IsPinned { get; set; }
 
-        public Media MediaObject { get; set; }
+        public Stream StreamObject { get; set; }
 
         public Provider ProviderObject { get; set; }
 

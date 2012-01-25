@@ -36,9 +36,6 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.openDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.importStreamDeskV21DatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,9 +81,6 @@
             this.toolStripMenuItem1,
             this.openDatabaseToolStripMenuItem,
             this.toolStripMenuItem2,
-            this.importStreamDeskV21DatabaseToolStripMenuItem,
-            this.exportToolStripMenuItem,
-            this.toolStripMenuItem3,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.MergeIndex = 1;
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -120,25 +114,6 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(186, 6);
             // 
-            // importStreamDeskV21DatabaseToolStripMenuItem
-            // 
-            this.importStreamDeskV21DatabaseToolStripMenuItem.Image = global::Editor.Properties.Resources.database_gear;
-            this.importStreamDeskV21DatabaseToolStripMenuItem.Name = "importStreamDeskV21DatabaseToolStripMenuItem";
-            this.importStreamDeskV21DatabaseToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.importStreamDeskV21DatabaseToolStripMenuItem.Text = "Import";
-            this.importStreamDeskV21DatabaseToolStripMenuItem.Click += new System.EventHandler(this.importStreamDeskV21DatabaseToolStripMenuItem_Click);
-            // 
-            // exportToolStripMenuItem
-            // 
-            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.exportToolStripMenuItem.Text = "Export";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(186, 6);
-            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
@@ -157,7 +132,7 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.optionsToolStripMenuItem.Text = "Options";
             // 
             // windowToolStripMenuItem
@@ -290,7 +265,7 @@
             this.newStreamToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.newStreamToolStripMenuItem.Text = "New Stream";
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -301,7 +276,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "StreamDesk Database Editor";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -318,12 +293,9 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newStreamDatabaseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importStreamDeskV21DatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem openDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStrip toolStrip1;

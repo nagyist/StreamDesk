@@ -27,14 +27,12 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Drawing;
 using System.Drawing.Design;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;
 
 namespace StreamDesk.Core {
     [Serializable] public class StreamDeskDatabase {
@@ -52,56 +50,50 @@ namespace StreamDesk.Core {
             return StreamEmbeds.Where(v => v.Name == embedName).FirstOrDefault();
         }
 
-        public Media GetMediaObject(Guid streamId) {
-            return GetMediaObject(streamId, Root);
+        public Stream GetStreamObject(Guid streamId) {
+            return GetStreamObject(streamId, Root);
         }
 
-        private Media GetMediaObject(Guid streamId, Provider rtProvider) {
-            foreach (Media retVarFromLoop in rtProvider.SubProviders.Select(i => GetMediaObject(streamId, i)).Where(retVarFromLoop => retVarFromLoop != null))
+        private Stream GetStreamObject(Guid streamId, Provider rtProvider) {
+            foreach (Stream retVarFromLoop in rtProvider.SubProviders.Select(i => GetStreamObject(streamId, i)).Where(retVarFromLoop => retVarFromLoop != null))
                 return retVarFromLoop;
 
-            Media retVarFromProvider = rtProvider.Medias.Where(m => m.StreamGuid == streamId).FirstOrDefault();
+            Stream retVarFromProvider = rtProvider.Streams.Where(m => m.StreamGuid == streamId).FirstOrDefault();
             return retVarFromProvider ?? null;
         }
 
-        public string GetStream(Media stream) {
+        public string GetStream(Stream stream) {
             if (stream.StreamEmbed == "html_custom")
                 return "<html><body style=\"padding: 0px; margin: 0px;\">" + stream.GetStreamEmbedData("HTML") + "</body></html>";
             StreamEmbed streamEmbed = GetStreamEmbed(stream.StreamEmbed);
             return streamEmbed != null ? streamEmbed.Format(stream.StreamEmbedData) : null;
         }
 
-        public void SaveBinaryDatabase(string path) {
-            var binSerializer = new BinaryFormatter();
-            using (FileStream file = File.Open(path, FileMode.Create))
-                binSerializer.Serialize(file, this);
+        public void SaveDatabase(string path, FormatterEngine engine)
+        {
+            var ext = Path.GetExtension(path);
+            using (var file = File.Open(path, FileMode.Create))
+            {
+                engine.GetFormatterByExtension(ext).Write(file, this);
+            }
         }
 
-        public void SaveXMLDatabase(string path) {
-            var binSerializer = new XmlSerializer(typeof (StreamDeskDatabase));
-            using (FileStream file = File.Open(path, FileMode.Create))
-                binSerializer.Serialize(file, this);
+        public static StreamDeskDatabase OpenDatabase(string path, FormatterEngine engine)
+        {
+            var ext = Path.GetExtension(path);
+            using (var file = File.Open(path, FileMode.Open))
+            {
+                return engine.GetFormatterByExtension(ext).Read(file);
+            }
         }
 
-        public static StreamDeskDatabase OpenBinaryDatabase(string path) {
-            var binSerializer = new BinaryFormatter();
-            using (FileStream file = File.Open(path, FileMode.Open))
-                return (StreamDeskDatabase)binSerializer.Deserialize(file);
-        }
-
-        public static StreamDeskDatabase OpenXMLDatabase(string path) {
-            var binSerializer = new XmlSerializer(typeof (StreamDeskDatabase));
-            using (FileStream file = File.Open(path, FileMode.Open))
-                return (StreamDeskDatabase)binSerializer.Deserialize(file);
-        }
-
-        public TObj GenerateObjectDatabaseTag<TObj>(Provider providerObject, Media newMediaObject) {
+        public TObj GenerateObjectDatabaseTag<TObj>(Provider providerObject, Stream newStreamObject) {
             IObjectDatabaseTag menuItem = CreateIObjectDatabaseTag(typeof (TObj));
-            menuItem.MediaObject = newMediaObject;
+            menuItem.StreamObject = newStreamObject;
             menuItem.ProviderObject = providerObject;
-            menuItem.MenuTitle = newMediaObject.Name;
-            menuItem.IsPinned = newMediaObject.Pinned;
-            menuItem.MediaType = newMediaObject.MediaType;
+            menuItem.MenuTitle = newStreamObject.Name;
+            menuItem.IsPinned = newStreamObject.Pinned;
+            menuItem.MediaType = newStreamObject.MediaType;
             return (TObj)menuItem;
         }
 
@@ -123,17 +115,17 @@ namespace StreamDesk.Core {
             return list.Cast<TObj>().ToArray();
         }
 
-        public Media[] Search(string searchParam) {
-            var list = new List<Media>();
+        public Stream[] Search(string searchParam) {
+            var list = new List<Stream>();
             Search(list, Root, searchParam);
             return list.ToArray();
         }
 
-        public void Search(List<Media> list, Provider rootProvider, string searchParam) {
+        public void Search(List<Stream> list, Provider rootProvider, string searchParam) {
             foreach (Provider subProvider in rootProvider.SubProviders)
                 Search(list, subProvider, searchParam);
 
-            foreach (Media i in rootProvider.Medias) {
+            foreach (Stream i in rootProvider.Streams) {
                 if (i.Tags != null) {
                     string[] tags = i.Tags.Split(';');
 
@@ -175,23 +167,23 @@ namespace StreamDesk.Core {
                 menuItem.ParentProviderObject = rtProvider;
                 unpinnedProviders.Add(menuItem);
             }
-            foreach (Media i in rtProvider.Medias.Where(v => v.Pinned)) {
+            foreach (Stream i in rtProvider.Streams.Where(v => v.Pinned)) {
                 IObjectDatabaseTag menuItem = CreateIObjectDatabaseTag(typeof (TObj));
-                menuItem.MediaObject = i;
+                menuItem.StreamObject = i;
                 menuItem.ProviderObject = rtProvider;
                 menuItem.MenuTitle = i.Name;
                 menuItem.IsPinned = i.Pinned;
                 menuItem.MediaType = i.MediaType;
                 pinnedMedias.Add(menuItem);
             }
-            foreach (Media i in rtProvider.Medias.Where(v => !v.Pinned)) {
+            foreach (Stream i in rtProvider.Streams.Where(v => !v.Pinned)) {
                 IObjectDatabaseTag menuItem = CreateIObjectDatabaseTag(typeof (TObj));
-                menuItem.MediaObject = i;
+                menuItem.StreamObject = i;
                 menuItem.ProviderObject = rtProvider;
                 menuItem.MenuTitle = i.Name;
                 menuItem.IsPinned = i.Pinned;
                 menuItem.MediaType = i.MediaType;
-                menuItem.MediaObject.ProviderObject = rtProvider;
+                menuItem.StreamObject.ProviderObject = rtProvider;
                 unpinnedMedias.Add(menuItem);
             }
             pinnedProviders.Sort((x, y) => String.Compare(x.MenuTitle, y.MenuTitle));
@@ -209,15 +201,11 @@ namespace StreamDesk.Core {
             return (IObjectDatabaseTag)objectDatabaseTagType.GetConstructor(Type.EmptyTypes).Invoke(null);
         }
 
-        public string GetChat(Media stream) {
+        public string GetChat(Stream stream) {
             if (stream.ChatEmbed == "html_custom")
                 return "<html><body style=\"padding: 0px; margin: 0px;\">" + stream.GetChatEmbedData("HTML") + "</body></html>";
-            ChatEmbed streamEmbed = GetChatEmbed(stream.ChatEmbed);
-            return streamEmbed != null ? streamEmbed.Format(stream.ChatEmbedData) : null;
-        }
-
-        public ChatEmbed GetChatEmbed(string embedName) {
-            return ChatEmbeds.Where(v => v.Name == embedName).FirstOrDefault();
+            ChatEmbed chatEmbed = ChatEmbeds.Where(v => v.Name == stream.ChatEmbed).FirstOrDefault();
+            return chatEmbed != null ? chatEmbed.Format(stream.ChatEmbedData) : null;
         }
 
         public void RegenerateGUIDS() {
@@ -228,7 +216,7 @@ namespace StreamDesk.Core {
             foreach (Provider subProvider in rtProvider.SubProviders)
                 RegenerateGUIDS(subProvider);
 
-            foreach (Media i in rtProvider.Medias)
+            foreach (Stream i in rtProvider.Streams)
                 i.StreamGuid = Guid.NewGuid();
         }
 
@@ -240,7 +228,7 @@ namespace StreamDesk.Core {
             foreach (Provider subProvider in rtProvider.SubProviders)
                 FillTags(subProvider);
 
-            foreach (Media i in rtProvider.Medias) {
+            foreach (Stream i in rtProvider.Streams) {
                 if (string.IsNullOrEmpty(i.Tags)) {
                     StreamEmbed embed = GetStreamEmbed(i.StreamEmbed);
                     if (embed != null && !string.IsNullOrEmpty(embed.FriendlyName))
@@ -252,117 +240,13 @@ namespace StreamDesk.Core {
         }
     }
 
-    [Serializable] public class StreamEmbed {
-        [XmlAttribute("name")] public string Name { get; set; }
-        [XmlAttribute("friendlyname")] public string FriendlyName { get; set; }
-
-        [Editor(typeof (MultilineStringEditor), typeof (UITypeEditor)), XmlAttribute("embed")] public string EmbedFormat { get; set; }
-
-        public string Format(List<EmbedData> embedDatas) {
-            return embedDatas.Aggregate(EmbedFormat, (current, embedData) => current.Replace("$" + embedData.Name + "$", embedData.Value));
-        }
-    }
-
-    [Serializable] public class ChatEmbed : StreamEmbed {
-        [XmlAttribute("ircsrv")] public string IrcServer { get; set; }
-    }
-
-    public enum MediaType {
-        VideoStream = 1,
-        AudioStream = 2,
-    }
-
-    [Serializable] public class Media {
-        [NonSerialized, XmlIgnore] public Provider ProviderObject;
-
-        public Media() {
-            ChatEmbedData = new List<EmbedData>();
-            StreamEmbedData = new List<EmbedData>();
-            MediaType = MediaType.VideoStream;
-            StreamGuid = Guid.NewGuid();
-        }
-
-        [DisplayName("Media Type"), Description("The media type of this perticular media item."),
-         Category("Media Properties"), XmlAttribute("mediatype")] public MediaType MediaType { get; set; }
-
-        [Browsable(false), XmlAttribute("name")] public string Name { get; set; }
-
-        [DisplayName("Web URL"), Description("Descriptive URL for the Media Type"),
-         Category("Media Properties"), XmlAttribute("url")] public string Web { get; set; }
-
-        [Description("The media type of this perticular media item."),
-         Category("Media Properties"), XmlAttribute("size")] public Size Size { get; set; }
-
-        [DisplayName("Stream Embed"), Description("The stream embed type of this perticular media item."),
-         Category("Stream Properties"), XmlAttribute("streamembed")] public string StreamEmbed { get; set; }
-
-        [DisplayName("Stream Embed Properties"), Description("The stream embed properties of this perticular media item."),
-         Category("Stream Properties")] public List<EmbedData> StreamEmbedData { get; set; }
-
-        [DisplayName("Chat Embed"), Description("The chat embed type of this perticular media item."),
-         Category("Chat Properties"), XmlAttribute("chatembed")] public string ChatEmbed { get; set; }
-
-        [DisplayName("Chat Embed Properties"), Description("The chat embed properties of this perticular media item."),
-         Category("Chat Properties")] public List<EmbedData> ChatEmbedData { get; set; }
-
-        [Description("The friendly description of this media."),
-         Category("Media Properties"), Editor(typeof (MultilineStringEditor), typeof (UITypeEditor)), XmlAttribute("desc")] public string Description { get; set; }
-
-        [Description("Tags of the stream seperated by ;"),
-         Category("Media Properties"), XmlAttribute("tags")] public string Tags { get; set; }
-
-        [Description("The Streams GUID. This field is not editable."),
-         Category("Media Properties"), ReadOnly(true), XmlAttribute("uuid")] public Guid StreamGuid { get; set; }
-
-        [Description("Pins the provider to the top."), Category("Pinning"), XmlAttribute("pin")] public bool Pinned { get; set; }
-
-        public string GetStreamEmbedData(string p) {
-            return StreamEmbedData.Where(v => v.Name == p).FirstOrDefault().Value;
-        }
-
-        public string GetChatEmbedData(string p) {
-            return ChatEmbedData.Where(v => v.Name == p).FirstOrDefault().Value;
-        }
-    }
-
-    [Serializable] public class Provider {
-        public Provider() {
-            SubProviders = new List<Provider>();
-            Medias = new List<Media>();
-        }
-
-        [Browsable(false)] public List<Provider> SubProviders { get; set; }
-        [Browsable(false)] public List<Media> Medias { get; set; }
-        [Browsable(false), XmlAttribute("name")] public string Name { get; set; }
-
-        [Description("The friendly description of this provider."),
-         Category("Provider Properties"), XmlAttribute("desc")] public string Description { get; set; }
-
-        [DisplayName("Web URL"), Description("Descriptive URL for the Provider"),
-         Category("Provider Properties"), XmlAttribute("url")] public string Web { get; set; }
-
-        [Description("Pins the provider to the top."), Category("Pinning"), XmlAttribute("pin")] public bool Pinned { get; set; }
-
-        public Provider GetProvider(string name) {
-            return SubProviders.Where(v => v.Name == name).FirstOrDefault();
-        }
-
-        public Media GetMedia(string name) {
-            return Medias.Where(v => v.Name == name).FirstOrDefault();
-        }
-    }
-
-    [Serializable] public class EmbedData {
-        [XmlAttribute("name")] public string Name { get; set; }
-        [XmlAttribute("value")] public string Value { get; set; }
-    }
 
     public interface IObjectDatabaseTag {
         List<IObjectDatabaseTag> SubItems { get; }
         string MenuTitle { get; set; }
         bool IsProvider { get; set; }
         bool IsPinned { get; set; }
-        Media MediaObject { get; set; }
+        Stream StreamObject { get; set; }
         MediaType MediaType { get; set; }
         Provider ProviderObject { get; set; }
         Provider ParentProviderObject { get; set; }

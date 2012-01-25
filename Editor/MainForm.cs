@@ -43,40 +43,18 @@ namespace Editor {
                 MdiParent = this
             }.Show();
         }
-
-        private void importStreamDeskV21DatabaseToolStripMenuItem_Click(object sender, EventArgs e) {
-            var openDialog = new OpenFileDialog();
-
-            foreach (IDatabaseImporter i in Program.Importers) {
-                if (openDialog.Filter == "")
-                    openDialog.Filter += i.Name + "(*" + i.Extention + ")|*" + i.Extention;
-                else
-                    openDialog.Filter += "|" + i.Name + "(*" + i.Extention + ")|*" + i.Extention;
-            }
-
-            if (openDialog.ShowDialog() != DialogResult.OK)
-                return;
-            try {
-                new StreamDatabaseEditor(Program.Importers.Where(v => v.Extention == Path.GetExtension(openDialog.FileName)).First().ImportDatabase(openDialog.FileName)) {
-                    MdiParent = this
-                }.Show();
-            } catch (Exception ex) {
-                MessageBox.Show("An error occured on import: " + ex.Message, "StreamDesk Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+        
         private void aboutStreamDeskDatabaseEditorToolStripMenuItem_Click(object sender, EventArgs e) {
             new AboutForm().ShowDialog();
         }
 
-        private void saveDatabaseToolStripMenuItem_Click(object sender, EventArgs e) {}
-
         private void openDatabaseToolStripMenuItem_Click(object sender, EventArgs e) {
             var openDialog = new OpenFileDialog {
-                Filter = "StreamDesk Binary Database (*.sdb)|*.sdb|StreamDesk XML Database (*.sdx)|*.sdx"
+                Filter = Program.FormatterEngine.ReturnFilter
             };
             if (openDialog.ShowDialog() == DialogResult.OK) {
-                new StreamDatabaseEditor(Path.GetExtension(openDialog.FileName) == ".sdb" ? StreamDeskDatabase.OpenBinaryDatabase(openDialog.FileName) : StreamDeskDatabase.OpenXMLDatabase(openDialog.FileName)) {
+                new StreamDatabaseEditor(StreamDeskDatabase.OpenDatabase(openDialog.FileName, Program.FormatterEngine))
+                {
                     MdiParent = this, Text = openDialog.FileName
                 }.Show();
             }

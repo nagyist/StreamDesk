@@ -32,6 +32,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using StreamDesk.Core;
+using Stream = StreamDesk.Core.Stream;
 
 namespace Editor {
     public partial class StreamDatabaseEditor : Form {
@@ -47,7 +48,7 @@ namespace Editor {
 
         public void RefreshTree(string selectionNode) {
             treeView1.Nodes.Clear();
-            treeView1.Nodes.Add("MAP", "Medias and Providers", 2, 2);
+            treeView1.Nodes.Add("MAP", "Streams and Providers", 2, 2);
             treeView1.Nodes["MAP"].Nodes.AddRange(_database.GenerateObjectDatabaseTags<EditorItem>());
             treeView1.Nodes.Add("StreamEmbeds", "Stream Embeds", 1, 1);
             foreach (StreamEmbed i in _database.StreamEmbeds) {
@@ -70,7 +71,7 @@ namespace Editor {
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e) {
             if (e.Node is IObjectDatabaseTag) {
                 var ex = (IObjectDatabaseTag)e.Node;
-                propertyGrid1.SelectedObject = ex.IsProvider ? ex.ProviderObject : (object)ex.MediaObject;
+                propertyGrid1.SelectedObject = ex.IsProvider ? ex.ProviderObject : (object)ex.StreamObject;
             } else if (e.Node.Tag is StreamEmbed)
                 propertyGrid1.SelectedObject = e.Node.Tag;
             else
@@ -85,7 +86,7 @@ namespace Editor {
                 return;
             }
 
-            if (ex.ProviderObject.SubProviders.Where(v => v.Name == e.Label).Count() != 0 || ex.ProviderObject.Medias.Where(v => v.Name == e.Label).Count() != 0) {
+            if (ex.ProviderObject.SubProviders.Where(v => v.Name == e.Label).Count() != 0 || ex.ProviderObject.Streams.Where(v => v.Name == e.Label).Count() != 0) {
                 MessageBox.Show("This object already exists.", "StreamDesk Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 e.CancelEdit = true;
                 return;
@@ -95,7 +96,7 @@ namespace Editor {
             if (ex.IsProvider)
                 ex.ProviderObject.Name = e.Label;
             else
-                ex.MediaObject.Name = e.Label;
+                ex.StreamObject.Name = e.Label;
         }
 
         public void NavigateToLastSelection(string xpath) {
@@ -154,8 +155,8 @@ namespace Editor {
                         destinationNode.Nodes.Add(NewNode);
                         //RefreshTree(NewNode.FullPath);
                     } else {
-                        _database.Root.Medias.Add(NewNode.MediaObject);
-                        NewNode.ProviderObject.Medias.Remove(NewNode.MediaObject);
+                        _database.Root.Streams.Add(NewNode.StreamObject);
+                        NewNode.ProviderObject.Streams.Remove(NewNode.StreamObject);
                         NewNode.Remove();
                         NewNode.ProviderObject = _database.Root;
                         destinationNode.Nodes.Add(NewNode);
@@ -183,8 +184,8 @@ namespace Editor {
                     //RefreshTree(NewNode.FullPath);
                 } else {
                     if (destNode.IsProvider) {
-                        destNode.ProviderObject.Medias.Add(NewNode.MediaObject);
-                        NewNode.ProviderObject.Medias.Remove(NewNode.MediaObject);
+                        destNode.ProviderObject.Streams.Add(NewNode.StreamObject);
+                        NewNode.ProviderObject.Streams.Remove(NewNode.StreamObject);
                         NewNode.Remove();
                         NewNode.ProviderObject = destNode.ProviderObject;
                         destNode.Nodes.Add(NewNode);
@@ -201,22 +202,17 @@ namespace Editor {
         internal void saveDatabaseToolStripMenuItem_Click(object sender, EventArgs e) {
             if (Text == "New File") {
                 var fsd = new SaveFileDialog {
-                    Filter = "StreamDesk Binary Database (*.sdb)|*.sdb|StreamDesk XML Database (*.sdx)|*.sdx"
+                    Filter = Program.FormatterEngine.ReturnFilter
                 };
 
                 if (fsd.ShowDialog() == DialogResult.OK) {
-                    if (Path.GetExtension(fsd.FileName) == ".sdb")
-                        _database.SaveBinaryDatabase(fsd.FileName);
-                    else
-                        _database.SaveXMLDatabase(fsd.FileName);
-
+                    if (!MessageHelper.ShowCompatabilityMessage(Program.FormatterEngine.GetFormatterByExtension(Path.GetExtension(fsd.FileName))))
+                        return;
+                    _database.SaveDatabase(fsd.FileName, Program.FormatterEngine);
                     Text = fsd.FileName;
                 }
             } else {
-                if (Path.GetExtension(Text) == ".sdb")
-                    _database.SaveBinaryDatabase(Text);
-                else
-                    _database.SaveXMLDatabase(Text);
+                _database.SaveDatabase(Text, Program.FormatterEngine);
             }
         }
 
@@ -251,12 +247,12 @@ namespace Editor {
 
             Provider provider = selectedNode != null ? selectedNode.ProviderObject : _database.Root;
 
-            var newStream = new Media();
+            var newStream = new Stream();
             var nop = new NewObject(newStream);
             if (nop.ShowDialog() != DialogResult.OK)
                 return;
             newStream.Name = nop.ObjectName;
-            provider.Medias.Add(newStream);
+            provider.Streams.Add(newStream);
             treeView1.SelectedNode.Nodes.Add(_database.GenerateObjectDatabaseTag<EditorItem>(provider, newStream));
             //RefreshTree(null);
         }
@@ -289,15 +285,13 @@ namespace Editor {
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
             var fsd = new SaveFileDialog {
-                Filter = "StreamDesk Binary Database (*.sdb)|*.sdb|StreamDesk XML Database (*.sdx)|*.sdx"
+                Filter = Program.FormatterEngine.ReturnFilter
             };
 
             if (fsd.ShowDialog() == DialogResult.OK) {
-                if (Path.GetExtension(fsd.FileName) == ".sdb")
-                    _database.SaveBinaryDatabase(fsd.FileName);
-                else
-                    _database.SaveXMLDatabase(fsd.FileName);
-
+                if (!MessageHelper.ShowCompatabilityMessage(Program.FormatterEngine.GetFormatterByExtension(Path.GetExtension(fsd.FileName))))
+                    return;
+                _database.SaveDatabase(fsd.FileName, Program.FormatterEngine);
                 Text = fsd.FileName;
             }
         }
@@ -311,7 +305,7 @@ namespace Editor {
             if (delObj.IsProvider)
                 delObj.ParentProviderObject.SubProviders.Remove(delObj.ProviderObject);
             else
-                delObj.ProviderObject.Medias.Remove(delObj.MediaObject);
+                delObj.ProviderObject.Streams.Remove(delObj.StreamObject);
             delObj.Remove();
         }
 
@@ -334,9 +328,9 @@ namespace Editor {
             } else {
                 List<object> list = propertyGrid1.SelectedObjects.ToList();
                 if (node.Checked)
-                    list.Add(node.MediaObject);
+                    list.Add(node.StreamObject);
                 else
-                    list.Remove(node.MediaObject);
+                    list.Remove(node.StreamObject);
                 propertyGrid1.SelectedObjects = list.ToArray();
             }
         }
@@ -353,6 +347,29 @@ namespace Editor {
 
         private void autoTagBlankStreamTagsToolStripMenuItem_Click(object sender, EventArgs e) {
             _database.FillTags();
+        }
+
+        private void exportAsDiffrentFormatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var fsd = new SaveFileDialog
+            {
+                Filter = Program.FormatterEngine.ReturnFilter
+            };
+
+            if (fsd.ShowDialog() == DialogResult.OK)
+            {
+                if (!MessageHelper.ShowCompatabilityMessage(Program.FormatterEngine.GetFormatterByExtension(Path.GetExtension(fsd.FileName))))
+                    return;
+                _database.SaveDatabase(fsd.FileName, Program.FormatterEngine);
+            }
+        }
+
+        private void databaseCompatabilityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new StreamDatabaseEditor(Compatability.MakeStreamDeskDatabaseCompatable(Compatability.DatabaseVersion.STREAMDESK_DB_1_0m, _database))
+            {
+                MdiParent = MdiParent
+            }.Show();
         }
     }
 }
