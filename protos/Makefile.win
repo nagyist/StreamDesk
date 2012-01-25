@@ -1,0 +1,20 @@
+protomake: StreamDesk.cs StreamDesk.pb.cc streamdesk_pb2.py Streamdesk\Database\StreamDesk.java
+    
+StreamDesk.cs: streamdesk.proto
+    protobuf-net\protoc --proto_path=. streamdesk.proto --include_imports --descriptor_set_out=streamdesk.pb
+    protobuf-net\ProtoGen streamdesk.pb
+
+StreamDesk.pb.cc: streamdesk.proto
+    protobuf-net\protoc --proto_path=. streamdesk.proto --cpp_out=.
+
+streamdesk_pb2.py: streamdesk.proto
+    protobuf-net\protoc --proto_path=. streamdesk.proto --python_out=.
+    
+Streamdesk\Database\StreamDesk.java: streamdesk.proto
+    protobuf-net\protoc --proto_path=. streamdesk.proto --java_out=.
+
+all: protomake
+
+clean:
+    del *.cs *.py *.cc *.h *.pb 
+    rmdir /S /Q StreamDesk

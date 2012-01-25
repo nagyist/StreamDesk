@@ -1,0 +1,36 @@
+package Streamdesk.Database;
+
+message StreamDeskProperty {
+    required string name = 1;
+    required string value = 2;
+}
+
+message Stream {
+    required string name = 1;
+    optional string description = 2;
+    optional string url = 3;
+    required string uuid = 4;
+    required string chatEmbed = 5;
+    required string streamEmbed = 6;
+    required bool pinned = 7;
+    
+    repeated StreamDeskProperty chatEmbedProperty = 8;
+    repeated StreamDeskProperty streamEmbedProperty = 9;
+    repeated string tag = 10;
+}
+
+message Provider {   
+    required string name = 1;
+    optional string description = 2;
+    optional string url = 3;
+    required bool pinned = 4;
+    
+    repeated Provider subProvider = 5;
+}
+
+message StreamDeskDatabase {    
+    required string name = 1;
+    required string creator = 2;
+    required string description = 3;    
+    required Provider root = 4;
+}
