@@ -50,10 +50,10 @@ namespace Editor {
 
         private void openDatabaseToolStripMenuItem_Click(object sender, EventArgs e) {
             var openDialog = new OpenFileDialog {
-                Filter = Program.FormatterEngine.ReturnFilter
+                Filter = StreamDeskCore.FormatterEngine.ReturnFilter
             };
             if (openDialog.ShowDialog() == DialogResult.OK) {
-                new StreamDatabaseEditor(StreamDeskDatabase.OpenDatabase(openDialog.FileName, Program.FormatterEngine))
+                new StreamDatabaseEditor(StreamDeskDatabase.OpenDatabase(openDialog.FileName))
                 {
                     MdiParent = this, Text = openDialog.FileName
                 }.Show();
@@ -75,6 +75,17 @@ namespace Editor {
 
         private void cascadeToolStripMenuItem_Click(object sender, EventArgs e) {
             LayoutMdi(MdiLayout.Cascade);
+        }
+
+        private void loadExtentionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "StreamDesk Plugin (*.dll)|*.dll";
+            if(openFileDialog.ShowDialog() == DialogResult.OK) {
+                var retTurple = StreamDeskCore.FormatterEngine.LoadFormatterDll(openFileDialog.FileName);
+                if (!retTurple.Item1)
+                    MessageBox.Show(retTurple.Item2.Message, "StreamDesk Editor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -36,8 +36,6 @@ using StreamDesk.Managed.DatabaseFormats;
 namespace Editor {
     internal static class Program
     {
-        public static FormatterEngine FormatterEngine { get; private set; }
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -45,7 +43,6 @@ namespace Editor {
             Handler.AttachHandler(a => {
                                       Application.EnableVisualStyles();
                                       Application.SetCompatibleTextRenderingDefault(false);
-                                      FormatterEngine = new FormatterEngine();
                                       ToolStripManager.RenderMode = ToolStripManagerRenderMode.System;
                                       Application.Run(new MainForm());
                                   }, args);

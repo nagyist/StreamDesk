@@ -36,13 +36,14 @@ using Stream = StreamDesk.Managed.Stream;
 
 namespace Editor {
     public partial class StreamDatabaseEditor : Form {
-        private readonly StreamDeskDatabase _database;
+        private readonly StreamDeskCore _database;
 
         public StreamDatabaseEditor() : this(new StreamDeskDatabase()) {}
 
         public StreamDatabaseEditor(StreamDeskDatabase db) {
+            _database = new StreamDeskCore();
             InitializeComponent();
-            _database = db;
+            _database.ActiveDatabase = db;
             RefreshTree(null);
         }
 
@@ -51,13 +52,13 @@ namespace Editor {
             treeView1.Nodes.Add("MAP", "Streams and Providers", 2, 2);
             treeView1.Nodes["MAP"].Nodes.AddRange(_database.GenerateObjectDatabaseTags<EditorItem>());
             treeView1.Nodes.Add("StreamEmbeds", "Stream Embeds", 1, 1);
-            foreach (StreamEmbed i in _database.StreamEmbeds) {
+            foreach (StreamEmbed i in _database.ActiveDatabase.StreamEmbeds) {
                 treeView1.Nodes["StreamEmbeds"].Nodes.Add(new TreeNode(i.Name, 3, 3) {
                     Tag = i
                 });
             }
             treeView1.Nodes.Add("ChatEmbeds", "Chat Embeds", 1, 1);
-            foreach (ChatEmbed i in _database.ChatEmbeds) {
+            foreach (ChatEmbed i in _database.ActiveDatabase.ChatEmbeds) {
                 treeView1.Nodes["ChatEmbeds"].Nodes.Add(new TreeNode(i.Name, 3, 3) {
                     Tag = i
                 });
@@ -148,17 +149,17 @@ namespace Editor {
                     NewNode = (EditorItem)e.Data.GetData("Editor.EditorItem");
 
                     if (NewNode.IsProvider) {
-                        _database.Root.SubProviders.Add(NewNode.ProviderObject);
+                        _database.ActiveDatabase.Root.SubProviders.Add(NewNode.ProviderObject);
                         NewNode.ParentProviderObject.SubProviders.Remove(NewNode.ProviderObject);
-                        NewNode.ParentProviderObject = _database.Root;
+                        NewNode.ParentProviderObject = _database.ActiveDatabase.Root;
                         NewNode.Remove();
                         destinationNode.Nodes.Add(NewNode);
                         //RefreshTree(NewNode.FullPath);
                     } else {
-                        _database.Root.Streams.Add(NewNode.StreamObject);
+                        _database.ActiveDatabase.Root.Streams.Add(NewNode.StreamObject);
                         NewNode.ProviderObject.Streams.Remove(NewNode.StreamObject);
                         NewNode.Remove();
-                        NewNode.ProviderObject = _database.Root;
+                        NewNode.ProviderObject = _database.ActiveDatabase.Root;
                         destinationNode.Nodes.Add(NewNode);
                         //RefreshTree(NewNode.FullPath);
                     }
@@ -202,17 +203,17 @@ namespace Editor {
         internal void saveDatabaseToolStripMenuItem_Click(object sender, EventArgs e) {
             if (Text == "New File") {
                 var fsd = new SaveFileDialog {
-                    Filter = Program.FormatterEngine.ReturnFilter
+                    Filter = StreamDeskCore.FormatterEngine.ReturnFilter
                 };
 
                 if (fsd.ShowDialog() == DialogResult.OK) {
-                    if (!MessageHelper.ShowCompatabilityMessage(Program.FormatterEngine.GetFormatterByExtension(Path.GetExtension(fsd.FileName))))
+                    if (!MessageHelper.ShowCompatabilityMessage(StreamDeskCore.FormatterEngine.GetFormatterByExtension(Path.GetExtension(fsd.FileName))))
                         return;
-                    _database.SaveDatabase(fsd.FileName, Program.FormatterEngine);
+                    _database.ActiveDatabase.SaveDatabase(fsd.FileName);
                     Text = fsd.FileName;
                 }
             } else {
-                _database.SaveDatabase(Text, Program.FormatterEngine);
+                _database.ActiveDatabase.SaveDatabase(Text);
             }
         }
 
@@ -228,7 +229,7 @@ namespace Editor {
             if (treeView1.SelectedNode is EditorItem)
                 selectedNode = (EditorItem)treeView1.SelectedNode;
 
-            Provider provider = selectedNode != null ? selectedNode.ProviderObject : _database.Root;
+            Provider provider = selectedNode != null ? selectedNode.ProviderObject : _database.ActiveDatabase.Root;
 
             var newProvider = new Provider();
             var nop = new NewObject(newProvider);
@@ -245,7 +246,7 @@ namespace Editor {
             if (treeView1.SelectedNode is EditorItem)
                 selectedNode = (EditorItem)treeView1.SelectedNode;
 
-            Provider provider = selectedNode != null ? selectedNode.ProviderObject : _database.Root;
+            Provider provider = selectedNode != null ? selectedNode.ProviderObject : _database.ActiveDatabase.Root;
 
             var newStream = new Stream();
             var nop = new NewObject(newStream);
@@ -263,7 +264,7 @@ namespace Editor {
             if (nop.ShowDialog() != DialogResult.OK)
                 return;
             embed.Name = nop.ObjectName;
-            _database.ChatEmbeds.Add(embed);
+            _database.ActiveDatabase.ChatEmbeds.Add(embed);
             treeView1.Nodes["ChatEmbeds"].Nodes.Add(new TreeNode(embed.Name, 3, 3) {
                 Tag = embed
             });
@@ -276,7 +277,7 @@ namespace Editor {
             if (nop.ShowDialog() != DialogResult.OK)
                 return;
             embed.Name = nop.ObjectName;
-            _database.StreamEmbeds.Add(embed);
+            _database.ActiveDatabase.StreamEmbeds.Add(embed);
             treeView1.Nodes["StreamEmbeds"].Nodes.Add(new TreeNode(embed.Name, 3, 3) {
                 Tag = embed
             });
@@ -285,13 +286,13 @@ namespace Editor {
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
             var fsd = new SaveFileDialog {
-                Filter = Program.FormatterEngine.ReturnFilter
+                Filter = StreamDeskCore.FormatterEngine.ReturnFilter
             };
 
             if (fsd.ShowDialog() == DialogResult.OK) {
-                if (!MessageHelper.ShowCompatabilityMessage(Program.FormatterEngine.GetFormatterByExtension(Path.GetExtension(fsd.FileName))))
+                if (!MessageHelper.ShowCompatabilityMessage(StreamDeskCore.FormatterEngine.GetFormatterByExtension(Path.GetExtension(fsd.FileName))))
                     return;
-                _database.SaveDatabase(fsd.FileName, Program.FormatterEngine);
+                _database.ActiveDatabase.SaveDatabase(fsd.FileName);
                 Text = fsd.FileName;
             }
         }
@@ -353,20 +354,20 @@ namespace Editor {
         {
             var fsd = new SaveFileDialog
             {
-                Filter = Program.FormatterEngine.ReturnFilter
+                Filter = StreamDeskCore.FormatterEngine.ReturnFilter
             };
 
             if (fsd.ShowDialog() == DialogResult.OK)
             {
-                if (!MessageHelper.ShowCompatabilityMessage(Program.FormatterEngine.GetFormatterByExtension(Path.GetExtension(fsd.FileName))))
+                if (!MessageHelper.ShowCompatabilityMessage(StreamDeskCore.FormatterEngine.GetFormatterByExtension(Path.GetExtension(fsd.FileName))))
                     return;
-                _database.SaveDatabase(fsd.FileName, Program.FormatterEngine);
+                _database.ActiveDatabase.SaveDatabase(fsd.FileName);
             }
         }
 
         private void databaseCompatabilityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new StreamDatabaseEditor(Compatability.MakeStreamDeskDatabaseCompatable(Compatability.DatabaseVersion.STREAMDESK_DB_1_0m, _database))
+            new StreamDatabaseEditor(Compatability.MakeStreamDeskDatabaseCompatable(Compatability.DatabaseVersion.STREAMDESK_DB_1_0m, _database.ActiveDatabase))
             {
                 MdiParent = MdiParent
             }.Show();

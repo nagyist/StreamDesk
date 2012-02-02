@@ -1,6 +1,6 @@
-﻿#region Licensing Information
+#region Licensing Information
 //----------------------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="Developers of the StreamDesk Project">
+// <copyright file="StreamDeskDatabaseCode.cs" company="Developers of the StreamDesk Project">
 //      Copyright (C) 2011 Developers of the StreamDesk Project.
 //          Core Developers/Maintainer: NasuTek Enterprises/Michael Manley
 //          Trademark/GUI Designer/Co-Maintainer: KtecK
@@ -20,14 +20,31 @@
 //      limitations under the License.
 // </copyright>
 // <summary>
-//      Assembly Information
+//      Base code for Database Control and Editing, and Generic UI Code.
 // </summary>
 //----------------------------------------------------------------------------------
 #endregion
 
-using System.Reflection;
-using System.Runtime.InteropServices;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Drawing;
+using System.Drawing.Design;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 
-[assembly: AssemblyTitle("StreamDesk Editor")]
-[assembly: AssemblyDescription("")]
-[assembly: GuidAttribute("CDD26588-1E87-4A39-B338-23AECD916563")]
+namespace StreamDesk.Core
+{
+    [Serializable] public class StreamDeskDatabase {
+        public StreamDeskDatabase() {
+            ChatEmbeds = new List<ChatEmbed>();
+            StreamEmbeds = new List<StreamEmbed>();
+            Root = new Provider();
+        }
+
+        public List<ChatEmbed> ChatEmbeds { get; set; }
+        public List<StreamEmbed> StreamEmbeds { get; set; }
+        public Provider Root { get; set; }
+    }
+}

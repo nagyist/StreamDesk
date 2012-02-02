@@ -48,10 +48,10 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportAsDiffrentFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regenerateStreamGUIDsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoTagBlankStreamTagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportAsDiffrentFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseCompatabilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -64,7 +64,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -75,7 +75,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.propertyGrid1);
-            this.splitContainer1.Size = new System.Drawing.Size(694, 387);
+            this.splitContainer1.Size = new System.Drawing.Size(694, 411);
             this.splitContainer1.SplitterDistance = 230;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -89,7 +89,7 @@
             this.treeView1.Location = new System.Drawing.Point(0, 25);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(230, 362);
+            this.treeView1.Size = new System.Drawing.Size(230, 386);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView1_BeforeLabelEdit);
             this.treeView1.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView1_AfterLabelEdit);
@@ -158,28 +158,28 @@
             // providerToolStripMenuItem
             // 
             this.providerToolStripMenuItem.Name = "providerToolStripMenuItem";
-            this.providerToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.providerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.providerToolStripMenuItem.Text = "Provider";
             this.providerToolStripMenuItem.Click += new System.EventHandler(this.providerToolStripMenuItem_Click);
             // 
             // streamToolStripMenuItem
             // 
             this.streamToolStripMenuItem.Name = "streamToolStripMenuItem";
-            this.streamToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.streamToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.streamToolStripMenuItem.Text = "Stream";
             this.streamToolStripMenuItem.Click += new System.EventHandler(this.streamToolStripMenuItem_Click);
             // 
             // chatEmbedToolStripMenuItem
             // 
             this.chatEmbedToolStripMenuItem.Name = "chatEmbedToolStripMenuItem";
-            this.chatEmbedToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.chatEmbedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chatEmbedToolStripMenuItem.Text = "Chat Embed";
             this.chatEmbedToolStripMenuItem.Click += new System.EventHandler(this.chatEmbedToolStripMenuItem_Click);
             // 
             // streamEmbedToolStripMenuItem
             // 
             this.streamEmbedToolStripMenuItem.Name = "streamEmbedToolStripMenuItem";
-            this.streamEmbedToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.streamEmbedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.streamEmbedToolStripMenuItem.Text = "Stream Embed";
             this.streamEmbedToolStripMenuItem.Click += new System.EventHandler(this.streamEmbedToolStripMenuItem_Click);
             // 
@@ -208,7 +208,7 @@
             this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(460, 387);
+            this.propertyGrid1.Size = new System.Drawing.Size(460, 411);
             this.propertyGrid1.TabIndex = 0;
             // 
             // menuStrip1
@@ -254,6 +254,15 @@
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
+            // exportAsDiffrentFormatToolStripMenuItem
+            // 
+            this.exportAsDiffrentFormatToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
+            this.exportAsDiffrentFormatToolStripMenuItem.MergeIndex = 5;
+            this.exportAsDiffrentFormatToolStripMenuItem.Name = "exportAsDiffrentFormatToolStripMenuItem";
+            this.exportAsDiffrentFormatToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.exportAsDiffrentFormatToolStripMenuItem.Text = "Export As Diffrent Format...";
+            this.exportAsDiffrentFormatToolStripMenuItem.Click += new System.EventHandler(this.exportAsDiffrentFormatToolStripMenuItem_Click);
+            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -279,15 +288,6 @@
             this.autoTagBlankStreamTagsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.autoTagBlankStreamTagsToolStripMenuItem.Text = "AutoTag Blank Stream Tags";
             this.autoTagBlankStreamTagsToolStripMenuItem.Click += new System.EventHandler(this.autoTagBlankStreamTagsToolStripMenuItem_Click);
-            // 
-            // exportAsDiffrentFormatToolStripMenuItem
-            // 
-            this.exportAsDiffrentFormatToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.Insert;
-            this.exportAsDiffrentFormatToolStripMenuItem.MergeIndex = 5;
-            this.exportAsDiffrentFormatToolStripMenuItem.Name = "exportAsDiffrentFormatToolStripMenuItem";
-            this.exportAsDiffrentFormatToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.exportAsDiffrentFormatToolStripMenuItem.Text = "Export As Diffrent Format...";
-            this.exportAsDiffrentFormatToolStripMenuItem.Click += new System.EventHandler(this.exportAsDiffrentFormatToolStripMenuItem_Click);
             // 
             // databaseCompatabilityToolStripMenuItem
             // 

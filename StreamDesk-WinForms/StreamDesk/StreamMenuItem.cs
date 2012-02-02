@@ -42,6 +42,8 @@ namespace StreamDesk {
         /// </summary>
         private MediaType _mediaType;
 
+        internal MainStreamForm ActiveForm { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the EditorItem class
         /// </summary>
@@ -124,8 +126,7 @@ namespace StreamDesk {
         protected override void OnClick(EventArgs e) {
             switch (_mediaType) {
                 case MediaType.VideoStream:
-                    if (Program.MainForm.ActiveMdiChild is MainStreamForm)
-                        ((MainStreamForm)Program.MainForm.ActiveMdiChild).NavigateToStream(StreamObject);
+                    ActiveForm.NavigateToStream(StreamObject);
 
                     break;
                 case MediaType.AudioStream:

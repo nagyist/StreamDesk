@@ -55,6 +55,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newProviderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newStreamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadExtentionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -123,7 +124,8 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.optionsToolStripMenuItem});
+            this.optionsToolStripMenuItem,
+            this.loadExtentionToolStripMenuItem});
             this.toolsToolStripMenuItem.MergeIndex = 2;
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
@@ -132,7 +134,7 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.optionsToolStripMenuItem.Text = "Options";
             // 
             // windowToolStripMenuItem
@@ -265,6 +267,13 @@
             this.newStreamToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.newStreamToolStripMenuItem.Text = "New Stream";
             // 
+            // loadExtentionToolStripMenuItem
+            // 
+            this.loadExtentionToolStripMenuItem.Name = "loadExtentionToolStripMenuItem";
+            this.loadExtentionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadExtentionToolStripMenuItem.Text = "Load Extention";
+            this.loadExtentionToolStripMenuItem.Click += new System.EventHandler(this.loadExtentionToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -315,6 +324,7 @@
         private System.Windows.Forms.ToolStripMenuItem tileVerticalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cascadeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem loadExtentionToolStripMenuItem;
     }
 }
 

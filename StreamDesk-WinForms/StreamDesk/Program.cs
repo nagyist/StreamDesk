@@ -38,44 +38,41 @@ using StreamDesk.Managed;
 
 namespace StreamDesk {
     internal static class Program {
-        internal static StreamDeskDatabase Database { get; set; }
-        internal static MainMDIForm MainForm { get; private set; }
-        internal static FormatterEngine FormatterEngine { get; private set; }
+        internal static StreamDeskCore Database { get; set; }
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread] private static void Main(string[] args) {
             Handler.AttachHandler(a => {
-                                      Application.SetCompatibleTextRenderingDefault(false);
-                                      Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.EnableVisualStyles();
 
-                                      // TODO: Remove me later on after implimentation of new updater engine
+                // TODO: Remove me later on after implimentation of new updater engine
 
-                                      #region Obsolete Code
-                                      string newVer = new WebClient().DownloadString("http://streamdesk.ca/version.txt");
+                #region Obsolete Code
+                string newVer = new WebClient().DownloadString("http://streamdesk.ca/version.txt");
 
-                                      if (new Version(newVer) > Assembly.GetExecutingAssembly().GetName().Version)
-                                      {
-                                          if (MessageBox.Show("A new version of StreamDesk is Available.\n\nOld Version: " + Assembly.GetExecutingAssembly().GetName().Version + "\nNew Version: " + newVer + "\n\nClick yes to go to http://streamdesk.ca to update.", "StreamDesk", MessageBoxButtons.YesNo,
-                                              MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
-                                                  == DialogResult.Yes) {
-                                              Process.Start("http://streamdesk.ca/pages/windows-linux.php");
-                                              return;
-                                          }
-                                      }
-                                      #endregion
+                if (new Version(newVer) > Assembly.GetExecutingAssembly().GetName().Version) {
+                    if (MessageBox.Show("A new version of StreamDesk is Available.\n\nOld Version: " + Assembly.GetExecutingAssembly().GetName().Version + "\nNew Version: " + newVer + "\n\nClick yes to go to http://streamdesk.ca to update.", "StreamDesk", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
+                            == DialogResult.Yes) {
+                        Process.Start("http://streamdesk.ca/pages/windows-linux.php");
+                        return;
+                    }
+                }
+                #endregion
 
-                                      FormatterEngine = new FormatterEngine();
+                Database = new StreamDeskCore();
 
-                                      if (!Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StreamDesk")))
-                                          Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StreamDesk"));
+                if (!Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StreamDesk")))
+                    Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StreamDesk"));
 
-                                      StreamDeskSettings.OpenSettings();
-                                      MainForm = new MainMDIForm();
-                                      Application.Run(MainForm);
-                                      StreamDeskSettings.Instance.SaveSettings();
-                                  }, args);
+                StreamDeskSettings.OpenSettings();
+
+                Application.Run(new UpdatingStreamDatabase());
+                StreamDeskSettings.Instance.SaveSettings();
+            }, args);
         }
     }
 }

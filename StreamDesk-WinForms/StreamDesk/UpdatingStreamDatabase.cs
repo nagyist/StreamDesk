@@ -38,17 +38,29 @@ using StreamDesk.Managed;
 
 namespace StreamDesk {
     public partial class UpdatingStreamDatabase : Form {
-        public UpdatingStreamDatabase() {
+        private bool mUpdateCalled;
+
+        public UpdatingStreamDatabase() : this(false) {
+        }
+
+        public UpdatingStreamDatabase(bool updateCalled)
+        {
             InitializeComponent();
+            mUpdateCalled = updateCalled;
         }
 
         private void UpdatingStreamDatabase_Load(object sender, EventArgs e) {
             new Thread(() => {
-                           var webClient = new WebClient();
-                           webClient.DownloadFile(new Uri("http://streamdesk.sourceforge.net/streams.sdb"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StreamDesk", "streams.sdb"));
-                           Program.Database = StreamDeskDatabase.OpenDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StreamDesk", "streams.sdb"), Program.FormatterEngine);
-                           Invoke(new Action(Close));
-                       }).Start();
+                var webClient = new WebClient();
+                webClient.DownloadFile(new Uri("http://streamdesk.sourceforge.net/streams.sdb"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StreamDesk", "streams.sdb"));
+                Program.Database.ActiveDatabase = StreamDeskDatabase.OpenDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StreamDesk", "streams.sdb"));
+                if (!mUpdateCalled) {
+                    Invoke(new Action(Hide));
+                    Invoke(new Action(() => new MainStreamForm(false).Show()));
+                } else {
+                    Invoke(new Action(Close));
+                }
+            }).Start();
         }
     }
 }

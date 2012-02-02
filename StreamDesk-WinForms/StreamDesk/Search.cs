@@ -33,8 +33,11 @@ using StreamDesk.Managed;
 
 namespace StreamDesk {
     public partial class Search : Form {
-        public Search() {
+        private MainStreamForm mForm;
+
+        public Search(MainStreamForm form) {
             InitializeComponent();
+            mForm = form;
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e) {
@@ -55,8 +58,7 @@ namespace StreamDesk {
         }
 
         private void listView1_DoubleClick(object sender, EventArgs e) {
-            if (Program.MainForm.ActiveMdiChild is MainStreamForm && listView1.SelectedItems.Count != 0)
-                ((MainStreamForm)Program.MainForm.ActiveMdiChild).NavigateToStream((Stream)listView1.SelectedItems[0].Tag);
+            mForm.NavigateToStream((Stream)listView1.SelectedItems[0].Tag);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e) {}

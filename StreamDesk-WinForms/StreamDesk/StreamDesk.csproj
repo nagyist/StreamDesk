@@ -83,6 +83,12 @@
     <Compile Include="Credits.Designer.cs">
       <DependentUpon>Credits.cs</DependentUpon>
     </Compile>
+    <Compile Include="EnabledDatabases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnabledDatabases.Designer.cs">
+      <DependentUpon>EnabledDatabases.cs</DependentUpon>
+    </Compile>
     <Compile Include="MoveFavorite.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,12 +115,6 @@
     </Compile>
     <Compile Include="StreamMenuItem.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="MainMDIForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainMDIForm.Designer.cs">
-      <DependentUpon>MainMDIForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainStreamForm.cs">
       <SubType>Form</SubType>
@@ -144,13 +144,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\libstreamdesk\Managed\StreamDesk.Core\StreamDesk.Managed.csproj">
+      <Project>{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}</Project>
+      <Name>StreamDesk.Managed</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExceptionHandler\ExceptionHandler.csproj">
       <Project>{6D9C76BC-8889-4D87-9B65-6F8C8D559A4D}</Project>
       <Name>ExceptionHandler</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Managed\StreamDesk.Core\StreamDesk.Managed.csproj">
-      <Project>{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}</Project>
-      <Name>StreamDesk.Managed</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -194,11 +194,11 @@
     <EmbeddedResource Include="Credits.resx">
       <DependentUpon>Credits.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EnabledDatabases.resx">
+      <DependentUpon>EnabledDatabases.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MoveFavorite.resx">
       <DependentUpon>MoveFavorite.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainMDIForm.resx">
-      <DependentUpon>MainMDIForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainStreamForm.resx">
       <DependentUpon>MainStreamForm.cs</DependentUpon>

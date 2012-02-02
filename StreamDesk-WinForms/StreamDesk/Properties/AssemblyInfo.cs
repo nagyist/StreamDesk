@@ -34,10 +34,4 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Main StreamDesk Executible")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyCompanyAttribute("NasuTek Enterprises")]
-[assembly: AssemblyProductAttribute("StreamDesk")]
-[assembly: AssemblyCopyrightAttribute("Copyright (C) 2007-2012 NasuTek Enterprises")]
-[assembly: AssemblyVersionAttribute("2.2.1.0")]
-[assembly: AssemblyFileVersionAttribute("2.2.1.0")]
 [assembly: Guid("419DFBB1-CF7A-48A6-8995-97B6DE0BC887")]
-[assembly: NeutralResourcesLanguage("en-US")]

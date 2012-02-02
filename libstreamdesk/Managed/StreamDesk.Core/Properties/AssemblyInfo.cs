@@ -28,6 +28,6 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("StreamDesk Editor")]
+[assembly: AssemblyTitle("StreamDesk Core Components")]
 [assembly: AssemblyDescription("")]
-[assembly: GuidAttribute("CDD26588-1E87-4A39-B338-23AECD916563")]
+[assembly: Guid("8737E6EE-2010-40D1-8A09-43877C209D52")]
