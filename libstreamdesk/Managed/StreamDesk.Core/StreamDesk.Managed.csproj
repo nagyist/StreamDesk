@@ -29,12 +29,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Pre-Release|AnyCPU'">
-    <OutputPath>bin\Pre-Release</OutputPath>
-    <DebugType>none</DebugType>
-    <WarningLevel>4</WarningLevel>
-    <Optimize>false</Optimize>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,32 +37,40 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
+    <Reference Include="Mono.Addins, Version=0.6.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compatability.cs" />
+    <Compile Include="..\..\..\GlobalAssemblyInformation.cs">
+      <Link>Properties\GlobalAssemblyInformation.cs</Link>
+    </Compile>
     <Compile Include="DatabaseFormats\XML.cs" />
-    <Compile Include="EmbedClasses.cs" />
+    <Compile Include="Database\EmbedClasses.cs" />
     <Compile Include="FormatterEngine.cs" />
     <Compile Include="IDatabaseFormatter.cs" />
     <Compile Include="IObjectDatabaseTag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Provider.cs" />
-    <Compile Include="Stream.cs" />
+    <Compile Include="Database\Provider.cs" />
+    <Compile Include="Database\Stream.cs" />
     <Compile Include="StreamDeskCore.cs" />
-    <Compile Include="StreamDeskDatabase.cs" />
+    <Compile Include="Database\StreamDeskDatabase.cs" />
     <Compile Include="StreamDeskSettings.cs" />
     <Compile Include="StringExtensions.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="..\..\..\GlobalAssemblyInformation.cs.autogen">
+      <Link>Properties\GlobalAssemblyInformation.cs.autogen</Link>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="BeforeBuild">
+    <Exec Command="&quot;$(ProjectDir)../../../3rdParty/AutoGen.exe&quot; &quot;$(ProjectDir)../../../AutoGenSettings.xml&quot;" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
   <Target Name="AfterBuild">
   </Target>
   -->

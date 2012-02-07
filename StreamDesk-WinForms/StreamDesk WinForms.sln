@@ -11,45 +11,47 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamDesk.Compatability", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamDesk.Managed", "..\libstreamdesk\Managed\StreamDesk.Core\StreamDesk.Managed.csproj", "{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StreamDesk Libraries", "StreamDesk Libraries", "{EB522E83-EACB-40EA-B180-6127AF0D186F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compatability Layers", "Compatability Layers", "{EA28C487-B56B-4B3B-88B1-9E6184EE5BF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinForms Projects", "WinForms Projects", "{E0DC263F-9088-4234-819D-2735480F0329}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Pre-Release|Any CPU = Pre-Release|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{6D9C76BC-8889-4D87-9B65-6F8C8D559A4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6D9C76BC-8889-4D87-9B65-6F8C8D559A4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D9C76BC-8889-4D87-9B65-6F8C8D559A4D}.Pre-Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D9C76BC-8889-4D87-9B65-6F8C8D559A4D}.Pre-Release|Any CPU.Build.0 = Release|Any CPU
 		{6D9C76BC-8889-4D87-9B65-6F8C8D559A4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D9C76BC-8889-4D87-9B65-6F8C8D559A4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD964623-C9A4-4B56-B7D7-4426E354F74D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD964623-C9A4-4B56-B7D7-4426E354F74D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD964623-C9A4-4B56-B7D7-4426E354F74D}.Pre-Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD964623-C9A4-4B56-B7D7-4426E354F74D}.Pre-Release|Any CPU.Build.0 = Release|Any CPU
 		{AD964623-C9A4-4B56-B7D7-4426E354F74D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD964623-C9A4-4B56-B7D7-4426E354F74D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{56EC44DB-03B7-4BEC-A0EC-E0BB6C324DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{56EC44DB-03B7-4BEC-A0EC-E0BB6C324DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{56EC44DB-03B7-4BEC-A0EC-E0BB6C324DBE}.Pre-Release|Any CPU.ActiveCfg = Release|Any CPU
-		{56EC44DB-03B7-4BEC-A0EC-E0BB6C324DBE}.Pre-Release|Any CPU.Build.0 = Release|Any CPU
 		{56EC44DB-03B7-4BEC-A0EC-E0BB6C324DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56EC44DB-03B7-4BEC-A0EC-E0BB6C324DBE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CF76AA8D-46C1-4CE7-AA29-758703823B17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF76AA8D-46C1-4CE7-AA29-758703823B17}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF76AA8D-46C1-4CE7-AA29-758703823B17}.Pre-Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF76AA8D-46C1-4CE7-AA29-758703823B17}.Pre-Release|Any CPU.Build.0 = Release|Any CPU
 		{CF76AA8D-46C1-4CE7-AA29-758703823B17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF76AA8D-46C1-4CE7-AA29-758703823B17}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}.Pre-Release|Any CPU.ActiveCfg = Pre-Release|Any CPU
-		{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}.Pre-Release|Any CPU.Build.0 = Pre-Release|Any CPU
 		{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D599B13F-C1F1-4ADD-BE5A-8942735D1D73} = {EB522E83-EACB-40EA-B180-6127AF0D186F}
+		{CF76AA8D-46C1-4CE7-AA29-758703823B17} = {EA28C487-B56B-4B3B-88B1-9E6184EE5BF2}
+		{AD964623-C9A4-4B56-B7D7-4426E354F74D} = {E0DC263F-9088-4234-819D-2735480F0329}
+		{56EC44DB-03B7-4BEC-A0EC-E0BB6C324DBE} = {E0DC263F-9088-4234-819D-2735480F0329}
+		{6D9C76BC-8889-4D87-9B65-6F8C8D559A4D} = {E0DC263F-9088-4234-819D-2735480F0329}
 	EndGlobalSection
 EndGlobal

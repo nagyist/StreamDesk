@@ -27,6 +27,10 @@
 
 using System.Reflection;
 using System.Runtime.InteropServices;
+using Mono.Addins;
+using StreamDesk.Managed;
+
+[assembly: AddinRoot("StreamDeskCore", "3.0.0.0")]
 
 [assembly: AssemblyTitle("StreamDesk Core Components")]
 [assembly: AssemblyDescription("")]

@@ -1,5 +1,9 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
+using Mono.Addins;
+
+[assembly: Addin("StreamDeskCompatability", "1.0.0.0")]
+[assembly: AddinDependency("StreamDeskCore", "3.0.0.0")]
 
 [assembly: AssemblyTitle("StreamDesk Compatability Layer Extension")]
 [assembly: AssemblyDescription("")]

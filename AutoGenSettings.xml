@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AutoGen version="1.0">
+  <SearchPaths gitPath="true" />
+  <Variables>
+    <Variable name="ProductVersion" value="3.0.0.0" />
+    <Variable name="CleanProductVersion" value="3.0" />
+  </Variables>
+</AutoGen>

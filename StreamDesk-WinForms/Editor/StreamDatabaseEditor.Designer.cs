@@ -52,7 +52,6 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regenerateStreamGUIDsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoTagBlankStreamTagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.databaseCompatabilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -110,6 +109,7 @@
             this.imageList1.Images.SetKeyName(3, "brick.png");
             this.imageList1.Images.SetKeyName(4, "webcam.png");
             this.imageList1.Images.SetKeyName(5, "feed.png");
+            this.imageList1.Images.SetKeyName(6, "package.png");
             // 
             // toolStrip1
             // 
@@ -158,28 +158,28 @@
             // providerToolStripMenuItem
             // 
             this.providerToolStripMenuItem.Name = "providerToolStripMenuItem";
-            this.providerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.providerToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.providerToolStripMenuItem.Text = "Provider";
             this.providerToolStripMenuItem.Click += new System.EventHandler(this.providerToolStripMenuItem_Click);
             // 
             // streamToolStripMenuItem
             // 
             this.streamToolStripMenuItem.Name = "streamToolStripMenuItem";
-            this.streamToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.streamToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.streamToolStripMenuItem.Text = "Stream";
             this.streamToolStripMenuItem.Click += new System.EventHandler(this.streamToolStripMenuItem_Click);
             // 
             // chatEmbedToolStripMenuItem
             // 
             this.chatEmbedToolStripMenuItem.Name = "chatEmbedToolStripMenuItem";
-            this.chatEmbedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chatEmbedToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.chatEmbedToolStripMenuItem.Text = "Chat Embed";
             this.chatEmbedToolStripMenuItem.Click += new System.EventHandler(this.chatEmbedToolStripMenuItem_Click);
             // 
             // streamEmbedToolStripMenuItem
             // 
             this.streamEmbedToolStripMenuItem.Name = "streamEmbedToolStripMenuItem";
-            this.streamEmbedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.streamEmbedToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.streamEmbedToolStripMenuItem.Text = "Stream Embed";
             this.streamEmbedToolStripMenuItem.Click += new System.EventHandler(this.streamEmbedToolStripMenuItem_Click);
             // 
@@ -267,8 +267,7 @@
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.regenerateStreamGUIDsToolStripMenuItem,
-            this.autoTagBlankStreamTagsToolStripMenuItem,
-            this.databaseCompatabilityToolStripMenuItem});
+            this.autoTagBlankStreamTagsToolStripMenuItem});
             this.toolsToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
             this.toolsToolStripMenuItem.MergeIndex = 2;
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
@@ -288,13 +287,6 @@
             this.autoTagBlankStreamTagsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.autoTagBlankStreamTagsToolStripMenuItem.Text = "AutoTag Blank Stream Tags";
             this.autoTagBlankStreamTagsToolStripMenuItem.Click += new System.EventHandler(this.autoTagBlankStreamTagsToolStripMenuItem_Click);
-            // 
-            // databaseCompatabilityToolStripMenuItem
-            // 
-            this.databaseCompatabilityToolStripMenuItem.Name = "databaseCompatabilityToolStripMenuItem";
-            this.databaseCompatabilityToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
-            this.databaseCompatabilityToolStripMenuItem.Text = "Database Compatability";
-            this.databaseCompatabilityToolStripMenuItem.Click += new System.EventHandler(this.databaseCompatabilityToolStripMenuItem_Click);
             // 
             // StreamDatabaseEditor
             // 
@@ -345,6 +337,5 @@
         private System.Windows.Forms.ToolStripMenuItem regenerateStreamGUIDsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoTagBlankStreamTagsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportAsDiffrentFormatToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem databaseCompatabilityToolStripMenuItem;
     }
 }

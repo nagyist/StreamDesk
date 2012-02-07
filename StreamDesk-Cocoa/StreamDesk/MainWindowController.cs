@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
+using System.Drawing;
+using StreamDesk.Managed.Database;
 
 namespace StreamDesk
 {
@@ -32,6 +34,10 @@ namespace StreamDesk
 		// Shared initialization code
 		void Initialize ()
 		{
+			Window.Title = "No Stream Loaded";
+#if DEBUG
+			Window.Title += " (Debug Build)";
+#endif
 		}
 		
 		#endregion
@@ -41,6 +47,29 @@ namespace StreamDesk
 			get {
 				return (MainWindow)base.Window;
 			}
+		}
+		
+		public Stream ActiveStreamObject { get; private set; }
+        public StreamDeskDatabase ActiveDatabase { get; private set; }
+		
+		public void NavigateToStream (Stream streamObject, StreamDeskDatabase database)
+		{				
+			MainClass.AppDelegateInstance.ShowViewMenu();
+			
+			ActiveStreamObject = streamObject;
+			ActiveDatabase = database;
+			
+			Window.Title = streamObject.Name + " > " + streamObject.ProviderObject.Name;
+#if DEBUG
+			Window.Title += " (Debug Build)";
+#endif
+			
+			if (streamObject.StreamEmbed == "url_browser" || streamObject.StreamEmbed == "url_custom")
+			    webBrowser.MainFrame.LoadRequest(new NSUrlRequest(new NSUrl(streamObject.GetStreamEmbedData("URL"))));
+            else {
+				Window.SetContentSize(streamObject.Size);
+				webBrowser.MainFrame.LoadHtmlString(database.GetStream(streamObject), new NSUrl("http://example.org"));
+            }
 		}
 	}
 }

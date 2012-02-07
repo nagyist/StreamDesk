@@ -26,9 +26,9 @@ namespace StreamDesk
 		// Shared initialization code
 		void Initialize ()
 		{
+
 		}
 		
 		#endregion
 	}
 }
-

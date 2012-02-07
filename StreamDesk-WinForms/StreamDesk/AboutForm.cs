@@ -1,28 +1,20 @@
 ﻿#region Licensing Information
-//----------------------------------------------------------------------------------
-// <copyright file="AboutForm.cs" company="Developers of the StreamDesk Project">
-//      Copyright (C) 2011 Developers of the StreamDesk Project.
-//          Core Developers/Maintainer: NasuTek Enterprises/Michael Manley
-//          Trademark/GUI Designer/Co-Maintainer: KtecK
-//          Additional Developers and Contributors are in the DEVELOPERS.txt
-//          file
-//
-//      Licensed under the Apache License, Version 2.0 (the "License");
-//      you may not use this file except in compliance with the License.
-//      You may obtain a copy of the License at
-// 
-//      http://www.apache.org/licenses/LICENSE-2.0
-// 
-//      Unless required by applicable law or agreed to in writing, software
-//      distributed under the License is distributed on an "AS IS" BASIS,
-//      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//      See the License for the specific language governing permissions and
-//      limitations under the License.
-// </copyright>
-// <summary>
-//      About Form
-// </summary>
-//----------------------------------------------------------------------------------
+/***************************************************************************************************
+ * NasuTek StreamDesk
+ * Copyright © 2007-2012 NasuTek Enterprises
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ***************************************************************************************************/
 #endregion
 
 using System;
@@ -35,16 +27,14 @@ using System.Windows.Forms;
 namespace StreamDesk {
     public partial class AboutForm : Form {
         private bool _clicked;
-        private string _format = @"StreamDesk
+        private string _format = @"StreamDesk Stream Editor
 Version {0}
-Copyright © 2009-2011 Developers of the StreamDesk Project
-
-Sponsored By: NasuTek Enterprises";
+Copyright © 2007-2012 NasuTek Enterprises";
 
         public AboutForm() {
             InitializeComponent();
-            label1.Text = String.Format(_format, Assembly.GetExecutingAssembly().GetName().Version);
-            Text = String.Format(Text, Assembly.GetExecutingAssembly().GetName().Version);
+            label1.Text = String.Format(_format, GlobalAssemblyInfo.FullVersion);
+            Text = String.Format(Text, GlobalAssemblyInfo.CleanVersion);
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {

@@ -1,28 +1,20 @@
 ﻿#region Licensing Information
-//----------------------------------------------------------------------------------
-// <copyright file="MainStreamForm.cs" company="Developers of the StreamDesk Project">
-//      Copyright (C) 2011 Developers of the StreamDesk Project.
-//          Core Developers/Maintainer: NasuTek Enterprises/Michael Manley
-//          Trademark/GUI Designer/Co-Maintainer: KtecK
-//          Additional Developers and Contributors are in the DEVELOPERS.txt
-//          file
-//
-//      Licensed under the Apache License, Version 2.0 (the "License");
-//      you may not use this file except in compliance with the License.
-//      You may obtain a copy of the License at
-// 
-//      http://www.apache.org/licenses/LICENSE-2.0
-// 
-//      Unless required by applicable law or agreed to in writing, software
-//      distributed under the License is distributed on an "AS IS" BASIS,
-//      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//      See the License for the specific language governing permissions and
-//      limitations under the License.
-// </copyright>
-// <summary>
-//      Main Stream Form
-// </summary>
-//----------------------------------------------------------------------------------
+/***************************************************************************************************
+ * NasuTek StreamDesk
+ * Copyright © 2007-2012 NasuTek Enterprises
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ***************************************************************************************************/
 #endregion
 
 using System;
@@ -32,33 +24,43 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using StreamDesk.Managed;
+using StreamDesk.Managed.Database;
 using StreamDesk.Properties;
 
 namespace StreamDesk {
     public partial class MainStreamForm : Form {
-        internal static List<MainStreamForm> ActiveForms { get; private set; }
+        private bool mClosed;
+        private static int mActiveForms;
 
-        static MainStreamForm() {
-            ActiveForms = new List<MainStreamForm>();
-        }
-
-        public MainStreamForm(bool webBrowserWindow) {
-            ActiveForms.Add(this);
+        public MainStreamForm() {
+            mActiveForms++;
 
             InitializeComponent();
 
-            foreach (StreamMenuItem i in Program.Database.GenerateObjectDatabaseTags<StreamMenuItem>()) {
-                i.ActiveForm = this;
-                streamsToolStripMenuItem.DropDownItems.Add(i);
-            }
+            RefreshStreamsMenu();
+        }
 
-            webBrowser1.ScrollBarsEnabled = webBrowserWindow;
-            toolStrip1.Visible = webBrowserWindow;
+        private void RefreshStreamsMenu()
+        {
+            streamsToolStripMenuItem.DropDownItems.Clear();
+
+            foreach (var streamDeskDatabase in Program.Database.ActiveDatabases)
+            {
+                var dbName = new ToolStripMenuItem(streamDeskDatabase.Name, Resources.folder);
+
+                foreach (var i in streamDeskDatabase.GenerateObjectDatabaseTags<StreamMenuItem>(new object[] { this }))
+                {
+                    dbName.DropDownItems.Add(i);
+                }
+
+                streamsToolStripMenuItem.DropDownItems.Add(dbName);
+            }
         }
 
         public Stream ActiveStreamObject { get; private set; }
+        public StreamDeskDatabase ActiveDatabase { get; private set; }
 
-        internal void NavigateToStream(Stream streamObject) {
+        internal void NavigateToStream(Stream streamObject, StreamDeskDatabase db) {
             if (streamObject.StreamEmbed == "url_browser") {
                 webBrowser1.ScrollBarsEnabled = true;
                 toolStrip1.Visible = true;
@@ -69,6 +71,7 @@ namespace StreamDesk {
 
             viewToolStripMenuItem.Visible = true;
             ActiveStreamObject = streamObject;
+            ActiveDatabase = db;
 
             if (streamObject.ChatEmbed != "none" || streamObject.ChatEmbed != null)
                 chatToolStripMenuItem.Visible = true;
@@ -81,7 +84,7 @@ namespace StreamDesk {
                 webBrowser1.Navigate(streamObject.GetStreamEmbedData("URL"));
             else {
                 ClientSize = new Size(streamObject.Size.Width, streamObject.Size.Height);
-                webBrowser1.DocumentText = Program.Database.GetStream(streamObject);
+                webBrowser1.DocumentText = db.GetStream(streamObject);
             }
         }
 
@@ -90,7 +93,7 @@ namespace StreamDesk {
         }
 
         private void webChatToolStripMenuItem_Click(object sender, EventArgs e) {
-            new ChatWindow(Program.Database.GetChat(ActiveStreamObject), Text).Show();
+            new ChatWindow(ActiveDatabase.GetChat(ActiveStreamObject), Text).Show();
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e) {
@@ -129,18 +132,22 @@ namespace StreamDesk {
 
         private void newStreamWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new MainStreamForm(false)
+            new MainStreamForm()
             {
-                MdiParent = this
             }.Show();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
-            ActiveForms.Remove(this);
-            if(ActiveForms.Count == 0)
+            CloseForm();
+        }
+
+        private void CloseForm() {
+            mActiveForms--;
+
+            if (mActiveForms == 0)
                 Application.Exit();
             else
-                Close();
+                if (!mClosed) Close();
         }
 
         private void searchToolStripMenuItem_Click(object sender, EventArgs e)
@@ -155,7 +162,7 @@ namespace StreamDesk {
 
         private void newWebBrowserWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new MainStreamForm(true)
+            new MainStreamForm()
             {
                 MdiParent = this
             }.Show();
@@ -163,14 +170,7 @@ namespace StreamDesk {
 
         private void updateStreamsDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Running this command will require StreamDesk to close all Stream Windows. Are you sure you want to continue?", "StreamDesk", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
-            {
-                new UpdatingStreamDatabase().ShowDialog();
-                new MainStreamForm(false)
-                {
-                    MdiParent = this
-                }.Show();
-            }
+            //TODO: Update Databases
         }
 
         private void streamDeskHomeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -220,17 +220,37 @@ namespace StreamDesk {
 
         private void newMenuItem_Click(object sender, EventArgs e)
         {
-            Guid guid = ((Favorite)((ToolStripMenuItem)sender).Tag).Id;
-            Stream stream = Program.Database.GetStreamObject(guid);
-            if (stream != null)
-                NavigateToStream(stream);
-            else
-                MessageBox.Show("Stream no longer exists.", "StreamDesk", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            foreach (var streamDeskDatabase in Program.Database.ActiveDatabases) {
+                Guid guid = ((Favorite)((ToolStripMenuItem)sender).Tag).Id;
+                Stream stream = streamDeskDatabase.GetStreamObject(guid);
+                if (stream != null)
+                    NavigateToStream(stream, streamDeskDatabase);
+                else
+                    MessageBox.Show("Stream no longer exists.", "StreamDesk", MessageBoxButtons.OK, MessageBoxIcon.Error);   
+            }
         }
 
         private void supportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("http://streamdesk.ca/pages/support.php");
+        }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e) {
+            new Options().ShowDialog();
+            RefreshStreamsMenu();
+        }
+
+        private void MainStreamForm_FormClosing(object sender, FormClosingEventArgs e) {
+            mClosed = true;
+            if(e.CloseReason == CloseReason.UserClosing)
+                CloseForm();
+        }
+
+        private void MainStreamForm_Load(object sender, EventArgs e) {
+            if (Program.Database.FailedDatabases.Count <= 0) return;
+            if (MessageBox.Show("Some databases failed to load on launch, do you want to review which ones in the Database Manager?", "StreamDesk", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
+            new EnabledDatabases().ShowDialog();
+            RefreshStreamsMenu();
         }
     }
 }

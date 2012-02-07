@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
+using Mono.Addins;
+using StreamDesk.Managed.Database;
 
 namespace StreamDesk.Managed.DatabaseFormats
 {
+    [Extension("/StreamDesk/DatabaseFormatters")]
     class SDXMLFormatter : IDatabaseFormatter
     {
         public string FormatName
@@ -18,7 +21,7 @@ namespace StreamDesk.Managed.DatabaseFormats
             get { return ".sdnx"; }
         }
 
-        public StreamDeskDatabase Read(System.IO.FileStream file)
+        public StreamDeskDatabase Read(System.IO.Stream file)
         {
             var formatter = new XmlSerializer(typeof(StreamDeskDatabase));
             return (StreamDeskDatabase)formatter.Deserialize(file);

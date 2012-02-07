@@ -59,11 +59,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\GlobalAssemblyInformation.cs">
+      <Link>Properties\GlobalAssemblyInformation.cs</Link>
+    </Compile>
     <Compile Include="AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddDatabaseUrl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddDatabaseUrl.Designer.cs">
+      <DependentUpon>AddDatabaseUrl.cs</DependentUpon>
     </Compile>
     <Compile Include="AddFavorite.cs">
       <SubType>Form</SubType>
@@ -89,6 +98,12 @@
     <Compile Include="EnabledDatabases.Designer.cs">
       <DependentUpon>EnabledDatabases.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoadDatabases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadDatabases.Designer.cs">
+      <DependentUpon>LoadDatabases.cs</DependentUpon>
+    </Compile>
     <Compile Include="MoveFavorite.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +121,12 @@
     </Compile>
     <Compile Include="NewFolder.Designer.cs">
       <DependentUpon>NewFolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options.Designer.cs">
+      <DependentUpon>Options.cs</DependentUpon>
     </Compile>
     <Compile Include="StreamInformation.cs">
       <SubType>Form</SubType>
@@ -134,12 +155,6 @@
     </Compile>
     <Compile Include="Search.Designer.cs">
       <DependentUpon>Search.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UpdatingStreamDatabase.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UpdatingStreamDatabase.Designer.cs">
-      <DependentUpon>UpdatingStreamDatabase.cs</DependentUpon>
     </Compile>
     <None Include="App.config" />
   </ItemGroup>
@@ -179,11 +194,16 @@
     <None Include="Resources\world.png" />
     <None Include="Resources\wrench.png" />
     <None Include="Resources\folder_heart.png" />
+    <None Include="Resources\Task-Inspector-Suggestion.png" />
+    <None Include="Resources\base_cylinder_32.png" />
     <Content Include="sd.ico" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddDatabaseUrl.resx">
+      <DependentUpon>AddDatabaseUrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddFavorite.resx">
       <DependentUpon>AddFavorite.cs</DependentUpon>
@@ -197,6 +217,9 @@
     <EmbeddedResource Include="EnabledDatabases.resx">
       <DependentUpon>EnabledDatabases.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoadDatabases.resx">
+      <DependentUpon>LoadDatabases.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MoveFavorite.resx">
       <DependentUpon>MoveFavorite.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,6 +232,9 @@
     <EmbeddedResource Include="NewFolder.resx">
       <DependentUpon>NewFolder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Options.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -218,9 +244,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StreamInformation.resx">
       <DependentUpon>StreamInformation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdatingStreamDatabase.resx">
-      <DependentUpon>UpdatingStreamDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

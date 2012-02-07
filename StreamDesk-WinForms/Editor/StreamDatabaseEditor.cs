@@ -1,28 +1,20 @@
 ﻿#region Licensing Information
-//----------------------------------------------------------------------------------
-// <copyright file="StreamDatabaseEditor.cs" company="Developers of the StreamDesk Project">
-//      Copyright (C) 2011 Developers of the StreamDesk Project.
-//          Core Developers/Maintainer: NasuTek Enterprises/Michael Manley
-//          Trademark/GUI Designer/Co-Maintainer: KtecK
-//          Additional Developers and Contributors are in the DEVELOPERS.txt
-//          file
-//
-//      Licensed under the Apache License, Version 2.0 (the "License");
-//      you may not use this file except in compliance with the License.
-//      You may obtain a copy of the License at
-// 
-//      http://www.apache.org/licenses/LICENSE-2.0
-// 
-//      Unless required by applicable law or agreed to in writing, software
-//      distributed under the License is distributed on an "AS IS" BASIS,
-//      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//      See the License for the specific language governing permissions and
-//      limitations under the License.
-// </copyright>
-// <summary>
-//      Stream Editor Form
-// </summary>
-//----------------------------------------------------------------------------------
+/***************************************************************************************************
+ * NasuTek StreamDesk
+ * Copyright © 2007-2012 NasuTek Enterprises
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ***************************************************************************************************/
 #endregion
 
 using System;
@@ -32,33 +24,34 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using StreamDesk.Managed;
-using Stream = StreamDesk.Managed.Stream;
+using StreamDesk.Managed.Database;
+using Stream = StreamDesk.Managed.Database.Stream;
 
 namespace Editor {
     public partial class StreamDatabaseEditor : Form {
-        private readonly StreamDeskCore _database;
+        private readonly StreamDeskDatabase _database;
 
         public StreamDatabaseEditor() : this(new StreamDeskDatabase()) {}
 
         public StreamDatabaseEditor(StreamDeskDatabase db) {
-            _database = new StreamDeskCore();
             InitializeComponent();
-            _database.ActiveDatabase = db;
+            _database = db;
             RefreshTree(null);
         }
 
         public void RefreshTree(string selectionNode) {
             treeView1.Nodes.Clear();
+            treeView1.Nodes.Add("DATAPROP", "Database Properties", 6, 6);
             treeView1.Nodes.Add("MAP", "Streams and Providers", 2, 2);
-            treeView1.Nodes["MAP"].Nodes.AddRange(_database.GenerateObjectDatabaseTags<EditorItem>());
+            treeView1.Nodes["MAP"].Nodes.AddRange(_database.GenerateObjectDatabaseTags<EditorItem>(null));
             treeView1.Nodes.Add("StreamEmbeds", "Stream Embeds", 1, 1);
-            foreach (StreamEmbed i in _database.ActiveDatabase.StreamEmbeds) {
+            foreach (StreamEmbed i in _database.StreamEmbeds) {
                 treeView1.Nodes["StreamEmbeds"].Nodes.Add(new TreeNode(i.Name, 3, 3) {
                     Tag = i
                 });
             }
             treeView1.Nodes.Add("ChatEmbeds", "Chat Embeds", 1, 1);
-            foreach (ChatEmbed i in _database.ActiveDatabase.ChatEmbeds) {
+            foreach (ChatEmbed i in _database.ChatEmbeds) {
                 treeView1.Nodes["ChatEmbeds"].Nodes.Add(new TreeNode(i.Name, 3, 3) {
                     Tag = i
                 });
@@ -70,11 +63,15 @@ namespace Editor {
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e) {
-            if (e.Node is IObjectDatabaseTag) {
+            if (e.Node is IObjectDatabaseTag)
+            {
                 var ex = (IObjectDatabaseTag)e.Node;
                 propertyGrid1.SelectedObject = ex.IsProvider ? ex.ProviderObject : (object)ex.StreamObject;
-            } else if (e.Node.Tag is StreamEmbed)
+            }
+            else if (e.Node.Tag is StreamEmbed)
                 propertyGrid1.SelectedObject = e.Node.Tag;
+            else if (e.Node.Name == "DATAPROP")
+                propertyGrid1.SelectedObject = _database;
             else
                 propertyGrid1.SelectedObject = null;
         }
@@ -149,17 +146,17 @@ namespace Editor {
                     NewNode = (EditorItem)e.Data.GetData("Editor.EditorItem");
 
                     if (NewNode.IsProvider) {
-                        _database.ActiveDatabase.Root.SubProviders.Add(NewNode.ProviderObject);
+                        _database.Root.SubProviders.Add(NewNode.ProviderObject);
                         NewNode.ParentProviderObject.SubProviders.Remove(NewNode.ProviderObject);
-                        NewNode.ParentProviderObject = _database.ActiveDatabase.Root;
+                        NewNode.ParentProviderObject = _database.Root;
                         NewNode.Remove();
                         destinationNode.Nodes.Add(NewNode);
                         //RefreshTree(NewNode.FullPath);
                     } else {
-                        _database.ActiveDatabase.Root.Streams.Add(NewNode.StreamObject);
+                        _database.Root.Streams.Add(NewNode.StreamObject);
                         NewNode.ProviderObject.Streams.Remove(NewNode.StreamObject);
                         NewNode.Remove();
-                        NewNode.ProviderObject = _database.ActiveDatabase.Root;
+                        NewNode.ProviderObject = _database.Root;
                         destinationNode.Nodes.Add(NewNode);
                         //RefreshTree(NewNode.FullPath);
                     }
@@ -209,11 +206,11 @@ namespace Editor {
                 if (fsd.ShowDialog() == DialogResult.OK) {
                     if (!MessageHelper.ShowCompatabilityMessage(StreamDeskCore.FormatterEngine.GetFormatterByExtension(Path.GetExtension(fsd.FileName))))
                         return;
-                    _database.ActiveDatabase.SaveDatabase(fsd.FileName);
+                    _database.SaveDatabase(fsd.FileName);
                     Text = fsd.FileName;
                 }
             } else {
-                _database.ActiveDatabase.SaveDatabase(Text);
+                _database.SaveDatabase(Text);
             }
         }
 
@@ -229,7 +226,7 @@ namespace Editor {
             if (treeView1.SelectedNode is EditorItem)
                 selectedNode = (EditorItem)treeView1.SelectedNode;
 
-            Provider provider = selectedNode != null ? selectedNode.ProviderObject : _database.ActiveDatabase.Root;
+            Provider provider = selectedNode != null ? selectedNode.ProviderObject : _database.Root;
 
             var newProvider = new Provider();
             var nop = new NewObject(newProvider);
@@ -237,7 +234,7 @@ namespace Editor {
                 return;
             newProvider.Name = nop.ObjectName;
             provider.SubProviders.Add(newProvider);
-            treeView1.SelectedNode.Nodes.Add(_database.GenerateObjectDatabaseTag<EditorItem>(provider, newProvider));
+            treeView1.SelectedNode.Nodes.Add(_database.GenerateObjectDatabaseTag<EditorItem>(provider, newProvider, null));
             //RefreshTree(null);
         }
 
@@ -246,7 +243,7 @@ namespace Editor {
             if (treeView1.SelectedNode is EditorItem)
                 selectedNode = (EditorItem)treeView1.SelectedNode;
 
-            Provider provider = selectedNode != null ? selectedNode.ProviderObject : _database.ActiveDatabase.Root;
+            Provider provider = selectedNode != null ? selectedNode.ProviderObject : _database.Root;
 
             var newStream = new Stream();
             var nop = new NewObject(newStream);
@@ -264,7 +261,7 @@ namespace Editor {
             if (nop.ShowDialog() != DialogResult.OK)
                 return;
             embed.Name = nop.ObjectName;
-            _database.ActiveDatabase.ChatEmbeds.Add(embed);
+            _database.ChatEmbeds.Add(embed);
             treeView1.Nodes["ChatEmbeds"].Nodes.Add(new TreeNode(embed.Name, 3, 3) {
                 Tag = embed
             });
@@ -277,7 +274,7 @@ namespace Editor {
             if (nop.ShowDialog() != DialogResult.OK)
                 return;
             embed.Name = nop.ObjectName;
-            _database.ActiveDatabase.StreamEmbeds.Add(embed);
+            _database.StreamEmbeds.Add(embed);
             treeView1.Nodes["StreamEmbeds"].Nodes.Add(new TreeNode(embed.Name, 3, 3) {
                 Tag = embed
             });
@@ -292,7 +289,7 @@ namespace Editor {
             if (fsd.ShowDialog() == DialogResult.OK) {
                 if (!MessageHelper.ShowCompatabilityMessage(StreamDeskCore.FormatterEngine.GetFormatterByExtension(Path.GetExtension(fsd.FileName))))
                     return;
-                _database.ActiveDatabase.SaveDatabase(fsd.FileName);
+                _database.SaveDatabase(fsd.FileName);
                 Text = fsd.FileName;
             }
         }
@@ -361,16 +358,8 @@ namespace Editor {
             {
                 if (!MessageHelper.ShowCompatabilityMessage(StreamDeskCore.FormatterEngine.GetFormatterByExtension(Path.GetExtension(fsd.FileName))))
                     return;
-                _database.ActiveDatabase.SaveDatabase(fsd.FileName);
+                _database.SaveDatabase(fsd.FileName);
             }
-        }
-
-        private void databaseCompatabilityToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new StreamDatabaseEditor(Compatability.MakeStreamDeskDatabaseCompatable(Compatability.DatabaseVersion.STREAMDESK_DB_1_0m, _database.ActiveDatabase))
-            {
-                MdiParent = MdiParent
-            }.Show();
         }
     }
 }

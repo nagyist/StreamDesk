@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
-using StreamDesk.Database;
+using Mono.Addins;
 using StreamDesk.Managed;
-using Stream = StreamDesk.Managed.Stream;
-using StreamDeskProperty = StreamDesk.Managed.StreamDeskProperty;
+using Stream = StreamDesk.Managed.Database.Stream;
+using StreamDeskProperty = StreamDesk.Managed.Database.StreamDeskProperty;
 
 namespace StreamDesk.Core.DatabaseFormats
 {
+    [Extension("/StreamDesk/DatabaseFormatters")]
     class SDXMLFormatter : IDatabaseFormatter
     {
         public string FormatName
@@ -22,11 +23,11 @@ namespace StreamDesk.Core.DatabaseFormats
             get { return ".sdx"; }
         }
 
-        public Managed.StreamDeskDatabase Read(System.IO.FileStream file)
+        public Managed.Database.StreamDeskDatabase Read(System.IO.Stream file)
         {
             var formatter = new XmlSerializer(typeof(StreamDeskDatabase));
             var currentDb = (StreamDeskDatabase)formatter.Deserialize(file);
-            var newDb = new Managed.StreamDeskDatabase();
+            var newDb = new Managed.Database.StreamDeskDatabase();
 
             ConvertEmbeds(currentDb, newDb);
             ConvertProviders(currentDb.Root, newDb.Root);
@@ -34,20 +35,20 @@ namespace StreamDesk.Core.DatabaseFormats
             return newDb;
         }
 
-        private void ConvertEmbeds(StreamDeskDatabase currentDb, Managed.StreamDeskDatabase newDb)
+        private void ConvertEmbeds(StreamDeskDatabase currentDb, Managed.Database.StreamDeskDatabase newDb)
         {
-            foreach (var chatEmbedNew in currentDb.ChatEmbeds.Select(chatEmbed => new Managed.ChatEmbed { EmbedFormat = chatEmbed.EmbedFormat, FriendlyName = chatEmbed.FriendlyName, IrcServer = chatEmbed.IrcServer, Name = chatEmbed.Name }))
+            foreach (var chatEmbedNew in currentDb.ChatEmbeds.Select(chatEmbed => new Managed.Database.ChatEmbed { EmbedFormat = chatEmbed.EmbedFormat, FriendlyName = chatEmbed.FriendlyName, IrcServer = chatEmbed.IrcServer, Name = chatEmbed.Name }))
             {
                 newDb.ChatEmbeds.Add(chatEmbedNew);
             }
 
-            foreach (var streamEmbedNew in currentDb.StreamEmbeds.Select(streamEmbed => new Managed.StreamEmbed() { EmbedFormat = streamEmbed.EmbedFormat, FriendlyName = streamEmbed.FriendlyName, Name = streamEmbed.Name }))
+            foreach (var streamEmbedNew in currentDb.StreamEmbeds.Select(streamEmbed => new Managed.Database.StreamEmbed() { EmbedFormat = streamEmbed.EmbedFormat, FriendlyName = streamEmbed.FriendlyName, Name = streamEmbed.Name }))
             {
                 newDb.StreamEmbeds.Add(streamEmbedNew);
             }
         }
 
-        private void ConvertProviders(Provider provider, Managed.Provider newProvider)
+        private void ConvertProviders(Provider provider, Managed.Database.Provider newProvider)
         {
             newProvider.Name = provider.Name;
             newProvider.Description = provider.Description;
@@ -69,13 +70,13 @@ namespace StreamDesk.Core.DatabaseFormats
 
             foreach (var subProvider in provider.SubProviders)
             {
-                var newSubProvider = new Managed.Provider();
+                var newSubProvider = new Managed.Database.Provider();
                 ConvertProviders(subProvider, newSubProvider);
                 newProvider.SubProviders.Add(newSubProvider);
             }
         }
 
-        public void Write(System.IO.FileStream file, Managed.StreamDeskDatabase streamDeskDatabase)
+        public void Write(System.IO.FileStream file, Managed.Database.StreamDeskDatabase streamDeskDatabase)
         {
 
         }

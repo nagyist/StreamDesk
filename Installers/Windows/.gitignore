@@ -1,1 +1,3 @@
-*.exe
+StreamDesk-*.exe
+StreamDesk_Generated.nsh
+*.7z

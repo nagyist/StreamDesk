@@ -30,39 +30,38 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainStreamForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.streamInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.streamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.webChatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iRCChatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.favoritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newStreamWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newWebBrowserWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.streamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.favoritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateStreamsDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.onTheWebToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.streamDeskHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nasuTekHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutStreamDeskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.newStreamWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newWebBrowserWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.streamInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.webChatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iRCChatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onTheWebToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.streamDeskHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nasuTekHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +82,30 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newStreamWindowToolStripMenuItem,
+            this.newWebBrowserWindowToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.MergeIndex = 1;
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(214, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -93,14 +116,6 @@
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "View";
             this.viewToolStripMenuItem.Visible = false;
-            // 
-            // streamInformationToolStripMenuItem
-            // 
-            this.streamInformationToolStripMenuItem.Image = global::StreamDesk.Properties.Resources.information;
-            this.streamInformationToolStripMenuItem.Name = "streamInformationToolStripMenuItem";
-            this.streamInformationToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.streamInformationToolStripMenuItem.Text = "Stream Information";
-            this.streamInformationToolStripMenuItem.Click += new System.EventHandler(this.streamInformationToolStripMenuItem_Click);
             // 
             // streamsToolStripMenuItem
             // 
@@ -122,21 +137,75 @@
             this.chatToolStripMenuItem.Text = "Chat";
             this.chatToolStripMenuItem.Visible = false;
             // 
-            // webChatToolStripMenuItem
+            // favoritesToolStripMenuItem
             // 
-            this.webChatToolStripMenuItem.Image = global::StreamDesk.Properties.Resources.comments;
-            this.webChatToolStripMenuItem.Name = "webChatToolStripMenuItem";
-            this.webChatToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.webChatToolStripMenuItem.Text = "Web Chat";
-            this.webChatToolStripMenuItem.Click += new System.EventHandler(this.webChatToolStripMenuItem_Click);
+            this.favoritesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.manageToolStripMenuItem,
+            this.toolStripMenuItem2});
+            this.favoritesToolStripMenuItem.Name = "favoritesToolStripMenuItem";
+            this.favoritesToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.favoritesToolStripMenuItem.Text = "Favorites";
             // 
-            // iRCChatToolStripMenuItem
+            // manageToolStripMenuItem
             // 
-            this.iRCChatToolStripMenuItem.Image = global::StreamDesk.Properties.Resources.comments;
-            this.iRCChatToolStripMenuItem.Name = "iRCChatToolStripMenuItem";
-            this.iRCChatToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.iRCChatToolStripMenuItem.Text = "IRC Chat";
-            this.iRCChatToolStripMenuItem.Visible = false;
+            this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
+            this.manageToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.manageToolStripMenuItem.Text = "Manage";
+            this.manageToolStripMenuItem.Click += new System.EventHandler(this.manageToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(114, 6);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchToolStripMenuItem,
+            this.optionsToolStripMenuItem});
+            this.toolsToolStripMenuItem.MergeIndex = 2;
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Text = "Options";
+            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.onTheWebToolStripMenuItem,
+            this.supportToolStripMenuItem,
+            this.toolStripMenuItem3,
+            this.aboutStreamDeskToolStripMenuItem});
+            this.helpToolStripMenuItem.MergeIndex = 4;
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // supportToolStripMenuItem
+            // 
+            this.supportToolStripMenuItem.Name = "supportToolStripMenuItem";
+            this.supportToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.supportToolStripMenuItem.Text = "Support";
+            this.supportToolStripMenuItem.Click += new System.EventHandler(this.supportToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(178, 6);
+            // 
+            // aboutStreamDeskToolStripMenuItem
+            // 
+            this.aboutStreamDeskToolStripMenuItem.Name = "aboutStreamDeskToolStripMenuItem";
+            this.aboutStreamDeskToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.aboutStreamDeskToolStripMenuItem.Text = "About StreamDesk...";
+            this.aboutStreamDeskToolStripMenuItem.Click += new System.EventHandler(this.aboutStreamDeskToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -152,6 +221,28 @@
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.Visible = false;
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(500, 25);
+            this.toolStripTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyDown);
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 24);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.ScriptErrorsSuppressed = true;
+            this.webBrowser1.ScrollBarsEnabled = false;
+            this.webBrowser1.Size = new System.Drawing.Size(624, 418);
+            this.webBrowser1.TabIndex = 3;
             // 
             // toolStripButton1
             // 
@@ -183,70 +274,6 @@
             this.toolStripButton3.Text = "Refresh";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(500, 25);
-            this.toolStripTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyDown);
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(0, 24);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(624, 418);
-            this.webBrowser1.TabIndex = 3;
-            // 
-            // favoritesToolStripMenuItem
-            // 
-            this.favoritesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.manageToolStripMenuItem,
-            this.toolStripMenuItem2});
-            this.favoritesToolStripMenuItem.Name = "favoritesToolStripMenuItem";
-            this.favoritesToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.favoritesToolStripMenuItem.Text = "Favorites";
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Image = global::StreamDesk.Properties.Resources.add;
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
-            // 
-            // manageToolStripMenuItem
-            // 
-            this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
-            this.manageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.manageToolStripMenuItem.Text = "Manage";
-            this.manageToolStripMenuItem.Click += new System.EventHandler(this.manageToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newStreamWindowToolStripMenuItem,
-            this.newWebBrowserWindowToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.MergeIndex = 1;
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
             // newStreamWindowToolStripMenuItem
             // 
             this.newStreamWindowToolStripMenuItem.Image = global::StreamDesk.Properties.Resources.application_add;
@@ -263,26 +290,37 @@
             this.newWebBrowserWindowToolStripMenuItem.Text = "New Web Browser Window";
             this.newWebBrowserWindowToolStripMenuItem.Visible = false;
             // 
-            // toolStripMenuItem1
+            // streamInformationToolStripMenuItem
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(214, 6);
+            this.streamInformationToolStripMenuItem.Image = global::StreamDesk.Properties.Resources.information;
+            this.streamInformationToolStripMenuItem.Name = "streamInformationToolStripMenuItem";
+            this.streamInformationToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.streamInformationToolStripMenuItem.Text = "Stream Information";
+            this.streamInformationToolStripMenuItem.Click += new System.EventHandler(this.streamInformationToolStripMenuItem_Click);
             // 
-            // exitToolStripMenuItem
+            // webChatToolStripMenuItem
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.webChatToolStripMenuItem.Image = global::StreamDesk.Properties.Resources.comments;
+            this.webChatToolStripMenuItem.Name = "webChatToolStripMenuItem";
+            this.webChatToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.webChatToolStripMenuItem.Text = "Web Chat";
+            this.webChatToolStripMenuItem.Click += new System.EventHandler(this.webChatToolStripMenuItem_Click);
             // 
-            // toolsToolStripMenuItem
+            // iRCChatToolStripMenuItem
             // 
-            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchToolStripMenuItem});
-            this.toolsToolStripMenuItem.MergeIndex = 2;
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
+            this.iRCChatToolStripMenuItem.Image = global::StreamDesk.Properties.Resources.comments;
+            this.iRCChatToolStripMenuItem.Name = "iRCChatToolStripMenuItem";
+            this.iRCChatToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.iRCChatToolStripMenuItem.Text = "IRC Chat";
+            this.iRCChatToolStripMenuItem.Visible = false;
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = global::StreamDesk.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // searchToolStripMenuItem
             // 
@@ -292,33 +330,6 @@
             this.searchToolStripMenuItem.Text = "Search";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.updateStreamsDatabaseToolStripMenuItem,
-            this.toolStripMenuItem4,
-            this.onTheWebToolStripMenuItem,
-            this.supportToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this.aboutStreamDeskToolStripMenuItem});
-            this.helpToolStripMenuItem.MergeIndex = 4;
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // updateStreamsDatabaseToolStripMenuItem
-            // 
-            this.updateStreamsDatabaseToolStripMenuItem.Image = global::StreamDesk.Properties.Resources.database_refresh;
-            this.updateStreamsDatabaseToolStripMenuItem.Name = "updateStreamsDatabaseToolStripMenuItem";
-            this.updateStreamsDatabaseToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.updateStreamsDatabaseToolStripMenuItem.Text = "Update Streams Database";
-            this.updateStreamsDatabaseToolStripMenuItem.Click += new System.EventHandler(this.updateStreamsDatabaseToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(205, 6);
-            // 
             // onTheWebToolStripMenuItem
             // 
             this.onTheWebToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -326,7 +337,7 @@
             this.nasuTekHomeToolStripMenuItem});
             this.onTheWebToolStripMenuItem.Image = global::StreamDesk.Properties.Resources.world;
             this.onTheWebToolStripMenuItem.Name = "onTheWebToolStripMenuItem";
-            this.onTheWebToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.onTheWebToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.onTheWebToolStripMenuItem.Text = "On the Web";
             // 
             // streamDeskHomeToolStripMenuItem
@@ -345,25 +356,6 @@
             this.nasuTekHomeToolStripMenuItem.Text = "NasuTek Home";
             this.nasuTekHomeToolStripMenuItem.Click += new System.EventHandler(this.nasuTekHomeToolStripMenuItem_Click);
             // 
-            // supportToolStripMenuItem
-            // 
-            this.supportToolStripMenuItem.Name = "supportToolStripMenuItem";
-            this.supportToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.supportToolStripMenuItem.Text = "Support";
-            this.supportToolStripMenuItem.Click += new System.EventHandler(this.supportToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(205, 6);
-            // 
-            // aboutStreamDeskToolStripMenuItem
-            // 
-            this.aboutStreamDeskToolStripMenuItem.Name = "aboutStreamDeskToolStripMenuItem";
-            this.aboutStreamDeskToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.aboutStreamDeskToolStripMenuItem.Text = "About StreamDesk...";
-            this.aboutStreamDeskToolStripMenuItem.Click += new System.EventHandler(this.aboutStreamDeskToolStripMenuItem_Click);
-            // 
             // MainStreamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -376,6 +368,8 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainStreamForm";
             this.Text = "No Stream Loaded";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainStreamForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainStreamForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -413,13 +407,12 @@
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updateStreamsDatabaseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem onTheWebToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem streamDeskHomeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nasuTekHomeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem supportToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem aboutStreamDeskToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
     }
 }

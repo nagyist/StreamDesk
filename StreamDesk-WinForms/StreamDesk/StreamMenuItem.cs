@@ -1,28 +1,20 @@
 ﻿#region Licensing Information
-//----------------------------------------------------------------------------------
-// <copyright file="StreamMenuItem.cs" company="Developers of the StreamDesk Project">
-//      Copyright (C) 2011 Developers of the StreamDesk Project.
-//          Core Developers/Maintainer: NasuTek Enterprises/Michael Manley
-//          Trademark/GUI Designer/Co-Maintainer: KtecK
-//          Additional Developers and Contributors are in the DEVELOPERS.txt
-//          file
-//
-//      Licensed under the Apache License, Version 2.0 (the "License");
-//      you may not use this file except in compliance with the License.
-//      You may obtain a copy of the License at
-// 
-//      http://www.apache.org/licenses/LICENSE-2.0
-// 
-//      Unless required by applicable law or agreed to in writing, software
-//      distributed under the License is distributed on an "AS IS" BASIS,
-//      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//      See the License for the specific language governing permissions and
-//      limitations under the License.
-// </copyright>
-// <summary>
-//      StreamDesk Menu Item for Stream Launching
-// </summary>
-//----------------------------------------------------------------------------------
+/***************************************************************************************************
+ * NasuTek StreamDesk
+ * Copyright © 2007-2012 NasuTek Enterprises
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ***************************************************************************************************/
 #endregion
 
 using System;
@@ -30,6 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using StreamDesk.Managed;
+using StreamDesk.Managed.Database;
 using StreamDesk.Properties;
 
 namespace StreamDesk {
@@ -42,7 +35,7 @@ namespace StreamDesk {
         /// </summary>
         private MediaType _mediaType;
 
-        internal MainStreamForm ActiveForm { get; set; }
+        public object[] TagObject { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the EditorItem class
@@ -57,6 +50,8 @@ namespace StreamDesk {
         /// Gets the sub Object Tags for this Provider
         /// </summary>
         public List<IObjectDatabaseTag> SubItems { get; private set; }
+
+        public StreamDeskDatabase Database { get; set; }
 
         /// <summary>
         /// Gets or sets the Menu Title
@@ -126,7 +121,7 @@ namespace StreamDesk {
         protected override void OnClick(EventArgs e) {
             switch (_mediaType) {
                 case MediaType.VideoStream:
-                    ActiveForm.NavigateToStream(StreamObject);
+                    ((MainStreamForm) TagObject[0]).NavigateToStream(StreamObject, Database);
 
                     break;
                 case MediaType.AudioStream:
