@@ -73,6 +73,11 @@
       <DependentUpon>PrefForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
+    <Compile Include="ChatWindow.cs" />
+    <Compile Include="ChatWindowController.cs" />
+    <Compile Include="ChatWindow.designer.cs">
+      <DependentUpon>ChatWindow.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
@@ -80,6 +85,7 @@
     <InterfaceDefinition Include="SearchForm.xib" />
     <InterfaceDefinition Include="StreamInformation.xib" />
     <InterfaceDefinition Include="PrefForm.xib" />
+    <InterfaceDefinition Include="ChatWindow.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

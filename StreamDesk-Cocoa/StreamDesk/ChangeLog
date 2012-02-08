@@ -1,0 +1,34 @@
+2012-02-08  Michael Manley  <mmanley@nasutek.com>
+
+* Main.cs:
+* PrefForm.cs:
+* ChatWindow.cs:
+* MainWindow.cs:
+* SearchForm.cs:
+* ChatWindow.xib:
+* AppDelegate.cs:
+* StreamMenuItem.cs:
+* StreamDesk.csproj:
+* StreamInformation.cs:
+* PrefFormController.cs:
+* ChatWindow.designer.cs:
+* ChatWindowController.cs:
+* SearchFormController.cs:
+* MainWindowController.cs:
+* StreamInformationController.cs:
+  Changed formatting for these files. Also added Chat Window.
+
+* build/StreamDesk.build/StreamDesk.pbxindex/refs.pbxbtree:
+* build/StreamDesk.build/StreamDesk.pbxindex/files.pbxbtree:
+* build/StreamDesk.build/StreamDesk.pbxindex/decls.pbxbtree:
+* build/StreamDesk.build/StreamDesk.pbxindex/pbxindex.header:
+* build/StreamDesk.build/StreamDesk.pbxindex/cdecls.pbxbtree:
+* build/StreamDesk.build/StreamDesk.pbxindex/imports.pbxbtree:
+* build/StreamDesk.build/StreamDesk.pbxindex/protocols.pbxbtree:
+* build/StreamDesk.build/StreamDesk.pbxindex/subclasses.pbxbtree:
+* build/StreamDesk.build/StreamDesk.pbxindex/symbols0.pbxsymbols:
+* build/StreamDesk.build/StreamDesk.pbxindex/categories.pbxbtree:
+* build/StreamDesk.build/StreamDesk.pbxindex/strings.pbxstrings/control:
+* build/StreamDesk.build/StreamDesk.pbxindex/strings.pbxstrings/strings:
+  Yeah do I really need to include these?
+

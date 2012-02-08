@@ -5,17 +5,17 @@ using MonoMac.Foundation;
 using MonoMac.AppKit;
 
 namespace StreamDesk {
-    public partial class StreamInformation : MonoMac.AppKit.NSWindow {
+    public partial class ChatWindow : MonoMac.AppKit.NSWindow {
         #region Constructors
      
         // Called when created from unmanaged code
-        public StreamInformation (IntPtr handle) : base (handle) {
+        public ChatWindow (IntPtr handle) : base (handle) {
             Initialize ();
         }
      
         // Called when created directly from a XIB file
         [Export ("initWithCoder:")]
-        public StreamInformation (NSCoder coder) : base (coder) {
+        public ChatWindow (NSCoder coder) : base (coder) {
             Initialize ();
         }
      

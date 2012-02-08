@@ -4,32 +4,27 @@ using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 
-namespace StreamDesk
-{
-	public partial class SearchForm : MonoMac.AppKit.NSWindow
-	{
-		#region Constructors
-		
-		// Called when created from unmanaged code
-		public SearchForm (IntPtr handle) : base (handle)
-		{
-			Initialize ();
-		}
-		
-		// Called when created directly from a XIB file
-		[Export ("initWithCoder:")]
-		public SearchForm (NSCoder coder) : base (coder)
-		{
-			Initialize ();
-		}
-		
-		// Shared initialization code
-		void Initialize ()
-		{
-		}
-		
-		#endregion
-		
-	}
+namespace StreamDesk {
+    public partial class SearchForm : MonoMac.AppKit.NSWindow {
+        #region Constructors
+     
+        // Called when created from unmanaged code
+        public SearchForm (IntPtr handle) : base (handle) {
+            Initialize ();
+        }
+     
+        // Called when created directly from a XIB file
+        [Export ("initWithCoder:")]
+        public SearchForm (NSCoder coder) : base (coder) {
+            Initialize ();
+        }
+     
+        // Shared initialization code
+        void Initialize () {
+        }
+     
+        #endregion
+     
+    }
 }
 
