@@ -3,23 +3,34 @@ using System.Drawing;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 using MonoMac.ObjCRuntime;
+using System.Collections.Generic;
 
 namespace StreamDesk
 {
 	public partial class AppDelegate : NSApplicationDelegate
 	{
-		MainWindowController mainWindowController;
+		List<MainWindowController> mainWindowControllers = new List<MainWindowController>();
+		
+		PrefFormController prefFormController;
+		SearchFormController searchFormController;
 		
 		public AppDelegate ()
 		{
 			MainClass.AppDelegateInstance = this;
 		}
-
+		
+		public MainWindowController GetActiveMainWindowController() 
+		{
+			return mainWindowControllers[0];
+		}
+		
 		public override void FinishedLaunching (NSObject notification)
 		{
-			mainWindowController = new MainWindowController ();
+			var mainWindowController = new MainWindowController ();
 			mainWindowController.Window.MakeKeyAndOrderFront (this);
 			
+			mainWindowControllers.Add(mainWindowController);
+			                          
 			RefreshStreamsMenu();
 		}
 		
@@ -32,7 +43,7 @@ namespace StreamDesk
                 var dbName = new NSMenuItem(streamDeskDatabase.Name);
 				dbName.Submenu = new NSMenu();
 				
-                foreach (var i in streamDeskDatabase.GenerateObjectDatabaseTags<StreamMenuItem>(new object[] { mainWindowController }))
+                foreach (var i in streamDeskDatabase.GenerateObjectDatabaseTags<StreamMenuItem>(null))
                 {
                     dbName.Submenu.AddItem(i);
                 }
@@ -43,22 +54,21 @@ namespace StreamDesk
 		
 		partial void openSearchBox (NSObject sender)
 		{
-			var searchForm = new SearchFormController();
-			searchForm.Window.MakeKeyAndOrderFront(this);
+			if(searchFormController == null) 
+				searchFormController = new SearchFormController();
+			searchFormController.Window.MakeKeyAndOrderFront(this);
 		}
 		
 		partial void viewStreamInformation (NSObject sender)
 		{
-			var streamInformation = new StreamInformationController();
-			streamInformation.Window.MakeKeyAndOrderFront (this);
-			streamInformation.LoadStreamInformation(mainWindowController.ActiveStreamObject.Name, mainWindowController.ActiveStreamObject.Tags, mainWindowController.ActiveStreamObject.Web, mainWindowController.ActiveStreamObject.Description);
-			//streamInformation.ShowWindow(this);
+			GetActiveMainWindowController().ShowStreamInformationWindow();
 		}
 		
 		partial void openPrefs (NSObject sender)
 		{
-			var prefForm = new PrefFormController();
-			prefForm.Window.MakeKeyAndOrderFront(this);
+			if(prefFormController == null) 
+				prefFormController = new PrefFormController();
+			prefFormController.Window.MakeKeyAndOrderFront(this);
 		}
 		
 		partial void openWebChat (NSObject sender)

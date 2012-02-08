@@ -40,8 +40,8 @@
     <Reference Include="MonoMac" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Mono.Addins, Version=0.6.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-      <Private>False</Private>
+    <Reference Include="Mono.Addins">
+      <HintPath>..\..\3rdParty\Mono.Addins.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

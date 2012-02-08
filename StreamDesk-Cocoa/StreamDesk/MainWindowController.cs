@@ -10,6 +10,8 @@ namespace StreamDesk
 {
 	public partial class MainWindowController : MonoMac.AppKit.NSWindowController
 	{
+		StreamInformationController streamInformationController;
+		
 		#region Constructors
 		
 		// Called when created from unmanaged code
@@ -70,6 +72,13 @@ namespace StreamDesk
 				Window.SetContentSize(streamObject.Size);
 				webBrowser.MainFrame.LoadHtmlString(database.GetStream(streamObject), new NSUrl("http://example.org"));
             }
+		}
+		
+		public void ShowStreamInformationWindow() {
+			if(streamInformationController == null)
+				streamInformationController = new StreamInformationController();
+			streamInformationController.Window.MakeKeyAndOrderFront (this);
+			streamInformationController.LoadStreamInformation(ActiveStreamObject.Name, ActiveStreamObject.Tags, ActiveStreamObject.Web, ActiveStreamObject.Description);
 		}
 	}
 }

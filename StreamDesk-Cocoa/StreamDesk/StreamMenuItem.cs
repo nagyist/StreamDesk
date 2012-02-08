@@ -17,7 +17,7 @@ namespace StreamDesk
 		{			
 			switch (MediaType) {
                 case StreamDesk.Managed.Database.MediaType.VideoStream:
-                    ((MainWindowController) TagObject[0]).NavigateToStream(StreamObject, Database);
+                    MainClass.AppDelegateInstance.GetActiveMainWindowController().NavigateToStream(StreamObject, Database);
 
                     break;
                 case StreamDesk.Managed.Database.MediaType.AudioStream:

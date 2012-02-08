@@ -28,12 +28,6 @@ namespace StreamDesk
 			
 		    return null;
 		}
-		
-		public override void SetObjectValue (NSTableView tableView, NSObject theObject, NSTableColumn tableColumn, int row)
-		{
-			//Just do nothing, heh
-			//base.SetObjectValue (tableView, theObject, tableColumn, row);
-		}
 	}
 	
 	public partial class PrefFormController : MonoMac.AppKit.NSWindowController
