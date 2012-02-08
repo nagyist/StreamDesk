@@ -43,6 +43,8 @@
     <Reference Include="Mono.Addins">
       <HintPath>..\..\3rdParty\Mono.Addins.dll</HintPath>
     </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.cs" />
