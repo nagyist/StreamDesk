@@ -1,4 +1,6 @@
-= Generate a Mac OS X DMG File =
+Generate a Mac OS X DMG File
+============================
+
 To generate a StreamDesk DMG for Mac OS X you must do the following
 
 1. Put the Finalized StreamDesk Application Bundle (StreamDesk.app) in this directory
