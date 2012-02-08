@@ -31,6 +31,9 @@ namespace StreamDesk
 
 		[Action ("openWebChat:")]
 		partial void openWebChat (MonoMac.Foundation.NSObject sender);
+
+		[Action ("updateStreams:")]
+		partial void updateStreams (MonoMac.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

@@ -10,15 +10,12 @@ using System.Threading;
 
 namespace StreamDesk
 {
-	class MainClass
+	class Program
 	{
-		public static StreamDeskCore StreamDeskCoreInstance;
-		internal static AppDelegate AppDelegateInstance;
+		internal static AppDelegate Instance;
 		
 		static void Main (string [] args)
-		{
-			StreamDeskCoreInstance = new StreamDeskCore();
-			
+		{		
 			NSApplication.Init ();
 			NSApplication.Main (args);
 		}

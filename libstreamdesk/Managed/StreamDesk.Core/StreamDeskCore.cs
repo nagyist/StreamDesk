@@ -32,26 +32,34 @@ namespace StreamDesk.Managed
         public List<StreamDeskDatabase> ActiveDatabases { get; private set; }
         public static FormatterEngine FormatterEngine { get; private set; }
         public List<Tuple<String, Exception>> FailedDatabases { get; private set; } 
-		public static StreamDeskSettings SettingsInstance { get; internal set; }
+		public StreamDeskSettings SettingsInstance { get; internal set; }
 
         public StreamDeskCore() {
+			SettingsInstance = StreamDeskSettings.OpenSettings();
+			
             ActiveDatabases = new List<StreamDeskDatabase>();
             FailedDatabases = new List<Tuple<String, Exception>>();
+        }
+		
+		public void Initialize() {		
+			ActiveDatabases.Clear();
 			
 			foreach (var activeDatabase in SettingsInstance.ActiveDatabases) {
-                var wc = new WebClient();
-                wc.DownloadDataCompleted += wc_DownloadDataCompleted;
-                wc.DownloadDataAsync(new Uri(activeDatabase), activeDatabase);
-
-                while (wc.IsBusy) {
-                    //Application.DoEvents();
-                }
+				var wc = new WebClient();
+				try{
+					using (var ms = new System.IO.MemoryStream(wc.DownloadData(activeDatabase))) {
+	                    var db = StreamDeskDatabase.OpenDatabase(ms, System.IO.Path.GetExtension(activeDatabase));
+	                    db.TagInformation = activeDatabase;
+	                    ActiveDatabases.Add(db);
+	                }
+				} catch(Exception e) {
+					FailedDatabases.Add(Tuple.Create(activeDatabase, e));
+				}
             }
-        }
-
+		}
+		
         static StreamDeskCore() {
             FormatterEngine = new FormatterEngine();
-			StreamDeskSettings.OpenSettings();
 			
             AddinManager.Initialize("[ApplicationData]/StreamDesk 3");
             AddinManager.Registry.Update();
@@ -61,16 +69,14 @@ namespace StreamDesk.Managed
             }
         }
 		
-		private void wc_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e) {
-            if (e.Error != null)
-                FailedDatabases.Add(Tuple.Create((string)e.UserState, e.Error));
-            else {
-                using (var ms = new System.IO.MemoryStream(e.Result)) {
-                    var db = StreamDeskDatabase.OpenDatabase(ms, System.IO.Path.GetExtension((string) e.UserState));
-                    db.TagInformation = (string) e.UserState;
-                    ActiveDatabases.Add(db);
-                }
-            }
-        }
-    }
+		public StreamDeskDatabase GetDatabaseStreamExistsIn(Stream stream) {
+			foreach(var database in ActiveDatabases) {
+				if(database.GetStreamObject(stream.StreamGuid) != null) {
+					return database;
+				}
+			}
+			
+			return null;
+		}
+	}
 }

@@ -52,7 +52,6 @@
     <Compile Include="MainWindow.designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="AppDelegate.designer.cs">
       <DependentUpon>AppDelegate.cs</DependentUpon>
@@ -73,6 +72,7 @@
     <Compile Include="PrefForm.designer.cs">
       <DependentUpon>PrefForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Main.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />

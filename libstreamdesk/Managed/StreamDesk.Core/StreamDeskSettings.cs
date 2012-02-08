@@ -42,18 +42,19 @@ namespace StreamDesk.Managed {
             }
         }
 
-        public static void OpenSettings() {
+        public static StreamDeskSettings OpenSettings() {
             if (File.Exists(SettingsPath))
             {
                 using (var file = File.Open(SettingsPath, FileMode.Open))
                 {
                     var xmlSerializer = new XmlSerializer(typeof(StreamDeskSettings));
-                    StreamDeskCore.SettingsInstance = (StreamDeskSettings)xmlSerializer.Deserialize(file);
+                    return (StreamDeskSettings)xmlSerializer.Deserialize(file);
                 }
             }
             else {
-                StreamDeskCore.SettingsInstance = new StreamDeskSettings();
-                StreamDeskCore.SettingsInstance.ActiveDatabases.Add("http://streamdesk.sf.net/streams.sdnx");
+                var settingsInstance = new StreamDeskSettings();
+                settingsInstance.ActiveDatabases.Add("http://streamdesk.sf.net/streams.sdnx");
+				return settingsInstance;
             }
         }
     }

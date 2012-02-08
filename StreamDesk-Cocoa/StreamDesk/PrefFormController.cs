@@ -11,7 +11,7 @@ namespace StreamDesk
 	public class ActiveDatabases : NSTableViewDataSource {
 		public override int GetRowCount (NSTableView tableView)
 		{
-			return MainClass.StreamDeskCoreInstance.ActiveDatabases.Count;
+			return Program.Instance.StreamDeskCoreInstance.ActiveDatabases.Count;
 		}
 		
 		public override NSObject GetObjectValue (NSTableView tableView, NSTableColumn tableColumn, int row)
@@ -19,11 +19,11 @@ namespace StreamDesk
 			if(row != -1)
 				switch((NSString)tableColumn.Identifier) {
 					case "Name":
-						return new NSString(MainClass.StreamDeskCoreInstance.ActiveDatabases[row].Name);
+						return new NSString(Program.Instance.StreamDeskCoreInstance.ActiveDatabases[row].Name);
 					case "Vendor":
-						return new NSString(MainClass.StreamDeskCoreInstance.ActiveDatabases[row].Vendor);
+						return new NSString(Program.Instance.StreamDeskCoreInstance.ActiveDatabases[row].Vendor);
 					case "Description":
-						return new NSString(MainClass.StreamDeskCoreInstance.ActiveDatabases[row].Description);
+						return new NSString(Program.Instance.StreamDeskCoreInstance.ActiveDatabases[row].Description);
 				}
 			
 		    return null;

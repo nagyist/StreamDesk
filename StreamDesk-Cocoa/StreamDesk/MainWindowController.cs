@@ -56,7 +56,7 @@ namespace StreamDesk
 		
 		public void NavigateToStream (Stream streamObject, StreamDeskDatabase database)
 		{				
-			MainClass.AppDelegateInstance.ShowViewMenu();
+			Program.Instance.ShowViewMenu();
 			
 			ActiveStreamObject = streamObject;
 			ActiveDatabase = database;

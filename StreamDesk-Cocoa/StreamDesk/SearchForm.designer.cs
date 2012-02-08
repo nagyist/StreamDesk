@@ -11,11 +11,21 @@ namespace StreamDesk
 	[Register ("SearchFormController")]
 	partial class SearchFormController
 	{
+		[Outlet]
+		MonoMac.AppKit.NSTableView searchResults { get; set; }
+
 		[Action ("okClicked:")]
 		partial void okClicked (MonoMac.Foundation.NSObject sender);
+
+		[Action ("performSearch:")]
+		partial void performSearch (MonoMac.Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (searchResults != null) {
+				searchResults.Dispose ();
+				searchResults = null;
+			}
 		}
 	}
 
