@@ -9,18 +9,18 @@ namespace StreamDesk {
         #region Constructors
      
         // Called when created from unmanaged code
-        public PrefForm (IntPtr handle) : base (handle) {
-            Initialize ();
+        public PrefForm(IntPtr handle) : base(handle) {
+            Initialize();
         }
      
         // Called when created directly from a XIB file
-        [Export ("initWithCoder:")]
-        public PrefForm (NSCoder coder) : base (coder) {
-            Initialize ();
+        [Export("initWithCoder:")]
+        public PrefForm(NSCoder coder) : base(coder) {
+            Initialize();
         }
      
         // Shared initialization code
-        void Initialize () {
+        void Initialize() {
         }
      
         #endregion

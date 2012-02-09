@@ -8,32 +8,32 @@ using MonoMac.Foundation;
 
 namespace StreamDesk
 {
-	[Register ("SearchFormController")]
+	[Register("SearchFormController")]
 	partial class SearchFormController
 	{
 		[Outlet]
 		MonoMac.AppKit.NSTableView searchResults { get; set; }
 
-		[Action ("okClicked:")]
-		partial void okClicked (MonoMac.Foundation.NSObject sender);
+		[Action("okClicked:")]
+		partial void okClicked(MonoMac.Foundation.NSObject sender);
 
-		[Action ("performSearch:")]
-		partial void performSearch (MonoMac.Foundation.NSObject sender);
+		[Action("performSearch:")]
+		partial void performSearch(MonoMac.Foundation.NSObject sender);
 		
-		void ReleaseDesignerOutlets ()
+		void ReleaseDesignerOutlets()
 		{
 			if (searchResults != null) {
-				searchResults.Dispose ();
+				searchResults.Dispose();
 				searchResults = null;
 			}
 		}
 	}
 
-	[Register ("SearchForm")]
+	[Register("SearchForm")]
 	partial class SearchForm
 	{
 		
-		void ReleaseDesignerOutlets ()
+		void ReleaseDesignerOutlets()
 		{
 		}
 	}

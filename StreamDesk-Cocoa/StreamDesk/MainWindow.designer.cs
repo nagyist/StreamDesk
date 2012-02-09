@@ -8,26 +8,26 @@ using MonoMac.Foundation;
 
 namespace StreamDesk
 {
-	[Register ("MainWindowController")]
+	[Register("MainWindowController")]
 	partial class MainWindowController
 	{
 		[Outlet]
 		MonoMac.WebKit.WebView webBrowser { get; set; }
 		
-		void ReleaseDesignerOutlets ()
+		void ReleaseDesignerOutlets()
 		{
 			if (webBrowser != null) {
-				webBrowser.Dispose ();
+				webBrowser.Dispose();
 				webBrowser = null;
 			}
 		}
 	}
 
-	[Register ("MainWindow")]
+	[Register("MainWindow")]
 	partial class MainWindow
 	{
 		
-		void ReleaseDesignerOutlets ()
+		void ReleaseDesignerOutlets()
 		{
 		}
 	}

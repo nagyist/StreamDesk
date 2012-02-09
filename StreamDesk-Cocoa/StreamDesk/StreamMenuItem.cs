@@ -5,15 +5,15 @@ using System.Linq;
 
 namespace StreamDesk {
     public class StreamMenuItem : NSMenuItem, IObjectDatabaseTag {
-        public StreamMenuItem () {
-            SubItems = new System.Collections.Generic.List<IObjectDatabaseTag> ();
+        public StreamMenuItem() {
+            SubItems = new System.Collections.Generic.List<IObjectDatabaseTag>();
             Activated += ActivateStreamMenuItem;
         }
 
-        void ActivateStreamMenuItem (object sender, EventArgs e) {           
+        void ActivateStreamMenuItem(object sender, EventArgs e) {           
             switch (MediaType) {
                 case StreamDesk.Managed.Database.MediaType.VideoStream:
-                    Program.Instance.GetActiveMainWindowController ().NavigateToStream (StreamObject, Database);
+                    Program.Instance.GetActiveMainWindowController().NavigateToStream(StreamObject, Database);
 
                     break;
                 case StreamDesk.Managed.Database.MediaType.AudioStream:
@@ -22,12 +22,12 @@ namespace StreamDesk {
         }
 
         #region IObjectDatabaseTag implementation
-        public void CallSubItemsToProperArray () {
+        public void CallSubItemsToProperArray() {
             if (SubItems.Count != 0)
-                Submenu = new NSMenu ();
+                Submenu = new NSMenu();
          
-            foreach(var i in SubItems.Cast<NSMenuItem>())
-                this.Submenu.AddItem (i);
+            foreach (var i in SubItems.Cast<NSMenuItem>())
+                this.Submenu.AddItem(i);
         }
 
         public System.Collections.Generic.List<IObjectDatabaseTag> SubItems { get; private set; }

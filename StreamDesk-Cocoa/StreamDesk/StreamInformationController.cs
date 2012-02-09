@@ -9,30 +9,30 @@ namespace StreamDesk {
         #region Constructors
      
         // Called when created from unmanaged code
-        public StreamInformationController (IntPtr handle) : base (handle) {
-            Initialize ();
+        public StreamInformationController(IntPtr handle) : base(handle) {
+            Initialize();
         }
      
         // Called when created directly from a XIB file
-        [Export ("initWithCoder:")]
-        public StreamInformationController (NSCoder coder) : base (coder) {
-            Initialize ();
+        [Export("initWithCoder:")]
+        public StreamInformationController(NSCoder coder) : base(coder) {
+            Initialize();
         }
      
         // Call to load from the XIB/NIB file
-        public StreamInformationController () : base ("StreamInformation") {
-            Initialize ();
+        public StreamInformationController() : base("StreamInformation") {
+            Initialize();
         }
      
-        public void LoadStreamInformation (string nameString, string tagsString, string urlString, string descriptionString) {
+        public void LoadStreamInformation(string nameString, string tagsString, string urlString, string descriptionString) {
             name.StringValue = nameString;
             tags.StringValue = tagsString;
             siteUrl.StringValue = urlString;
-            description.InsertText (new NSString (descriptionString));
+            description.InsertText(new NSString(descriptionString));
         }
      
         // Shared initialization code
-        void Initialize () {
+        void Initialize() {
         }
      
         #endregion
@@ -40,12 +40,12 @@ namespace StreamDesk {
         //strongly typed window accessor
         public new StreamInformation Window {
             get {
-                return (StreamInformation)base.Window;
+                return(StreamInformation)base.Window;
             }
         }
      
-        partial void okClicked (NSObject sender) {
-            Window.PerformClose (this);
+        partial void okClicked(NSObject sender) {
+            Window.PerformClose(this);
         }
     }
 }

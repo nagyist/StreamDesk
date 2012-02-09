@@ -14,26 +14,26 @@ namespace StreamDesk {
         #region Constructors
      
         // Called when created from unmanaged code
-        public MainWindowController (IntPtr handle) : base (handle) {
-            Initialize ();
+        public MainWindowController(IntPtr handle) : base(handle) {
+            Initialize();
         }
      
         // Called when created directly from a XIB file
-        [Export ("initWithCoder:")]
-        public MainWindowController (NSCoder coder) : base (coder) {
-            Initialize ();
+        [Export("initWithCoder:")]
+        public MainWindowController(NSCoder coder) : base(coder) {
+            Initialize();
         }
      
         // Call to load from the XIB/NIB file
-        public MainWindowController () : base ("MainWindow") {
-            Initialize ();
+        public MainWindowController() : base("MainWindow") {
+            Initialize();
         }
      
         // Shared initialization code
-        void Initialize () {
+        void Initialize() {
             Window.Title = "No Stream Loaded";
 #if DEBUG
-            Window.Title += " (Debug Build)";
+            Window.Title += "(Debug Build)";
 #endif
         }
      
@@ -42,7 +42,7 @@ namespace StreamDesk {
         //strongly typed window accessor
         public new MainWindow Window {
             get {
-                return (MainWindow)base.Window;
+                return(MainWindow)base.Window;
             }
         }
      
@@ -50,38 +50,38 @@ namespace StreamDesk {
 
         public StreamDeskDatabase ActiveDatabase { get; private set; }
      
-        public void OpenChatWindow () {
+        public void OpenChatWindow() {
             if (chatWindowController == null)
-                chatWindowController = new ChatWindowController ();
+                chatWindowController = new ChatWindowController();
          
-            chatWindowController.Window.MakeKeyAndOrderFront (this);
-            chatWindowController.SetChatWindow (ActiveStreamObject, ActiveDatabase);
+            chatWindowController.Window.MakeKeyAndOrderFront(this);
+            chatWindowController.SetChatWindow(ActiveStreamObject, ActiveDatabase);
         }
      
-        public void NavigateToStream (Stream streamObject, StreamDeskDatabase database) {                
-            Program.Instance.ShowViewMenu ();
+        public void NavigateToStream(Stream streamObject, StreamDeskDatabase database) {                
+            Program.Instance.ShowViewMenu();
          
             ActiveStreamObject = streamObject;
             ActiveDatabase = database;
          
             Window.Title = streamObject.Name + " > " + streamObject.ProviderObject.Name;
 #if DEBUG
-         Window.Title += " (Debug Build)";
+         Window.Title += "(Debug Build)";
 #endif
          
             if (streamObject.StreamEmbed == "url_browser" || streamObject.StreamEmbed == "url_custom")
-                webBrowser.MainFrame.LoadRequest (new NSUrlRequest (new NSUrl (streamObject.GetStreamEmbedData ("URL"))));
+                webBrowser.MainFrame.LoadRequest(new NSUrlRequest(new NSUrl(streamObject.GetStreamEmbedData("URL"))));
             else {
-                Window.SetContentSize (streamObject.Size);
-                webBrowser.MainFrame.LoadHtmlString (database.GetStream (streamObject), new NSUrl ("http://example.org"));
+                Window.SetContentSize(streamObject.Size);
+                webBrowser.MainFrame.LoadHtmlString(database.GetStream(streamObject), new NSUrl("http://example.org"));
             }
         }
      
-        public void ShowStreamInformationWindow () {
+        public void ShowStreamInformationWindow() {
             if (streamInformationController == null)
-                streamInformationController = new StreamInformationController ();
-            streamInformationController.Window.MakeKeyAndOrderFront (this);
-            streamInformationController.LoadStreamInformation (ActiveStreamObject.Name, ActiveStreamObject.Tags, ActiveStreamObject.Web, ActiveStreamObject.Description);
+                streamInformationController = new StreamInformationController();
+            streamInformationController.Window.MakeKeyAndOrderFront(this);
+            streamInformationController.LoadStreamInformation(ActiveStreamObject.Name, ActiveStreamObject.Tags, ActiveStreamObject.Web, ActiveStreamObject.Description);
         }
     }
 }

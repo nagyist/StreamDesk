@@ -8,7 +8,7 @@ using MonoMac.Foundation;
 
 namespace StreamDesk
 {
-	[Register ("StreamInformationController")]
+	[Register("StreamInformationController")]
 	partial class StreamInformationController
 	{
 		[Outlet]
@@ -23,38 +23,38 @@ namespace StreamDesk
 		[Outlet]
 		MonoMac.AppKit.NSTextField tags { get; set; }
 
-		[Action ("okClicked:")]
-		partial void okClicked (MonoMac.Foundation.NSObject sender);
+		[Action("okClicked:")]
+		partial void okClicked(MonoMac.Foundation.NSObject sender);
 		
-		void ReleaseDesignerOutlets ()
+		void ReleaseDesignerOutlets()
 		{
 			if (description != null) {
-				description.Dispose ();
+				description.Dispose();
 				description = null;
 			}
 
 			if (name != null) {
-				name.Dispose ();
+				name.Dispose();
 				name = null;
 			}
 
 			if (siteUrl != null) {
-				siteUrl.Dispose ();
+				siteUrl.Dispose();
 				siteUrl = null;
 			}
 
 			if (tags != null) {
-				tags.Dispose ();
+				tags.Dispose();
 				tags = null;
 			}
 		}
 	}
 
-	[Register ("StreamInformation")]
+	[Register("StreamInformation")]
 	partial class StreamInformation
 	{
 		
-		void ReleaseDesignerOutlets ()
+		void ReleaseDesignerOutlets()
 		{
 		}
 	}
