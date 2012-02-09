@@ -15,7 +15,7 @@ namespace StreamDesk {
         }
      
         // Called when created directly from a XIB file
-        [Export("initWithCoder:")]
+       [Export("initWithCoder:")]
         public SearchFormController(NSCoder coder) : base(coder) {
             Initialize();
         }
@@ -65,13 +65,13 @@ namespace StreamDesk {
             if (row != -1)
                 switch ((NSString)tableColumn.Identifier) {
                     case "Name":
-                        return(NSString)mSearchResults [row].Name;
+                        return(NSString)mSearchResults[row].Name;
                     case "Tags":
-                        return(NSString)mSearchResults [row].Tags;
+                        return(NSString)mSearchResults[row].Tags;
                     case "Description":
-                        return(NSString)mSearchResults [row].Description;
+                        return(NSString)mSearchResults[row].Description;
                     case "Database":
-                        return(NSString)Program.Instance.StreamDeskCoreInstance.GetDatabaseStreamExistsIn(mSearchResults [row]).Name;
+                        return(NSString)Program.Instance.StreamDeskCoreInstance.GetDatabaseStreamExistsIn(mSearchResults[row]).Name;
                 }
          
             return null;

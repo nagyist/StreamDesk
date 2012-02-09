@@ -1,13 +1,13 @@
 ﻿#region Licensing Information
 //----------------------------------------------------------------------------------
 // <copyright file="AssemblyInfo.cs" company="Developers of the StreamDesk Project">
-//      Copyright (C) 2011 Developers of the StreamDesk Project.
+//      Copyright(C) 2011 Developers of the StreamDesk Project.
 //          Core Developers/Maintainer: NasuTek Enterprises/Michael Manley
 //          Trademark/GUI Designer/Co-Maintainer: KtecK
 //          Additional Developers and Contributors are in the DEVELOPERS.txt
 //          file
 //
-//      Licensed under the Apache License, Version 2.0 (the "License");
+//      Licensed under the Apache License, Version 2.0(the "License");
 //      you may not use this file except in compliance with the License.
 //      You may obtain a copy of the License at
 // 

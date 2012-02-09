@@ -14,7 +14,7 @@ namespace StreamDesk {
         }
      
         // Called when created directly from a XIB file
-        [Export("initWithCoder:")]
+       [Export("initWithCoder:")]
         public StreamInformation(NSCoder coder) : base(coder) {
             Initialize();
         }

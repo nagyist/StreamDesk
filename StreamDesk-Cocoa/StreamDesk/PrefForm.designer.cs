@@ -8,35 +8,40 @@ using MonoMac.Foundation;
 
 namespace StreamDesk
 {
-	[Register("PrefFormController")]
+	[Register ("PrefFormController")]
 	partial class PrefFormController
 	{
 		[Outlet]
 		MonoMac.AppKit.NSTableView enabledDatabaseTableView { get; set; }
 
-		[Action("addDatabase:")]
-		partial void addDatabase(MonoMac.Foundation.NSObject sender);
+		[Outlet]
+		MonoMac.AppKit.NSButton checkForUpdatesCheckBox { get; set; }
 
-		[Action("okClicked:")]
-		partial void okClicked(MonoMac.Foundation.NSObject sender);
+		[Action ("okClicked:")]
+		partial void okClicked (MonoMac.Foundation.NSObject sender);
 
-		[Action("removeDatabase:")]
-		partial void removeDatabase(MonoMac.Foundation.NSObject sender);
+		[Action ("manageDatabases:")]
+		partial void manageDatabases (MonoMac.Foundation.NSObject sender);
 		
-		void ReleaseDesignerOutlets()
+		void ReleaseDesignerOutlets ()
 		{
 			if (enabledDatabaseTableView != null) {
-				enabledDatabaseTableView.Dispose();
+				enabledDatabaseTableView.Dispose ();
 				enabledDatabaseTableView = null;
+			}
+
+			if (checkForUpdatesCheckBox != null) {
+				checkForUpdatesCheckBox.Dispose ();
+				checkForUpdatesCheckBox = null;
 			}
 		}
 	}
 
-	[Register("PrefForm")]
+	[Register ("PrefForm")]
 	partial class PrefForm
 	{
 		
-		void ReleaseDesignerOutlets()
+		void ReleaseDesignerOutlets ()
 		{
 		}
 	}

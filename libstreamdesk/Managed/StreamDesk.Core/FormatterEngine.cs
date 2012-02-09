@@ -3,7 +3,7 @@
  * NasuTek StreamDesk
  * Copyright © 2007-2012 NasuTek Enterprises
  * 
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0(the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -46,8 +46,8 @@ namespace StreamDesk.Managed
                 foreach (var type in assembly.GetTypes().Where(p => typeof(IDatabaseFormatter).IsAssignableFrom(p))) {
                     Formatters.Add((IDatabaseFormatter)type.GetConstructor(Type.EmptyTypes).Invoke(null));
                 }
-                return Tuple.Create(true, (Exception)null);
-            } catch(Exception e) {
+                return Tuple.Create(true,(Exception)null);
+            } catch (Exception e) {
                 return Tuple.Create(false, e);
             }
         }
@@ -58,9 +58,9 @@ namespace StreamDesk.Managed
             {
                 return
                     Formatters.Aggregate("",
-                                         (current, databaseFormatter) =>
+                                        (current, databaseFormatter) =>
                                          current +
-                                         String.Format("|{0} (*{1})|*{1}", databaseFormatter.FormatName,
+                                         String.Format("|{0}(*{1})|*{1}", databaseFormatter.FormatName,
                                                        databaseFormatter.FileExtension)).Substring(1);
             }
         }

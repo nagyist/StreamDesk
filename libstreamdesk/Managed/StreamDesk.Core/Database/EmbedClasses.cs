@@ -3,7 +3,7 @@
  * NasuTek StreamDesk
  * Copyright © 2007-2012 NasuTek Enterprises
  * 
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0(the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -41,7 +41,7 @@ namespace StreamDesk.Managed.Database
 
         public string Format(List<StreamDeskProperty> embedDatas)
         {
-            return embedDatas.Aggregate(EmbedFormat, (current, embedData) => current.Replace("$" + embedData.Name + "$", embedData.Value));
+            return embedDatas.Aggregate(EmbedFormat,(current, embedData) => current.Replace("$" + embedData.Name + "$", embedData.Value));
         }
     }
 

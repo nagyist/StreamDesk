@@ -12,7 +12,7 @@ namespace StreamDesk {
     class Program {
         internal static AppDelegate Instance;
      
-        static void Main(string [] args) {      
+        static void Main(string[] args) {      
             NSApplication.Init();
             NSApplication.Main(args);
         }

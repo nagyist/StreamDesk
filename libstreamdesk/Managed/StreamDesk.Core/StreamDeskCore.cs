@@ -3,7 +3,7 @@
  * NasuTek StreamDesk
  * Copyright © 2007-2012 NasuTek Enterprises
  * 
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0(the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -46,13 +46,13 @@ namespace StreamDesk.Managed
 			
 			foreach (var activeDatabase in SettingsInstance.ActiveDatabases) {
 				var wc = new WebClient();
-				try{
-					using (var ms = new System.IO.MemoryStream(wc.DownloadData(activeDatabase))) {
+				try {
+					using(var ms = new System.IO.MemoryStream(wc.DownloadData(activeDatabase))) {
 	                    var db = StreamDeskDatabase.OpenDatabase(ms, System.IO.Path.GetExtension(activeDatabase));
 	                    db.TagInformation = activeDatabase;
 	                    ActiveDatabases.Add(db);
 	                }
-				} catch(Exception e) {
+				} catch (Exception e) {
 					FailedDatabases.Add(Tuple.Create(activeDatabase, e));
 				}
             }
@@ -69,14 +69,8 @@ namespace StreamDesk.Managed
             }
         }
 		
-		public StreamDeskDatabase GetDatabaseStreamExistsIn(Stream stream) {
-			foreach(var database in ActiveDatabases) {
-				if(database.GetStreamObject(stream.StreamGuid) != null) {
-					return database;
-				}
-			}
-			
-			return null;
+		public StreamDeskDatabase GetDatabaseStreamExistsIn(Stream stream) {		
+			return ActiveDatabases.Where(v => v.GetStreamObject(stream.StreamGuid) != null).FirstOrDefault();
 		}
 	}
 }

@@ -15,7 +15,7 @@ namespace StreamDesk {
         }
      
         // Called when created directly from a XIB file
-        [Export("initWithCoder:")]
+       [Export("initWithCoder:")]
         public ChatWindowController(NSCoder coder) : base(coder) {
             Initialize();
         }
@@ -32,6 +32,11 @@ namespace StreamDesk {
      #endregion
      
         public void SetChatWindow(Stream stream, StreamDeskDatabase database) {
+            Window.Title = "Chat: " + stream.Name + " > " + stream.ProviderObject.Name;
+#if DEBUG
+            Window.Title += " (Debug Build)";
+#endif
+            
             webBrowser.MainFrame.LoadHtmlString((NSString)database.GetChat(stream), new NSUrl("http://example.com"));
         }
      

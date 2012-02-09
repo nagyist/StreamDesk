@@ -8,7 +8,7 @@ using MonoMac.Foundation;
 
 namespace StreamDesk
 {
-	[Register("AppDelegate")]
+	[Register ("AppDelegate")]
 	partial class AppDelegate
 	{
 		[Outlet]
@@ -20,36 +20,44 @@ namespace StreamDesk
 		[Outlet]
 		MonoMac.AppKit.NSMenuItem viewMenu { get; set; }
 
-		[Action("openSearchBox:")]
-		partial void openSearchBox(MonoMac.Foundation.NSObject sender);
+		[Outlet]
+		MonoMac.AppKit.NSMenuItem favorites { get; set; }
 
-		[Action("viewStreamInformation:")]
-		partial void viewStreamInformation(MonoMac.Foundation.NSObject sender);
+		[Action ("openSearchBox:")]
+		partial void openSearchBox (MonoMac.Foundation.NSObject sender);
 
-		[Action("openPrefs:")]
-		partial void openPrefs(MonoMac.Foundation.NSObject sender);
+		[Action ("viewStreamInformation:")]
+		partial void viewStreamInformation (MonoMac.Foundation.NSObject sender);
 
-		[Action("openWebChat:")]
-		partial void openWebChat(MonoMac.Foundation.NSObject sender);
+		[Action ("openPrefs:")]
+		partial void openPrefs (MonoMac.Foundation.NSObject sender);
 
-		[Action("updateStreams:")]
-		partial void updateStreams(MonoMac.Foundation.NSObject sender);
+		[Action ("openWebChat:")]
+		partial void openWebChat (MonoMac.Foundation.NSObject sender);
+
+		[Action ("updateStreams:")]
+		partial void updateStreams (MonoMac.Foundation.NSObject sender);
 		
-		void ReleaseDesignerOutlets()
+		void ReleaseDesignerOutlets ()
 		{
 			if (streamsMenu != null) {
-				streamsMenu.Dispose();
+				streamsMenu.Dispose ();
 				streamsMenu = null;
 			}
 
 			if (chatMenu != null) {
-				chatMenu.Dispose();
+				chatMenu.Dispose ();
 				chatMenu = null;
 			}
 
 			if (viewMenu != null) {
-				viewMenu.Dispose();
+				viewMenu.Dispose ();
 				viewMenu = null;
+			}
+
+			if (favorites != null) {
+				favorites.Dispose ();
+				favorites = null;
 			}
 		}
 	}

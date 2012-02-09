@@ -16,11 +16,11 @@ namespace StreamDesk {
             if (row != -1)
                 switch ((NSString)tableColumn.Identifier) {
                     case "Name":
-                        return new NSString(Program.Instance.StreamDeskCoreInstance.ActiveDatabases [row].Name);
+                        return new NSString(Program.Instance.StreamDeskCoreInstance.ActiveDatabases[row].Name);
                     case "Vendor":
-                        return new NSString(Program.Instance.StreamDeskCoreInstance.ActiveDatabases [row].Vendor);
+                        return new NSString(Program.Instance.StreamDeskCoreInstance.ActiveDatabases[row].Vendor);
                     case "Description":
-                        return new NSString(Program.Instance.StreamDeskCoreInstance.ActiveDatabases [row].Description);
+                        return new NSString(Program.Instance.StreamDeskCoreInstance.ActiveDatabases[row].Description);
                 }
          
             return null;
@@ -28,6 +28,8 @@ namespace StreamDesk {
     }
  
     public partial class PrefFormController : MonoMac.AppKit.NSWindowController {
+        ManageDatabasesController manageDatabasesController;
+        
         #region Constructors
      
         // Called when created from unmanaged code
@@ -36,7 +38,7 @@ namespace StreamDesk {
         }
      
         // Called when created directly from a XIB file
-        [Export("initWithCoder:")]
+       [Export("initWithCoder:")]
         public PrefFormController(NSCoder coder) : base(coder) {
             Initialize();
         }
@@ -58,14 +60,6 @@ namespace StreamDesk {
             enabledDatabaseTableView.ReloadData();
         }
      
-        partial void addDatabase(NSObject sender) {
-         
-        }
-     
-        partial void removeDatabase(NSObject sender) {
-         
-        }
-     
         //strongly typed window accessor
         public new PrefForm Window {
             get {
@@ -75,6 +69,12 @@ namespace StreamDesk {
      
         partial void okClicked(NSObject sender) {
             Window.PerformClose(this);
+        }
+        
+        partial void manageDatabases(NSObject sender) {
+            if (manageDatabasesController == null)
+                manageDatabasesController = new ManageDatabasesController();
+            NSApplication.SharedApplication.BeginSheet(manageDatabasesController.Window, Window);
         }
     }
 }

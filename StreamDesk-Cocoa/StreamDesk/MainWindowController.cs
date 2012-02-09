@@ -10,7 +10,7 @@ namespace StreamDesk {
     public partial class MainWindowController : MonoMac.AppKit.NSWindowController {
         StreamInformationController streamInformationController;
         ChatWindowController chatWindowController;
-     
+        
         #region Constructors
      
         // Called when created from unmanaged code
@@ -19,7 +19,7 @@ namespace StreamDesk {
         }
      
         // Called when created directly from a XIB file
-        [Export("initWithCoder:")]
+       [Export("initWithCoder:")]
         public MainWindowController(NSCoder coder) : base(coder) {
             Initialize();
         }
@@ -33,7 +33,7 @@ namespace StreamDesk {
         void Initialize() {
             Window.Title = "No Stream Loaded";
 #if DEBUG
-            Window.Title += "(Debug Build)";
+            Window.Title += " (Debug Build)";
 #endif
         }
      
@@ -60,13 +60,14 @@ namespace StreamDesk {
      
         public void NavigateToStream(Stream streamObject, StreamDeskDatabase database) {                
             Program.Instance.ShowViewMenu();
-         
+         	Program.Instance.ShowChatMenu(streamObject);
+			
             ActiveStreamObject = streamObject;
             ActiveDatabase = database;
          
             Window.Title = streamObject.Name + " > " + streamObject.ProviderObject.Name;
 #if DEBUG
-         Window.Title += "(Debug Build)";
+            Window.Title += " (Debug Build)";
 #endif
          
             if (streamObject.StreamEmbed == "url_browser" || streamObject.StreamEmbed == "url_custom")

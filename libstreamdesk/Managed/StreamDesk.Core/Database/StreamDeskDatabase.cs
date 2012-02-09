@@ -1,9 +1,9 @@
 #region Licensing Information
 /***************************************************************************************************
  * NasuTek StreamDesk
- * Copyright © 2007-2012 NasuTek Enterprises
+ * Copyright ï¿½ 2007-2012 NasuTek Enterprises
  * 
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0(the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -63,7 +63,7 @@ namespace StreamDesk.Managed.Database
         public void SaveDatabase(string path)
         {
             var ext = Path.GetExtension(path);
-            using (var file = File.Open(path, FileMode.Create))
+            using(var file = File.Open(path, FileMode.Create))
             {
                 StreamDeskCore.FormatterEngine.GetFormatterByExtension(ext).Write(file, this);
             }
@@ -72,7 +72,7 @@ namespace StreamDesk.Managed.Database
         public static StreamDeskDatabase OpenDatabase(string path)
         {
             var ext = Path.GetExtension(path);
-            using (var file = File.Open(path, FileMode.Open)) {
+            using(var file = File.Open(path, FileMode.Open)) {
                 var engine = StreamDeskCore.FormatterEngine.GetFormatterByExtension(ext);
                 if (engine != null)
                     return engine.Read(file);
@@ -84,7 +84,7 @@ namespace StreamDesk.Managed.Database
         public static StreamDeskDatabase OpenDatabase(System.IO.Stream stream, string dbExtension) {
             var ext = Path.GetExtension(dbExtension);
 
-            using (stream) {
+            using(stream) {
                 var engine = StreamDeskCore.FormatterEngine.GetFormatterByExtension(ext);
                 if (engine != null)
                     return engine.Read(stream);
@@ -129,7 +129,7 @@ namespace StreamDesk.Managed.Database
             menuItem.IsPinned = newStreamObject.Pinned;
             menuItem.MediaType = newStreamObject.MediaType;
             menuItem.Database = this;
-            return (TObj)menuItem;
+            return(TObj)menuItem;
         }
 
         public TObj GenerateObjectDatabaseTag<TObj>(Provider providerObject, Provider newProviderObject, object[] tag)
@@ -144,7 +144,7 @@ namespace StreamDesk.Managed.Database
             menuItem.ParentProviderObject = providerObject;
             menuItem.Database = this;
             menuItem.TagObject = tag;
-            return (TObj)menuItem;
+            return(TObj)menuItem;
         }
 
         public TObj[] GenerateObjectDatabaseTags<TObj>(object[] tag) where TObj : IObjectDatabaseTag
@@ -255,7 +255,7 @@ namespace StreamDesk.Managed.Database
 
         private IObjectDatabaseTag CreateIObjectDatabaseTag(Type objectDatabaseTagType)
         {
-            return (IObjectDatabaseTag)objectDatabaseTagType.GetConstructor(Type.EmptyTypes).Invoke(null);
+            return(IObjectDatabaseTag)objectDatabaseTagType.GetConstructor(Type.EmptyTypes).Invoke(null);
         }
 
         public string GetChat(Stream stream)

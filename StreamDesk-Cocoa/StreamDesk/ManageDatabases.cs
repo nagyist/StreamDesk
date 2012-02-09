@@ -5,25 +5,26 @@ using MonoMac.Foundation;
 using MonoMac.AppKit;
 
 namespace StreamDesk {
-    public partial class MainWindow : MonoMac.AppKit.NSWindow {
+    public partial class ManageDatabases : MonoMac.AppKit.NSWindow {
         #region Constructors
-     
+        
         // Called when created from unmanaged code
-        public MainWindow(IntPtr handle) : base(handle) {
+        public ManageDatabases(IntPtr handle) : base (handle) {
             Initialize();
         }
-     
+        
         // Called when created directly from a XIB file
-       [Export("initWithCoder:")]
-        public MainWindow(NSCoder coder) : base(coder) {
+        [Export ("initWithCoder:")]
+        public ManageDatabases(NSCoder coder) : base (coder) {
             Initialize();
         }
-     
+        
         // Shared initialization code
         void Initialize() {
-
         }
-     
+        
         #endregion
+ 
     }
 }
+

@@ -13,7 +13,7 @@ namespace StreamDesk.Managed.DatabaseFormats
     {
         public string FormatName
         {
-            get { return "StreamDesk Database 2.0 (XML)"; }
+            get { return "StreamDesk Database 2.0(XML)"; }
         }
 
         public string FileExtension
@@ -24,7 +24,7 @@ namespace StreamDesk.Managed.DatabaseFormats
         public StreamDeskDatabase Read(System.IO.Stream file)
         {
             var formatter = new XmlSerializer(typeof(StreamDeskDatabase));
-            return (StreamDeskDatabase)formatter.Deserialize(file);
+            return(StreamDeskDatabase)formatter.Deserialize(file);
         }
 
         public void Write(System.IO.FileStream file, StreamDeskDatabase streamDeskDatabase)

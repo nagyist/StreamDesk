@@ -1,9 +1,9 @@
 #region Licensing Information
 /***************************************************************************************************
  * NasuTek StreamDesk
- * Copyright © 2007-2012 NasuTek Enterprises
+ * Copyright ï¿½ 2007-2012 NasuTek Enterprises
  * 
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0(the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -29,7 +29,7 @@ using System.Reflection;
 //////////////////////////////////////////////////////////////////////////////////////////
 [assembly: AssemblyCompany("NasuTek Enterprises")]
 [assembly: AssemblyProduct("NasuTek StreamDesk")]
-[assembly: AssemblyCopyright("Copyright (C) NasuTek Enterprises 2007-2012")]
+[assembly: AssemblyCopyright("Copyright(C) NasuTek Enterprises 2007-2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyVersion(GlobalAssemblyInfo.UpdaterVersion)]
@@ -38,5 +38,5 @@ using System.Reflection;
 internal class GlobalAssemblyInfo {
 	public const string UpdaterVersion = "${ProductVersion}";
 	public const string CleanVersion = "${CleanProductVersion}";
-	public const string FullVersion = "${ProductVersion}-NewDesk (${GitShortenedRevision}_${GitBranch})";
+	public const string FullVersion = "${ProductVersion}-NewDesk(${GitShortenedRevision}_${GitBranch})";
 }
