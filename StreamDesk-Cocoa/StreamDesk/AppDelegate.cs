@@ -4,8 +4,8 @@ using MonoMac.Foundation;
 using MonoMac.AppKit;
 using MonoMac.ObjCRuntime;
 using System.Collections.Generic;
-using StreamDesk.Managed;
-using StreamDesk.Managed.Database;
+using NasuTek.M3;
+using NasuTek.M3.Database;
 using System.Linq;
 
 namespace StreamDesk {
@@ -73,7 +73,8 @@ namespace StreamDesk {
         partial void openSearchBox(NSObject sender) {
             if (searchFormController == null) 
                 searchFormController = new SearchFormController();
-            searchFormController.Window.MakeKeyAndOrderFront(this);
+            
+            NSApplication.SharedApplication.BeginSheet(searchFormController.Window, GetActiveMainWindowController().Window);
         }
      
         partial void viewStreamInformation(NSObject sender) {
@@ -110,8 +111,8 @@ namespace StreamDesk {
             RefreshStreamsMenu();
         }
         
-                    NSMenuItem addFavorite = new NSMenuItem("Add");
-            NSMenuItem manageFavorites = new NSMenuItem("Manage");
+        NSMenuItem addFavorite = new NSMenuItem("Add");
+        NSMenuItem manageFavorites = new NSMenuItem("Manage");
         
         // MAJORHACK: Give me a damn break Apple/Mono Project/Whoever, WHY CANT I DEFINE A LOCAL VARABLE WITHOUT THE
         //            DAMN GARBAGE COLLECTOR CLEARING THE FENTOSECOND I AM DONE >:(

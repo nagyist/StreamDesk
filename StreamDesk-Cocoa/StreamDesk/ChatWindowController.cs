@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
-using StreamDesk.Managed.Database;
+using NasuTek.M3.Database;
 
 namespace StreamDesk {
     public partial class ChatWindowController : MonoMac.AppKit.NSWindowController {

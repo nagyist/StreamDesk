@@ -1,7 +1,7 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamDesk.Managed", "..\libstreamdesk\Managed\StreamDesk.Core\StreamDesk.Managed.csproj", "{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NasuTek.M3", "..\NasuTek-M3\NasuTek.M3\NasuTek.M3.csproj", "{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamDesk", "StreamDesk\StreamDesk.csproj", "{EE23C8A1-9BAD-4139-A92C-FFFE6FF887F6}"
 EndProject
@@ -26,6 +26,6 @@ Global
 		{EE23C8A1-9BAD-4139-A92C-FFFE6FF887F6}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ..\libstreamdesk\Managed\StreamDesk.Core\StreamDesk.Managed.csproj
+		StartupItem = ..\libstreamdesk\Managed\StreamDesk.Core\NasuTek.M3.csproj
 	EndGlobalSection
 EndGlobal

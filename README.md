@@ -1,15 +1,13 @@
-Thank you for checking out the StreamDesk Source Code! Each Directory Tree contains diffrent code that involves
-StreamDesk.
+Thank you for checking out the StreamDesk/NasuTek M3 Source Code! Each Directory Tree contains different code that involves
+the StreamDesk project.
 
 Directory Tree
 ==============
-* Managed: Contains the .NET Released StreamDesk Library for reading and using the StreamDesk database in .NET enabled languages.
-* libstreamdesk: Contains the C++ StreamDesk Library for reading and using the StreamDesk database in native code like C++/Obj-C++.
+* NasuTek-M3: Contains the .NET NasuTek M3 Media Library which is used by StreamDesk for its core features like for reading and using the M3 database.
 * StreamDesk-Winforms: The WinForms version of StreamDesk.
-* StreamDesk-Qt: The Qt version of StreamDesk.
 * StreamDesk-Cocoa: The Mac Version of StreamDesk.
 * Installers: Where installer source code is provided.
-* protos: Contains Source Code and Libraries involving Google Protocol Buffers and .proto files for StreamDesk Protocol Buffer databases.
+* Tests: Contains tests for either StreamDesk or NasuTek M3. Release maintainers it is required to run these test suites before releasing.
 
 Licensing
 =========
@@ -19,23 +17,30 @@ for more information.
 Building StreamDesk
 ===================
 
-Managed StreamDesk (C#)
------------------------
-To build Managed StreamDesk do the following
+WinForms StreamDesk (Windows)
+-----------------------------
+To build WinForms StreamDesk do the following
 
-1. Before building the project, you must generate the Protocol Buffer files, this can be done by running Build_Protos.cmd in the "protos" directory (In the Visual Studio Command Line if "nmake" isn't in your PATH).
-2. You can either build StreamDesk with the Solution File in "StreamDesk-WinForms" or running the Build_Debug.cmd or Build_Release.cmd files (In the Visual Studio Command Line if "msbuild" isn't in your PATH). The same goes if you just want to build the Managed StreamDesk Library in "Managed".
+1. You can either build StreamDesk with the Solution File in "StreamDesk-WinForms" or running the Build_Debug.cmd or Build_Release.cmd files (In the Visual Studio Command Line if "msbuild" isn't in your PATH).
 
-There are no dependencies required to build the Managed StreamDesk, any dependency is included in the source code tree.
+There are no dependencies required to build WinForms StreamDesk, any dependency is included in the source code tree.
 
-libstreamdesk (C++ StreamDesk Library)
---------------------------------------
-At the moment Qt StreamDesk has not been written yet. But when it is, the build instructions will be here.
+NOTE: This UI will be discontinued on the release of StreamDesk 3.1. For more information please view http://redmine.nasutek.com/issues/25
 
-Qt StreamDesk (C++ GUI)
------------------------
-At the moment Qt StreamDesk has not been written yet. But when it is, the build instructions will be here.
+NasuTek M3 (Media Library)
+--------------------------
+When you build StreamDesk this is automatically built for you. But if you just want to use StreamDesk's Media Library (NasuTek M3) you may build this separately.
+
+To build M3 by itself do the following
+
+1. You can either build M3 with the Solution File in "NasuTek-M3" or running the Build_Debug.cmd or Build_Release.cmd files (In the Visual Studio Command Line if "msbuild" isn't in your PATH).
+
+There are no dependencies required to build M3, any dependency is included in the source code tree.
 
 Cocoa StreamDesk (Mac OS X)
 ---------------------------
-At the moment Cocoa StreamDesk has not been written yet. But when it is, the build instructions will be here.
+To build Cocoa StreamDesk do the following
+
+1. You can either build StreamDesk with the Solution File in "StreamDesk-Cocoa" or running the Build_Debug.sh or Build_Release.sh files.
+
+You do need the MonoMac Addin installed in MonoDevelop before you can build Cocoa StreamDesk as this is needed for the Cocoa Bindings.

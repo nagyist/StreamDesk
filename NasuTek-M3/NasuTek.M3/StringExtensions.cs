@@ -20,23 +20,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using StreamDesk.Managed.Database;
 
-namespace StreamDesk.Managed
-{
-    public interface IObjectDatabaseTag
-    {
-        List<IObjectDatabaseTag> SubItems { get; }
-        string MenuTitle { get; set; }
-        bool IsProvider { get; set; }
-        bool IsPinned { get; set; }
-        Stream StreamObject { get; set; }
-        MediaType MediaType { get; set; }
-        Provider ProviderObject { get; set; }
-        Provider ParentProviderObject { get; set; }
-        StreamDeskDatabase Database { get; set; }
-        void CallSubItemsToProperArray();
-        object[] TagObject { get; set; }
+namespace NasuTek.M3 {
+    public static class StringExtensions {
+        public static bool Contains(this string source, string toCheck, StringComparison comp) {
+            return source.IndexOf(toCheck, comp) >= 0;
+        }
     }
 }

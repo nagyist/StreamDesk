@@ -1,7 +1,8 @@
 using System;
 using MonoMac.AppKit;
-using StreamDesk.Managed;
+using NasuTek.M3;
 using System.Linq;
+using NasuTek.M3.UiInterfaces;
 
 namespace StreamDesk {
     public class StreamMenuItem : NSMenuItem, IObjectDatabaseTag {
@@ -12,11 +13,11 @@ namespace StreamDesk {
 
         void ActivateStreamMenuItem(object sender, EventArgs e) {           
             switch (MediaType) {
-                case StreamDesk.Managed.Database.MediaType.VideoStream:
+                case NasuTek.M3.Database.MediaType.VideoStream:
                     Program.Instance.GetActiveMainWindowController().NavigateToStream(StreamObject, Database);
 
                     break;
-                case StreamDesk.Managed.Database.MediaType.AudioStream:
+                case NasuTek.M3.Database.MediaType.AudioStream:
                     break;
             }
         }
@@ -45,15 +46,15 @@ namespace StreamDesk {
 
         public bool IsPinned { get; set; }
 
-        public StreamDesk.Managed.Database.Stream StreamObject { get; set; }
+        public NasuTek.M3.Database.Stream StreamObject { get; set; }
 
-        public StreamDesk.Managed.Database.MediaType MediaType { get; set; }
+        public NasuTek.M3.Database.MediaType MediaType { get; set; }
 
-        public StreamDesk.Managed.Database.Provider ProviderObject { get; set; }
+        public NasuTek.M3.Database.Provider ProviderObject { get; set; }
 
-        public StreamDesk.Managed.Database.Provider ParentProviderObject { get; set; }
+        public NasuTek.M3.Database.Provider ParentProviderObject { get; set; }
 
-        public StreamDesk.Managed.Database.StreamDeskDatabase Database { get; set; }
+        public NasuTek.M3.Database.StreamDeskDatabase Database { get; set; }
 
         public object[] TagObject { get; set; }
         #endregion

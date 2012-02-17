@@ -22,15 +22,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Mono.Addins;
-using StreamDesk.Managed.Database;
+using NasuTek.M3.Database;
 using System.Net;
 
-namespace StreamDesk.Managed
+namespace NasuTek.M3
 {
     public class StreamDeskCore
     {
-        public List<StreamDeskDatabase> ActiveDatabases { get; private set; }
         public static FormatterEngine FormatterEngine { get; private set; }
+        
+        public List<StreamDeskDatabase> ActiveDatabases { get; private set; }
         public List<Tuple<String, Exception>> FailedDatabases { get; private set; } 
 		public StreamDeskSettings SettingsInstance { get; internal set; }
 

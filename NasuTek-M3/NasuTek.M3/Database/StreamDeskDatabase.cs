@@ -27,8 +27,9 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
+using NasuTek.M3.UiInterfaces;
 
-namespace StreamDesk.Managed.Database
+namespace NasuTek.M3.Database
 {
     [Serializable] public class StreamDeskDatabase {
         public StreamDeskDatabase() {

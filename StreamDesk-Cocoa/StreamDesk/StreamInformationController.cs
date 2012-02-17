@@ -45,7 +45,8 @@ namespace StreamDesk {
         }
      
         partial void okClicked(NSObject sender) {
-            Window.PerformClose(this);
+            NSApplication.SharedApplication.EndSheet(Window);
+            Window.OrderOut(this);
         }
     }
 }

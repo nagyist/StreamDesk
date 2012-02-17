@@ -1,7 +1,7 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamDesk.Managed", "StreamDesk.Core\StreamDesk.Managed.csproj", "{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NasuTek.M3", "NasuTek.M3\NasuTek.M3.csproj", "{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

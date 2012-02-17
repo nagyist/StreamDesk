@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
-using StreamDesk.Managed.Database;
+using NasuTek.M3.Database;
 
 namespace StreamDesk {
     public partial class SearchFormController : MonoMac.AppKit.NSWindowController {
@@ -39,10 +39,11 @@ namespace StreamDesk {
         }
      
         partial void okClicked(NSObject sender) {
-            Window.PerformClose(this);
+            NSApplication.SharedApplication.EndSheet(Window);
+            Window.OrderOut(this);
         }
      
-            partial void performSearch(NSObject sender) {
+        partial void performSearch(NSObject sender) {
             searchResults.DataSource = new SearchDataSource(((NSSearchField)sender).StringValue);
             searchResults.ReloadData();
         }

@@ -132,9 +132,9 @@
     <Content Include="build\StreamDesk.build\StreamDesk.pbxindex\strings.pbxstrings\strings" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libstreamdesk\Managed\StreamDesk.Core\StreamDesk.Managed.csproj">
+    <ProjectReference Include="..\..\libstreamdesk\Managed\StreamDesk.Core\NasuTek.M3.csproj">
       <Project>{D599B13F-C1F1-4ADD-BE5A-8942735D1D73}</Project>
-      <Name>StreamDesk.Managed</Name>
+      <Name>NasuTek.M3</Name>
     </ProjectReference>
   </ItemGroup>
   <ProjectExtensions>

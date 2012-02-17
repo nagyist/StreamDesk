@@ -3,9 +3,9 @@ using System.Drawing;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 using MonoMac.ObjCRuntime;
-using StreamDesk.Managed;
+using NasuTek.M3;
 using System.Net;
-using StreamDesk.Managed.Database;
+using NasuTek.M3.Database;
 using System.Threading;
 
 namespace StreamDesk {

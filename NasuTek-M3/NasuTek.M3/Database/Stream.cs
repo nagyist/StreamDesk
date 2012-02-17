@@ -27,7 +27,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace StreamDesk.Managed.Database
+namespace NasuTek.M3.Database
 {
     public enum MediaType {
         VideoStream = 1,

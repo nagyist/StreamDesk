@@ -23,7 +23,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace StreamDesk.Managed.Database
+namespace NasuTek.M3.Database
 {
     [Serializable] public class Provider {
         public Provider() {

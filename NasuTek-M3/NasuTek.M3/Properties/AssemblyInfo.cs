@@ -28,7 +28,7 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Mono.Addins;
-using StreamDesk.Managed;
+using NasuTek.M3;
 
 [assembly: AddinRoot("StreamDeskCore", "3.0.0.0")]
 

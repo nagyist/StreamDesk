@@ -23,7 +23,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace StreamDesk.Managed {
+namespace NasuTek.M3 {
     [Serializable] public class StreamDeskSettings {
         public static readonly string SettingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "StreamDesk 3", "Settings.xml");
 

@@ -4,7 +4,7 @@ using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 using System.Drawing;
-using StreamDesk.Managed.Database;
+using NasuTek.M3.Database;
 
 namespace StreamDesk {
     public partial class MainWindowController : MonoMac.AppKit.NSWindowController {
@@ -81,7 +81,8 @@ namespace StreamDesk {
         public void ShowStreamInformationWindow() {
             if (streamInformationController == null)
                 streamInformationController = new StreamInformationController();
-            streamInformationController.Window.MakeKeyAndOrderFront(this);
+            
+            NSApplication.SharedApplication.BeginSheet(streamInformationController.Window, Window);
             streamInformationController.LoadStreamInformation(ActiveStreamObject.Name, ActiveStreamObject.Tags, ActiveStreamObject.Web, ActiveStreamObject.Description);
         }
     }
