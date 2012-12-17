@@ -37,7 +37,6 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.button1 = new System.Windows.Forms.Button();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,12 +101,12 @@
             // linkLabel3
             // 
             this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(81, 262);
+            this.linkLabel3.Location = new System.Drawing.Point(81, 54);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(102, 13);
+            this.linkLabel3.Size = new System.Drawing.Size(107, 13);
             this.linkLabel3.TabIndex = 6;
             this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "Visit StreamDesk.ca";
+            this.linkLabel3.Text = "http://streamdesk.ca";
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
             // 
             // button1
@@ -120,23 +119,11 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // linkLabel4
-            // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(215, 262);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(96, 13);
-            this.linkLabel4.TabIndex = 8;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "Visit NasuTek.com";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
-            // 
             // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 292);
-            this.Controls.Add(this.linkLabel4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.linkLabel2);
@@ -168,6 +155,5 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.LinkLabel linkLabel4;
     }
 }

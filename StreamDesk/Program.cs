@@ -52,7 +52,7 @@ namespace StreamDesk {
                                       // TODO: Remove me later on after implimentation of new updater engine
 
                                       #region Obsolete Code
-                                      string newVer = new WebClient().DownloadString("http://streamdesk.ca/version.txt");
+                                      string newVer = new WebClient().DownloadString("http://streamdesk.sourceforge.net/version.txt");
 
                                       if (new Version(newVer) > new Version(GlobalAssemblyInfo.UpdaterVersion)) {
                                           if (MessageBox.Show("A new version of StreamDesk is Available.\n\nOld Version: " + GlobalAssemblyInfo.UpdaterVersion + "\nNew Version: " + newVer + "\n\nClick yes to go to http://streamdesk.ca to update.", "StreamDesk", MessageBoxButtons.YesNo,

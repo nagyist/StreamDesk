@@ -240,16 +240,16 @@
             // 
             this.streamDeskHomeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("streamDeskHomeToolStripMenuItem.Image")));
             this.streamDeskHomeToolStripMenuItem.Name = "streamDeskHomeToolStripMenuItem";
-            this.streamDeskHomeToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.streamDeskHomeToolStripMenuItem.Text = "StreamDesk Home";
+            this.streamDeskHomeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.streamDeskHomeToolStripMenuItem.Text = "StreamDesk";
             this.streamDeskHomeToolStripMenuItem.Click += new System.EventHandler(this.streamDeskHomeToolStripMenuItem_Click);
             // 
             // nasuTekHomeToolStripMenuItem
             // 
             this.nasuTekHomeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("nasuTekHomeToolStripMenuItem.Image")));
             this.nasuTekHomeToolStripMenuItem.Name = "nasuTekHomeToolStripMenuItem";
-            this.nasuTekHomeToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.nasuTekHomeToolStripMenuItem.Text = "NasuTek Home";
+            this.nasuTekHomeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.nasuTekHomeToolStripMenuItem.Text = "Michael Manley";
             this.nasuTekHomeToolStripMenuItem.Click += new System.EventHandler(this.nasuTekHomeToolStripMenuItem_Click);
             // 
             // supportToolStripMenuItem

@@ -36,9 +36,7 @@ namespace StreamDesk {
         private bool _clicked;
         private string _format = @"StreamDesk
 Version {0}
-Copyright © 2009-2011 Developers of the StreamDesk Project
-
-Sponsored By: NasuTek Enterprises";
+Copyright © 2008-2012 StreamDesk Project";
 
         public AboutForm() {
             InitializeComponent();
@@ -48,10 +46,6 @@ Sponsored By: NasuTek Enterprises";
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             Process.Start("http://streamdesk.ca");
-        }
-
-        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            Process.Start("http://nasutek.com");
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
