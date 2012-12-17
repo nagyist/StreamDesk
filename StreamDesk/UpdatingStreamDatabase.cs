@@ -45,7 +45,7 @@ namespace StreamDesk {
         private void UpdatingStreamDatabase_Load(object sender, EventArgs e) {
             new Thread(() => {
                            var webClient = new WebClient();
-                           webClient.DownloadFile(new Uri("http://streamdesk.ca/streams.sdb"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StreamDesk", "streams.sdb"));
+                           webClient.DownloadFile(new Uri("http://streamdesk.sourceforge.net/streams.sdb"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StreamDesk", "streams.sdb"));
                            Program.Database = StreamDeskDatabase.OpenBinaryDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StreamDesk", "streams.sdb"));
                            Invoke(new Action(Close));
                        }).Start();

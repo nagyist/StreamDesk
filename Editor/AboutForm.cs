@@ -36,9 +36,7 @@ namespace Editor {
         private bool _clicked;
         private string _format = @"StreamDesk Stream Editor
 Version {0}
-Copyright © 2009-2011 Developers of the StreamDesk Project
-
-Sponsored By: NasuTek Enterprises";
+Copyright © 2008-2012 StreamDesk Project";
 
         public AboutForm() {
             InitializeComponent();

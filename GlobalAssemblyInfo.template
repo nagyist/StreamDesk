@@ -36,16 +36,16 @@ using System.Reflection;
 // as it will be regenerated on compile
 //////////////////////////////////////////////////////////////////////////////////////////
 
-[assembly: AssemblyCompany("Developers of the StreamDesk Project")]
+[assembly: AssemblyCompany("StreamDesk Project")]
 [assembly: AssemblyProduct("StreamDesk")]
-[assembly: AssemblyCopyright("Copyright © Developers of the StreamDesk Project 2009-2011")]
+[assembly: AssemblyCopyright("Copyright © StreamDesk Project 2008-2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyVersion(GlobalAssemblyInfo.UpdaterVersion)]
 [assembly: AssemblyFileVersion(GlobalAssemblyInfo.UpdaterVersion)]
 
 internal class GlobalAssemblyInfo {
-	public const string UpdaterVersion = "2.2.0.0";
-	public const string CleanVersion = "2.2";
-	public const string FullVersion = "2.2.0.0_$BuildType$ ($GitHash$_$GitBranch$)";
+	public const string UpdaterVersion = "2.2.1.0";
+	public const string CleanVersion = "2.2.1";
+	public const string FullVersion = "2.2.1.0_$BuildType$ ($GitHash$_$GitBranch$)";
 }
